@@ -1,6 +1,7 @@
 --- 
-title: "A Minimal Book Example"
-author: "Alejo"
+title: "Caracterización Clínico-Molecular del Grado Tumoral en Gliomas"
+subtitle: "Optimización del Diagnóstico de Gliomas mediante Ciencia de Datos y Aprendizaje Automático"
+author: "Alejandro Cantillo Escorcia & Joshua Hincapie Llorente"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -9,24 +10,21 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: rstudio/bookdown-demo
-description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+description: "Proyecto de ciencia de datos y aprendizaje automático para la caracterización clínico-molecular del grado tumoral en gliomas (LGG vs. GBM), a partir de datos de los proyectos TCGA-LGG y TCGA-GBM de The Cancer Genome Atlas."
 ---
 
-# Prerequisites
+Los gliomas representan el tumor cerebral primario más común en adultos y se clasifican principalmente en Gliomas de Bajo Grado (LGG) y Glioblastoma Multiforme (GBM). Si bien los criterios histológicos e imagenológicos tradicionales han sido la base del diagnóstico, la caracterización biomolecular y clínica se ha vuelto imprescindible para determinar el pronóstico y el tratamiento idóneo. Sin embargo, las pruebas de secuenciación genética completa suponen un coste económico elevado para los sistemas de salud y los pacientes.
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
+Este proyecto aborda este desafío analítico y médico mediante la integración de Análisis Exploratorio de Datos (EDA), aprendizaje automático y visualización interactiva. Utilizando datos recopilados de los proyectos TCGA-LGG y TCGA-GBM de *The Cancer Genome Atlas*, el objetivo central es construir una solución analítica integral que identifique el subconjunto óptimo de factores clínicos y mutaciones genéticas para clasificar con precisión la severidad del glioma, reduciendo los costos asociados a pruebas moleculares innecesarias.
 
-The **bookdown** package can be installed from CRAN or Github:
+**Ficha Técnica del Dataset**
 
-```{r eval=FALSE}
-install.packages("bookdown")
-# or the development version
-# devtools::install_github("rstudio/bookdown")
-```
-
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
-
-To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.org/tinytex/>.
+* **Nombre:** Glioma Grading Clinical and Mutation Features
+* **Fuente:** [Glioma Grading Clinical and Mutation Features](https://archive.ics.uci.edu/dataset/759/glioma+grading+clinical+and+mutation+features+dataset)
+* **Muestra:** 839 registros de pacientes.
+* **Atributos (23):** 20 genes con alta frecuencia de mutación y 3 variables clínicas relevantes.
+* **Variable Objetivo:** Clasificación binaria entre **LGG** (Lower-Grade Glioma) y **GBM** (Glioblastoma Multiforme).
+* **Naturaleza de datos:** Tabular, multivariada (numérica y categórica).
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
