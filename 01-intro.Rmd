@@ -1,19 +1,63 @@
-# Introduction {#intro}
+# Análisis Exploratorio de Datos (EDA) {#intro}
 
-ALEJOOOO.
+## Dataset
 
-```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
-par(mar = c(4, 4, .1, .1))
-plot(pressure, type = 'b', pch = 19)
-```
+El conjunto de datos utilizado para el análisis es `TCGA_InfoWithGrade.csv`, correspondiente a una versión preprocesada de los datos relacionados con gliomas del proyecto *The Cancer Genome Atlas* (TCGA).
 
-Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
-
-```{r nice-tab, tidy=FALSE}
-knitr::kable(
-  head(iris, 20), caption = 'Here is a nice table!',
-  booktabs = TRUE
+```{r setup-eda, include=FALSE}
+knitr::opts_chunk$set(
+  echo       = TRUE,
+  warning    = FALSE,
+  message    = FALSE,
+  fig.align  = "center",
+  fig.width  = 7,
+  fig.height = 5,
+  dpi        = 120
 )
 ```
 
-You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
+```{r librerias-eda}
+## Librerías estándar / manipulación de datos
+library(tidyverse)   # dplyr, tidyr, purrr, ggplot2, stringr
+library(scales)      # formato de ejes y porcentajes
+
+## Tablas
+library(knitr)
+library(kableExtra)
+library(DT)
+
+## Visualización
+library(patchwork)   # composición de gráficos en grilla
+library(htmltools)   # renderizado de bloques HTML dentro del documento
+
+## Estadística
+library(moments)     # asimetría (skewness) y curtosis
+library(car)         # qqPlot con banda de confianza
+
+## Partición estratificada
+library(rsample)
+
+## Configuración visual (equivalente a seaborn "whitegrid")
+theme_set(
+  theme_minimal(base_size = 12) +
+    theme(
+      panel.grid.minor = element_blank(),
+      panel.grid.major = element_line(color = "grey88"),
+      plot.title       = element_text(face = "bold", size = 13, hjust = 0.5),
+      axis.title       = element_text(size = 11),
+      legend.position  = "top",
+      legend.title     = element_blank()
+    )
+)
+
+PALETTE_GRADE <- c("0" = "#2E86AB", "1" = "#C1443C")
+```
+
+```{r dataset-eda}
+df_mutations <- read_csv("Dataset/TCGA_InfoWithGrade.csv", show_col_types = FALSE)
+
+kable(head(df_mutations), caption = "Primeros registros del conjunto de datos.") |>
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = TRUE, font_size = 12) |>
+  scroll_box(width = "100%")
+```
