@@ -56,3 +56,5 @@ idh2
 fat4
 pdgfra
 multicolinealidad-y-correlación
+tab:unnamed-chunk-2
+tab:estructura-eda

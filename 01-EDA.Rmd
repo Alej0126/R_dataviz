@@ -18,8 +18,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-
-
 ```{r librerias-eda}
 ## Librerías estándar / manipulación de datos
 library(tidyverse)   # dplyr, tidyr, purrr, ggplot2, stringr
@@ -37,11 +35,10 @@ library(htmltools)   # renderizado de bloques HTML dentro del documento
 ## Estadística
 library(moments)     # asimetría (skewness) y curtosis
 library(car)         # qqPlot con banda de confianza
+```
 
-## Partición estratificada
-library(rsample)
-
-## Configuración visual (equivalente a seaborn "whitegrid")
+```{r, echo=FALSE}
+## Configuración visual
 theme_set(
   theme_minimal(base_size = 12) +
     theme(
@@ -54,8 +51,12 @@ theme_set(
     )
 )
 
-PALETTE_GRADE <- c("0" = "#2E86AB", "1" = "#C1443C")
+PALETTE_GRADE <- c(
+  "LGG (0)" = "#4C72B0",
+  "GBM (1)" = "#C44E52"
+)
 ```
+
 
 ```{r dataset-eda}
 df_mutations <- read_csv("dataset/TCGA_InfoWithGrade.csv", show_col_types = FALSE)
@@ -80,10 +81,29 @@ kable(tail(df_mutations), caption = "Últimos registros del conjunto de datos.")
 ### Estructura
 
 ```{r estructura-eda}
-cat(sprintf("Dimensiones del dataset: %d pacientes x %d variables\n",
-            nrow(df_mutations), ncol(df_mutations)))
-cat(sprintf("Registros duplicados: %d\n", sum(duplicated(df_mutations))))
-cat(sprintf("Valores faltantes: %d\n", sum(is.na(df_mutations))))
+resumen_dataset <- data.frame(
+  Indicador = c(
+    "Pacientes",
+    "Variables",
+    "Registros duplicados",
+    "Valores faltantes"
+  ),
+  Valor = c(
+    nrow(df_mutations),
+    ncol(df_mutations),
+    sum(duplicated(df_mutations)),
+    sum(is.na(df_mutations))
+  )
+)
+
+kable(
+  resumen_dataset,
+  caption = "Resumen de las dimensiones y calidad del dataset."
+) |>
+  kable_styling(
+    bootstrap_options = c("striped", "condensed"),
+    full_width = FALSE
+  )
 ```
 
 ```{r info-df-eda}
@@ -204,14 +224,22 @@ El objetivo a resolver es predecir la severidad del glioma en pacientes, clasifi
 ## División del dataset
 
 ```{r grade-full-plot}
-conteo <- df_mutations |> count(Grade) |> mutate(pct = n / sum(n) * 100)
+conteo <- df_mutations |>
+  mutate(
+    Grade = factor(
+      Grade,
+      levels = c(0, 1),
+      labels = c("LGG (0)", "GBM (1)")
+    )
+  ) |>
+  count(Grade) |>
+  mutate(pct = n / sum(n) * 100)
 
 ggplot(conteo, aes(x = Grade, y = n, fill = Grade)) +
   geom_col(width = 0.55, color = "white", linewidth = 1.1) +
   geom_text(aes(label = sprintf("%d\n(%.1f%%)", n, pct)),
             vjust = -0.3, fontface = "bold", size = 3.8) +
   scale_fill_manual(values = PALETTE_GRADE, guide = "none") +
-  scale_x_discrete(labels = c("LGG (0)", "GBM (1)")) +
   scale_y_continuous(expand = expansion(mult = c(0, 0.25))) +
   labs(title = "Distribución de la variable objetivo: Grado tumoral",
        x = NULL, y = "Número de pacientes")
@@ -219,21 +247,21 @@ ggplot(conteo, aes(x = Grade, y = n, fill = Grade)) +
 
 La elección de una partición estratificada (*Stratified Train-Test Split*) se justifica por la necesidad de preservar la proporción original de las clases de la variable objetivo (`Grade`) en ambos subconjuntos de datos. En el dataset completo, la distribución presenta un ligero desbalance (ratio ≈ 1.4:1), donde el 58,05% corresponde a Gliomas de Bajo Grado (LGG) y el 41,95% a Glioblastomas (GBM); una división sin estratificar podría dejar los conjuntos de `train` y `test` sesgados a un solo grupo de la variable `Grade`.
 
+La partición 80/20 estratificada por `Grade` (semilla fija = 42) se realizó una única vez para todo el proyecto y se exportó a `train_data.csv` / `test_data.csv`, de modo que todos los cuadernos —tanto los de EDA como los de modelado, en Python o en R— parten exactamente de la misma partición y no existe riesgo de que cada entorno genere una división distinta. Por ello, aquí simplemente se leen esos archivos en lugar de recalcular la partición.
+
 ```{r split-eda}
-set.seed(42)
+train_data <- read_csv("Dataset/train_data.csv", show_col_types = FALSE)
 
-split_glioma <- initial_split(df_mutations, prop = 0.80, strata = Grade)
-
-train_data <- training(split_glioma)
-test_data  <- testing(split_glioma)
+# Se recodifican las variables categóricas exactamente igual que en df_mutations,
+# para que el resto del documento (detección automática de variables genéticas,
+# pruebas de independencia, paleta de colores, etc.) funcione sin cambios.
+train_data <- train_data |> mutate(across(all_of(columnas_categoricas), as.factor))
 
 X_train <- train_data |> select(-Grade)
 y_train <- train_data$Grade
-X_test  <- test_data  |> select(-Grade)
-y_test  <- test_data$Grade
 ```
 
-Para asegurar una evaluación rigurosa del modelo y prevenir la fuga de datos, el conjunto original de 839 registros se dividió en una proporción 80/20 mediante una partición estratificada basada en la variable objetivo (`Grade`). De este modo, se reservó un conjunto de prueba (*Test set*) compuesto por 168 pacientes exclusivamente para la validación final del rendimiento, mientras que las 671 observaciones restantes formaron el conjunto de entrenamiento (*Train set*), garantizando que el patrón de distribución de las clases —aproximadamente 58% para tumores de bajo grado (LGG) y 42% para glioblastomas (GBM)— se mantuviera perfectamente balanceado entre ambas subdivisiones.
+Para asegurar una evaluación rigurosa del modelo y prevenir la fuga de datos, el conjunto original de 839 registros se dividió previamente en una proporción 80/20 mediante una partición estratificada basada en la variable objetivo (`Grade`). De este modo, se reservó un conjunto de prueba (*Test set*) compuesto por 168 pacientes exclusivamente para la validación final del rendimiento, mientras que las 671 observaciones restantes formaron el conjunto de entrenamiento (*Train set*), garantizando que el patrón de distribución de las clases —aproximadamente 58% para tumores de bajo grado (LGG) y 42% para glioblastomas (GBM)— se mantuviera perfectamente balanceado entre ambas subdivisiones.
 
 
 
@@ -244,7 +272,16 @@ En esta sección se analiza la distribución individual de las variables del con
 ### Variable `Grade` (Target)
 
 ```{r grade-train-donut}
-conteo <- train_data |> count(Grade) |> mutate(pct = n / sum(n) * 100)
+conteo <- train_data |>
+  mutate(
+    Grade = factor(
+      Grade,
+      levels = c(0, 1),
+      labels = c("LGG (0)", "GBM (1)")
+    )
+  ) |>
+  count(Grade) |>
+  mutate(pct = n / sum(n) * 100)
 conteo$label <- sprintf("%s\n%d (%.1f%%)",
                          c("LGG (0)", "GBM (1)"), conteo$n, conteo$pct)
 
@@ -555,6 +592,8 @@ analisis_bivariado <- function(df, target, variable, etiquetas = NULL,
                                 titulo = NULL, xlabel = NULL) {
 
   df_plot <- df |>
+    mutate(across(all_of(target),
+                  ~ dplyr::recode(as.character(.x), "0" = "LGG (0)", "1" = "GBM (1)"))) |>
     count(.data[[target]], .data[[variable]], name = "n") |>
     group_by(.data[[target]]) |>
     mutate(porcentaje = round(n / sum(n) * 100, 1)) |>
@@ -575,7 +614,7 @@ analisis_bivariado <- function(df, target, variable, etiquetas = NULL,
     geom_col(position = position_dodge(width = 0.8), width = 0.7) +
     geom_text(aes(label = sprintf("%d (%.1f%%)", n, porcentaje)),
               position = position_dodge(width = 0.8), vjust = -0.4, size = 3) +
-    scale_fill_manual(values = PALETTE_GRADE, labels = c("Grade 0", "Grade 1")) +
+    scale_fill_manual(values = PALETTE_GRADE) +
     scale_y_continuous(expand = expansion(mult = c(0, 0.18))) +
     labs(title = titulo, x = xlabel, y = "Cantidad de pacientes", fill = target)
 
@@ -992,7 +1031,7 @@ ggplot(df_target_corr, aes(x = variable, y = r, fill = signo)) +
                 hjust = ifelse(r >= 0, -0.15, 1.1)),
             size = 3, fontface = "bold") +
   coord_flip(ylim = c(-0.85, 0.65)) +
-  scale_fill_manual(values = c("neg" = PALETTE_GRADE["0"], "pos" = PALETTE_GRADE["1"]), guide = "none") +
+  scale_fill_manual(values = c("neg" = PALETTE_GRADE["LGG (0)"], "pos" = PALETTE_GRADE["GBM (1)"]), guide = "none") +
   labs(title = "Correlación de Spearman de cada Atributo con la Severidad (Grade)",
        x = NULL, y = "Coeficiente de Correlación (r)") +
   theme(panel.border = element_blank())
@@ -1119,15 +1158,3 @@ El análisis bivariado y de correlación de Spearman sobre el conjunto de entren
 
 * **Patrones de Co-ocurrencia:** El par **`ATRX`–`TP53`** presenta la mayor fuerza de asociación mutua ($V = 0,5440$, $r \approx 0,35$), reflejando el eje de co-mutación clásico en la astrocitogénesis. Las interacciones **`FUBP1`–`CIC`** ($V = 0,4592$) y **`ATRX`–`IDH1`** ($V = 0,4562$) reafirman las firmas genómicas del linaje oligodendroglial y de gliomas de bajo grado.
 * **Exclusión Mutua:** La relación entre **`PTEN`** e **`IDH1`** ($V = 0,4028$) responde a una regla de incompatibilidad biológica asociada al grado tumoral (`IDH1` mutado en LGG vs. `PTEN` alterado en GBM).
-
-**Diagnóstico de Multicolinealidad para el Modelado Predictivo:**
-
-Dado que ningún par de variables independientes superó el umbral crítico de redundancia ($V > 0,70$ o $\vert{}r\vert{} > 0,70$), se confirma la **ausencia de multicolinealidad estructural** en la muestra de entrenamiento. Este resultado valida la retención de este subconjunto de biomarcadores, permitiendo a los algoritmos de clasificación explotar estas interacciones complejas sin generar inestabilidad en la estimación de parámetros.
-
-```{r guardar-datos-eda}
-# Transferencia de datos hacia los cuadernos de modelado
-saveRDS(
-  list(X_train = X_train, X_test = X_test, y_train = y_train, y_test = y_test),
-  file = "datos_modelado.rds"
-)
-```
