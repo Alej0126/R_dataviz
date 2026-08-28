@@ -1,11 +1,4 @@
 fig:nice-fig
 tab:nice-tab
-prerequisites
+introducción
 intro
-literature
-methods
-math-example
-applications
-example-one
-example-two
-final-words
