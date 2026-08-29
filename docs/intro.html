@@ -180,6 +180,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5.3" data-path="intro.html"><a href="intro.html#grade---race"><i class="fa fa-check"></i><b>2.5.3</b> <code>Grade</code> - <code>Race</code></a></li>
 <li class="chapter" data-level="2.5.4" data-path="intro.html"><a href="intro.html#grade---variables-gen%C3%A9ticas"><i class="fa fa-check"></i><b>2.5.4</b> <code>Grade</code> - <code>variables genéticas</code></a></li>
 <li class="chapter" data-level="2.5.5" data-path="intro.html"><a href="intro.html#multicolinealidad-y-correlaci%C3%B3n"><i class="fa fa-check"></i><b>2.5.5</b> Multicolinealidad y correlación</a></li>
+<li class="chapter" data-level="2.5.6" data-path="intro.html"><a href="intro.html#asociaci%C3%B3n-con-la-variable-objetivo-grade"><i class="fa fa-check"></i><b>2.5.6</b> Asociación con la variable objetivo (<code>Grade</code>)</a></li>
+<li class="chapter" data-level="2.5.7" data-path="intro.html"><a href="intro.html#pares-de-predictores-con-alta-asociaci%C3%B3n-mutua"><i class="fa fa-check"></i><b>2.5.7</b> Pares de predictores con alta asociación mutua</a></li>
+<li class="chapter" data-level="2.5.8" data-path="intro.html"><a href="intro.html#diagn%C3%B3stico-de-multicolinealidad-entre-predictores"><i class="fa fa-check"></i><b>2.5.8</b> Diagnóstico de multicolinealidad entre predictores</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -1380,8 +1383,8 @@ Valores faltantes
 <span id="cb5-11"><a href="intro.html#cb5-11" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>, <span class="at">scrollY =</span> <span class="st">&quot;400px&quot;</span>, <span class="at">paging =</span> <span class="cn">FALSE</span>),</span>
 <span id="cb5-12"><a href="intro.html#cb5-12" tabindex="-1"></a>  <span class="at">rownames =</span> <span class="cn">FALSE</span></span>
 <span id="cb5-13"><a href="intro.html#cb5-13" tabindex="-1"></a>)</span></code></pre></div>
-<div class="datatables html-widget html-fill-item" id="htmlwidget-98a4f8f1e3625f394c19" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-98a4f8f1e3625f394c19">{"x":{"filter":"none","vertical":false,"data":[["Grade","Gender","Age_at_diagnosis","Race","IDH1","TP53","ATRX","PTEN","EGFR","CIC","MUC16","PIK3CA","NF1","PIK3R1","FUBP1","RB1","NOTCH1","BCOR","CSMD3","SMARCA4","GRIN2A","IDH2","FAT4","PDGFRA"],["numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric"],[839,839,839,839,839,839,839,839,839,839,839,839,839,839,839,839,839,839,839,839,839,839,839,839],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[2,2,766,4,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Variable<\/th>\n      <th>Tipo de dato<\/th>\n      <th>Valores no nulos<\/th>\n      <th>Valores nulos<\/th>\n      <th>Valores unicos<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"scrollY":"400px","paging":false,"columnDefs":[{"className":"dt-right","targets":[2,3,4]},{"name":"Variable","targets":0},{"name":"Tipo de dato","targets":1},{"name":"Valores no nulos","targets":2},{"name":"Valores nulos","targets":3},{"name":"Valores unicos","targets":4}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-013972f986160c5fbabe" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-013972f986160c5fbabe">{"x":{"filter":"none","vertical":false,"data":[["Grade","Gender","Age_at_diagnosis","Race","IDH1","TP53","ATRX","PTEN","EGFR","CIC","MUC16","PIK3CA","NF1","PIK3R1","FUBP1","RB1","NOTCH1","BCOR","CSMD3","SMARCA4","GRIN2A","IDH2","FAT4","PDGFRA"],["numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric"],[839,839,839,839,839,839,839,839,839,839,839,839,839,839,839,839,839,839,839,839,839,839,839,839],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[2,2,766,4,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Variable<\/th>\n      <th>Tipo de dato<\/th>\n      <th>Valores no nulos<\/th>\n      <th>Valores nulos<\/th>\n      <th>Valores unicos<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"scrollY":"400px","paging":false,"columnDefs":[{"className":"dt-right","targets":[2,3,4]},{"name":"Variable","targets":0},{"name":"Tipo de dato","targets":1},{"name":"Valores no nulos","targets":2},{"name":"Valores nulos","targets":3},{"name":"Valores unicos","targets":4}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1" tabindex="-1"></a>columnas_categoricas <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(df_mutations), <span class="st">&quot;Age_at_diagnosis&quot;</span>)</span>
 <span id="cb6-2"><a href="intro.html#cb6-2" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="intro.html#cb6-3" tabindex="-1"></a>df_mutations <span class="ot">&lt;-</span> df_mutations <span class="sc">|&gt;</span></span>
@@ -2518,8 +2521,8 @@ PDGFRA
 <span id="cb21-3"><a href="intro.html#cb21-3" tabindex="-1"></a><span class="fu">ggplot</span>(train_data, <span class="fu">aes</span>(<span class="at">x =</span> Grade, <span class="at">y =</span> Age_at_diagnosis)) <span class="sc">+</span></span>
 <span id="cb21-4"><a href="intro.html#cb21-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
 <span id="cb21-5"><a href="intro.html#cb21-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> medias, <span class="fu">aes</span>(<span class="at">x =</span> Grade, <span class="at">y =</span> media), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb21-6"><a href="intro.html#cb21-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribución de la edad según el grado del tumor&quot;</span>,</span>
-<span id="cb21-7"><a href="intro.html#cb21-7" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Grado del tumor (Grade)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Edad al diagnóstico&quot;</span>)</span></code></pre></div>
+<span id="cb21-6"><a href="intro.html#cb21-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribucion de la edad segun el grado del tumor&quot;</span>,</span>
+<span id="cb21-7"><a href="intro.html#cb21-7" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Grado del tumor (Grade)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Edad al diagnostico&quot;</span>)</span></code></pre></div>
 <p><img src="caracterizacion-gliomas_files/figure-html/grade-age-box-eda-1.png" width="840" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="intro.html#cb22-1" tabindex="-1"></a>age_grade <span class="ot">&lt;-</span> train_data <span class="sc">|&gt;</span></span>
 <span id="cb22-2"><a href="intro.html#cb22-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Grade) <span class="sc">|&gt;</span></span>
@@ -2537,13 +2540,13 @@ PDGFRA
 <span id="cb22-14"><a href="intro.html#cb22-14" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;Age_at_diagnosis&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(Grade)) <span class="sc">|&gt;</span></span>
 <span id="cb22-15"><a href="intro.html#cb22-15" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, Grade, n, media, ds, mediana, minimo, maximo, Q1, Q3, IQR)</span>
 <span id="cb22-16"><a href="intro.html#cb22-16" tabindex="-1"></a></span>
-<span id="cb22-17"><a href="intro.html#cb22-17" tabindex="-1"></a><span class="fu">kable</span>(age_grade, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">caption =</span> <span class="st">&quot;Estadística descriptiva de Age_at_diagnosis por nivel de Grade.&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-17"><a href="intro.html#cb22-17" tabindex="-1"></a><span class="fu">kable</span>(age_grade, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">caption =</span> <span class="st">&quot;Estadistica descriptiva de Age_at_diagnosis por nivel de Grade.&quot;</span>) <span class="sc">|&gt;</span></span>
 <span id="cb22-18"><a href="intro.html#cb22-18" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;condensed&quot;</span>), <span class="at">full_width =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb22-19"><a href="intro.html#cb22-19" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">&quot;100%&quot;</span>)</span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped table-condensed" style="color: black; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:grade-age-tabla-eda">Table 2.21: </span><span id="tab:grade-age-tabla-eda">Table 2.22: </span>Estadística descriptiva de Age_at_diagnosis por nivel de Grade.
+<span id="tab:grade-age-tabla-eda">Table 2.21: </span><span id="tab:grade-age-tabla-eda">Table 2.22: </span>Estadistica descriptiva de Age_at_diagnosis por nivel de Grade.
 </caption>
 <thead>
 <tr>
@@ -2749,13 +2752,13 @@ Age_at_diagnosis
 <li><p><strong>Hipótesis alternativa (<span class="math inline">\(H_1\)</span>):</strong> <code>Gender</code> y <code>Grade</code> no son independientes; existe una asociación estadísticamente significativa entre ambas variables.</p></li>
 </ul>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="intro.html#cb29-1" tabindex="-1"></a>tabla_gender_grade <span class="ot">&lt;-</span> <span class="fu">table</span>(train_data<span class="sc">$</span>Gender, train_data<span class="sc">$</span>Grade)</span>
-<span id="cb29-2"><a href="intro.html#cb29-2" tabindex="-1"></a>chi2_gender <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(tabla_gender_grade, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb29-2"><a href="intro.html#cb29-2" tabindex="-1"></a>chi2_gender <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(tabla_gender_grade)</span>
 <span id="cb29-3"><a href="intro.html#cb29-3" tabindex="-1"></a></span>
 <span id="cb29-4"><a href="intro.html#cb29-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Estadístico χ²: %.4f</span><span class="sc">\n</span><span class="st">&quot;</span>, chi2_gender<span class="sc">$</span>statistic))</span></code></pre></div>
 <pre><code>## 
-## Estadístico χ²: 2.9200</code></pre>
+## Estadístico χ²: 2.6543</code></pre>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="intro.html#cb31-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;p-value: %.4f</span><span class="sc">\n</span><span class="st">&quot;</span>, chi2_gender<span class="sc">$</span>p.value))</span></code></pre></div>
-<pre><code>## p-value: 0.0875</code></pre>
+<pre><code>## p-value: 0.1033</code></pre>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="intro.html#cb33-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Grados de libertad: %d</span><span class="sc">\n</span><span class="st">&quot;</span>, chi2_gender<span class="sc">$</span>parameter))</span></code></pre></div>
 <pre><code>## Grados de libertad: 1</code></pre>
 <p>Con un nivel de significancia de <span class="math inline">\(\alpha = 0,05\)</span>, el estadístico de Chi-cuadrado obtenido fue <span class="math inline">\(\chi^2(1) = 2,6543\)</span>, con un p-value de <span class="math inline">\(0,1033\)</span>. Debido a que <span class="math inline">\(p = 0,1033 &gt; 0,05\)</span>, no se rechaza la hipótesis nula (<span class="math inline">\(H_0\)</span>). Por lo tanto, no se encuentra evidencia estadísticamente significativa de una asociación entre Gender y Grade en el conjunto de datos analizado; es decir, los resultados son compatibles con la independencia entre ambas variables.</p>
@@ -2838,14 +2841,14 @@ White
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="intro.html#cb37-1" tabindex="-1"></a>chi2_race <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(tabla_race_agg, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="intro.html#cb37-1" tabindex="-1"></a>chi2_race <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(tabla_race_agg)</span>
 <span id="cb37-2"><a href="intro.html#cb37-2" tabindex="-1"></a></span>
 <span id="cb37-3"><a href="intro.html#cb37-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Chi-cuadrado: %.4f</span><span class="sc">\n</span><span class="st">&quot;</span>, chi2_race<span class="sc">$</span>statistic))</span></code></pre></div>
-<pre><code>## Chi-cuadrado: 8.7363</code></pre>
+<pre><code>## Chi-cuadrado: 7.9450</code></pre>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="intro.html#cb39-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Grados de libertad: %d</span><span class="sc">\n</span><span class="st">&quot;</span>, chi2_race<span class="sc">$</span>parameter))</span></code></pre></div>
 <pre><code>## Grados de libertad: 1</code></pre>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="intro.html#cb41-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Valor p: %.4f</span><span class="sc">\n</span><span class="st">&quot;</span>, chi2_race<span class="sc">$</span>p.value))</span></code></pre></div>
-<pre><code>## Valor p: 0.0031</code></pre>
+<pre><code>## Valor p: 0.0048</code></pre>
 <p>Dado que el valor <strong>p = 0,0048</strong> es menor que el nivel de significancia de 0.05, se rechaza la hipótesis nula de independencia. Por lo tanto, existe evidencia estadísticamente significativa de una asociación entre <code>Grade</code> y <code>Race</code> en el conjunto de datos.</p>
 <p>Esto indica que la distribución de los pacientes entre <strong>LGG (Grade 0)</strong> y <strong>GBM (Grade 1)</strong> presenta diferencias según el grupo racial considerado. Sin embargo, este resultado debe interpretarse con cautela, ya que la variable <code>Race</code> fue previamente agrupada en <strong>White</strong> y <strong>Other racial groups</strong> debido a las bajas frecuencias de algunas categorías originales.</p>
 <p>Es importante señalar que la prueba de independencia permite identificar una asociación estadística, pero no implica que el grupo racial sea la causa de las diferencias observadas en el grado tumoral.</p>
@@ -2857,7 +2860,7 @@ White
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="intro.html#cb43-1" tabindex="-1"></a>prueba_independencia <span class="ot">&lt;-</span> <span class="cf">function</span>(df, target, variable, <span class="at">alpha =</span> <span class="fl">0.05</span>) {</span>
 <span id="cb43-2"><a href="intro.html#cb43-2" tabindex="-1"></a></span>
 <span id="cb43-3"><a href="intro.html#cb43-3" tabindex="-1"></a>  tabla <span class="ot">&lt;-</span> <span class="fu">table</span>(df[[variable]], df[[target]])</span>
-<span id="cb43-4"><a href="intro.html#cb43-4" tabindex="-1"></a>  chi2_res <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">chisq.test</span>(tabla, <span class="at">correct =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb43-4"><a href="intro.html#cb43-4" tabindex="-1"></a>  chi2_res <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">chisq.test</span>(tabla))</span>
 <span id="cb43-5"><a href="intro.html#cb43-5" tabindex="-1"></a>  esperadas <span class="ot">&lt;-</span> chi2_res<span class="sc">$</span>expected</span>
 <span id="cb43-6"><a href="intro.html#cb43-6" tabindex="-1"></a></span>
 <span id="cb43-7"><a href="intro.html#cb43-7" tabindex="-1"></a>  usar_fisher <span class="ot">&lt;-</span> <span class="fu">all</span>(<span class="fu">dim</span>(tabla) <span class="sc">==</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="sc">&amp;&amp;</span> <span class="fu">any</span>(esperadas <span class="sc">&lt;</span> <span class="dv">5</span>)</span>
@@ -2935,7 +2938,7 @@ IDH1 está fuertemente asociada con los LGG en este conjunto de datos, mientras 
 caracteriza en mayor proporción a los GBM.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-1.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #1a7f37; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 331.6225, p-value = 0.0000 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 328.7778, p-value = 0.0000 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="tp53" class="section level4 hasAnchor" number="2.5.4.2">
@@ -2950,7 +2953,7 @@ mientras que en los GBM la presentan aproximadamente 3 de cada 10 pacientes. Por
 de TP53 es relativamente mayor en los LGG que en los GBM.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-2.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #1a7f37; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 10.6610, p-value = 0.0011 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 10.1466, p-value = 0.0014 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="atrx" class="section level4 hasAnchor" number="2.5.4.3">
@@ -2965,7 +2968,7 @@ en el Grado 1. En términos relativos, la mutación aparece en el 37,8% de los p
 de los pacientes de Grado 1. Por tanto, existe una diferencia importante en la distribución de ATRX entre ambas clases.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-3.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #1a7f37; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 71.7476, p-value = 0.0000 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 70.2383, p-value = 0.0000 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="pten" class="section level4 hasAnchor" number="2.5.4.4">
@@ -2979,7 +2982,7 @@ proporciones, la presencia de PTEN pasa de 5,1% en Grado 0 a 33,0% en Grado 1, l
 puntos porcentuales.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-4.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #1a7f37; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 90.4615, p-value = 0.0000 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 88.4847, p-value = 0.0000 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="egfr" class="section level4 hasAnchor" number="2.5.4.5">
@@ -2992,7 +2995,7 @@ de pacientes con EGFR mutado pasa de 5,9% en el Grado 0 a 19,5% en el Grado 1, l
 13,6 puntos porcentuales.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-5.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #1a7f37; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 29.3949, p-value = 0.0000 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 28.0868, p-value = 0.0000 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="cic" class="section level4 hasAnchor" number="2.5.4.6">
@@ -3008,7 +3011,7 @@ Grado 0, mientras que su ausencia está presente en prácticamente todos los pac
 podría ser una variable con un alto poder discriminativo para diferenciar ambas categorías.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-6.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #1a7f37; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 65.7626, p-value = 0.0000 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 63.9316, p-value = 0.0000 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="muc16" class="section level4 hasAnchor" number="2.5.4.7">
@@ -3026,19 +3029,19 @@ que MUC16 podría aportar cierta información para diferenciar las clases, pero 
 parece menor a partir de esta distribución.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-7.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #1a7f37; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 8.8281, p-value = 0.0030 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 8.1018, p-value = 0.0044 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="pik3ca" class="section level4 hasAnchor" number="2.5.4.8">
 <h4><span class="header-section-number">2.5.4.8</span> <code>PIK3CA</code><a href="intro.html#pik3ca" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>La distribución de PIK3CA es bastante similar entre los dos grupos de Grade. La ausencia de la alteración es
+<p>La distribucion de PIK3CA es bastante similar entre los dos grupos de Grade. La ausencia de la alteración es
 predominante tanto en Grade 0 (92,3 %) como en Grade 1 (90,4 %), mientras que su presencia representa únicamente
 el 7,7 % y 9,6 %, respectivamente. Aunque se observa una proporción ligeramente mayor de presencia de mutación de PIK3CA en
 Grade 1, la diferencia es pequeña (1,9 puntos porcentuales). Por lo tanto, a partir de esta comparación descriptiva,
 PIK3CA no presenta una diferencia marcada entre ambos grados.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-8.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #6e7781; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 0.7295, p-value = 0.3930 → <span style="color:#6e7781; font-weight:600;">no se rechaza H₀: no hay evidencia de asociación significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 0.5096, p-value = 0.4753 → <span style="color:#6e7781; font-weight:600;">no se rechaza H₀: no hay evidencia de asociación significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="nf1" class="section level4 hasAnchor" number="2.5.4.9">
@@ -3050,7 +3053,7 @@ Sin embargo, debido a que la diferencia entre ambos grupos es relativamente pequ
 ampliamente, no se observa una separación marcada entre los grados a partir de esta variable.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-9.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #6e7781; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 3.3423, p-value = 0.0675 → <span style="color:#6e7781; font-weight:600;">no se rechaza H₀: no hay evidencia de asociación significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 2.8453, p-value = 0.0916 → <span style="color:#6e7781; font-weight:600;">no se rechaza H₀: no hay evidencia de asociación significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="pik3r1" class="section level4 hasAnchor" number="2.5.4.10">
@@ -3063,7 +3066,7 @@ suficientemente marcada como para observar una separación clara entre los dos g
 descriptivo.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-10.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #1a7f37; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 6.4700, p-value = 0.0110 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 5.6477, p-value = 0.0175 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="fubp1" class="section level4 hasAnchor" number="2.5.4.11">
@@ -3076,7 +3079,7 @@ variable podría estar relacionada con la clasificación del grado tumoral y pod
 entre ambos grupos.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-11.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #1a7f37; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 25.5369, p-value = 0.0000 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 23.9313, p-value = 0.0000 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="rb1" class="section level4 hasAnchor" number="2.5.4.12">
@@ -3091,7 +3094,7 @@ siendo la categoría predominante en ambos grupos, el aumento de la presencia de
 bastante visible entre las distribuciones.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-12.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #1a7f37; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 22.5548, p-value = 0.0000 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 20.8699, p-value = 0.0000 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="notch1" class="section level4 hasAnchor" number="2.5.4.13">
@@ -3103,7 +3106,7 @@ en Grade 1. Esta diferencia sugiere que la presencia de mutación de NOTCH1 podr
 grado tumoral y podría ser una característica útil para distinguir entre ambos grupos.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-13.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #1a7f37; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 25.1603, p-value = 0.0000 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 23.3788, p-value = 0.0000 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="bcor" class="section level4 hasAnchor" number="2.5.4.14">
@@ -3118,7 +3121,7 @@ presenta una diferencia mínima de 0,1 puntos porcentuales. Esto indica que no e
 entre los grupos respecto a esta variable.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-14.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #6e7781; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 0.0117, p-value = 0.9140 → <span style="color:#6e7781; font-weight:600;">no se rechaza H₀: no hay evidencia de asociación significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 0.0000, p-value = 1.0000 → <span style="color:#6e7781; font-weight:600;">no se rechaza H₀: no hay evidencia de asociación significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="csmd3" class="section level4 hasAnchor" number="2.5.4.15">
@@ -3130,7 +3133,7 @@ diferencia entre los grupos, la magnitud de la variación es reducida, por lo qu
 entre Grade 0 y Grade 1 a partir de CSMD3.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-15.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #6e7781; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 1.0065, p-value = 0.3157 → <span style="color:#6e7781; font-weight:600;">no se rechaza H₀: no hay evidencia de asociación significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 0.6214, p-value = 0.4305 → <span style="color:#6e7781; font-weight:600;">no se rechaza H₀: no hay evidencia de asociación significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="smarca4" class="section level4 hasAnchor" number="2.5.4.16">
@@ -3143,7 +3146,7 @@ los casos. En consecuencia, aunque se observa una tendencia hacia una mayor pres
 entre los grupos es moderada y no permite considerar por sí sola a esta variable como un diferenciador fuerte del grado tumoral.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-16.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #1a7f37; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 5.9326, p-value = 0.0149 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 4.9318, p-value = 0.0264 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="grin2a" class="section level4 hasAnchor" number="2.5.4.17">
@@ -3156,7 +3159,7 @@ de mutaciones en GRIN2A entre los pacientes de Grade 1; sin embargo, debido a la
 de la mutación, no es suficiente para establecer por sí sola una asociación con el grado tumoral.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-17.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #1a7f37; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 8.0431, p-value = 0.0046 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 6.7615, p-value = 0.0093 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="idh2" class="section level4 hasAnchor" number="2.5.4.18">
@@ -3170,7 +3173,7 @@ con mayor frecuencia en Grade 0. Además, la distribución resulta especialmente
 prácticamente todos los pacientes presentan ausencia de alteración en el gen IDH2.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-18.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #1a7f37; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 9.3999, p-value = 0.0022 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 8.0732, p-value = 0.0045 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="fat4" class="section level4 hasAnchor" number="2.5.4.19">
@@ -3182,7 +3185,7 @@ una separación clara entre los grados a partir de esta variable. Por lo tanto, 
 discriminativa reducida por sí sola en este análisis bivariado.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-19.png" width="840" style="display: block; margin: auto;" />
 <div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #6e7781; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 0.4826, p-value = 0.4872 → <span style="color:#6e7781; font-weight:600;">no se rechaza H₀: no hay evidencia de asociación significativa</span> (α = 0.05)
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 0.2049, p-value = 0.6508 → <span style="color:#6e7781; font-weight:600;">no se rechaza H₀: no hay evidencia de asociación significativa</span> (α = 0.05)
 </div>
 </div>
 <div id="pdgfra" class="section level4 hasAnchor" number="2.5.4.20">
@@ -3195,8 +3198,8 @@ entre ambos grados. Aunque la presencia de la variable sigue siendo poco frecuen
 mayor proporción en Grade 1. Por tanto, a diferencia de variables como FAT4, donde las proporciones eran prácticamente
 iguales, PDGFRA muestra una separación algo más evidente entre los grupos.</p>
 <img src="caracterizacion-gliomas_files/figure-html/genes-bivariado-loop-eda-20.png" width="840" style="display: block; margin: auto;" />
-<div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #1a7f37; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
-<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 4.6090, p-value = 0.0318 → <span style="color:#1a7f37; font-weight:600;">se rechaza H₀: existe asociación estadísticamente significativa</span> (α = 0.05)
+<div style="margin: 10px 0 24px 0; padding: 10px 14px; border-left: 4px solid #6e7781; background-color: rgba(110,119,129,0.08); border-radius: 4px; font-size: 14px;">
+<b>Prueba de independencia (Chi-cuadrado):</b> χ²(1) = 3.6284, p-value = 0.0568 → <span style="color:#6e7781; font-weight:600;">no se rechaza H₀: no hay evidencia de asociación significativa</span> (α = 0.05)
 </div>
 <p>Las variables genéticas presentan, en conjunto, comportamientos muy heterogéneos frente a <code>Grade</code>: mientras genes como <code>IDH1</code>, <code>CIC</code>, <code>ATRX</code> y <code>FUBP1</code> muestran diferencias marcadas y estadísticamente significativas entre LGG y GBM, otros como <code>BCOR</code>, <code>CSMD3</code>, <code>FAT4</code> y <code>PIK3CA</code> presentan distribuciones prácticamente equivalentes entre ambos grupos, sugiriendo un poder discriminativo individual bajo.</p>
 </div>
@@ -3215,21 +3218,20 @@ iguales, PDGFRA muestra una separación algo más evidente entre los grupos.</p>
 <span id="cb45-10"><a href="intro.html#cb45-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">var1 =</span> <span class="fu">factor</span>(var1, <span class="at">levels =</span> <span class="fu">colnames</span>(spearman_corr)),</span>
 <span id="cb45-11"><a href="intro.html#cb45-11" tabindex="-1"></a>         <span class="at">var2 =</span> <span class="fu">factor</span>(var2, <span class="at">levels =</span> <span class="fu">colnames</span>(spearman_corr)))</span>
 <span id="cb45-12"><a href="intro.html#cb45-12" tabindex="-1"></a></span>
-<span id="cb45-13"><a href="intro.html#cb45-13" tabindex="-1"></a><span class="co"># Mascara triangular superior (equivalente a np.triu)</span></span>
-<span id="cb45-14"><a href="intro.html#cb45-14" tabindex="-1"></a>spearman_long <span class="ot">&lt;-</span> spearman_long <span class="sc">|&gt;</span></span>
-<span id="cb45-15"><a href="intro.html#cb45-15" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ord1 =</span> <span class="fu">as.integer</span>(var1), <span class="at">ord2 =</span> <span class="fu">as.integer</span>(var2)) <span class="sc">|&gt;</span></span>
-<span id="cb45-16"><a href="intro.html#cb45-16" tabindex="-1"></a>  <span class="fu">filter</span>(ord2 <span class="sc">&lt;=</span> ord1)</span>
-<span id="cb45-17"><a href="intro.html#cb45-17" tabindex="-1"></a></span>
-<span id="cb45-18"><a href="intro.html#cb45-18" tabindex="-1"></a><span class="fu">ggplot</span>(spearman_long, <span class="fu">aes</span>(<span class="at">x =</span> var2, <span class="at">y =</span> var1, <span class="at">fill =</span> r)) <span class="sc">+</span></span>
-<span id="cb45-19"><a href="intro.html#cb45-19" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb45-20"><a href="intro.html#cb45-20" tabindex="-1"></a>  <span class="fu">scale_fill_gradient2</span>(<span class="at">low =</span> <span class="st">&quot;#2E86AB&quot;</span>, <span class="at">mid =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;#C1443C&quot;</span>,</span>
-<span id="cb45-21"><a href="intro.html#cb45-21" tabindex="-1"></a>                        <span class="at">midpoint =</span> <span class="dv">0</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>),</span>
-<span id="cb45-22"><a href="intro.html#cb45-22" tabindex="-1"></a>                        <span class="at">name =</span> <span class="st">&quot;Coeficiente de</span><span class="sc">\n</span><span class="st">Correlación de</span><span class="sc">\n</span><span class="st">Spearman (r)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb45-23"><a href="intro.html#cb45-23" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Matriz de Correlación de Spearman (Train Set - 23 Variables)&quot;</span>,</span>
-<span id="cb45-24"><a href="intro.html#cb45-24" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb45-25"><a href="intro.html#cb45-25" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">8</span>),</span>
-<span id="cb45-26"><a href="intro.html#cb45-26" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>),</span>
-<span id="cb45-27"><a href="intro.html#cb45-27" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<span id="cb45-13"><a href="intro.html#cb45-13" tabindex="-1"></a>spearman_long <span class="ot">&lt;-</span> spearman_long <span class="sc">|&gt;</span></span>
+<span id="cb45-14"><a href="intro.html#cb45-14" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ord1 =</span> <span class="fu">as.integer</span>(var1), <span class="at">ord2 =</span> <span class="fu">as.integer</span>(var2)) <span class="sc">|&gt;</span></span>
+<span id="cb45-15"><a href="intro.html#cb45-15" tabindex="-1"></a>  <span class="fu">filter</span>(ord2 <span class="sc">&lt;=</span> ord1)</span>
+<span id="cb45-16"><a href="intro.html#cb45-16" tabindex="-1"></a></span>
+<span id="cb45-17"><a href="intro.html#cb45-17" tabindex="-1"></a><span class="fu">ggplot</span>(spearman_long, <span class="fu">aes</span>(<span class="at">x =</span> var2, <span class="at">y =</span> var1, <span class="at">fill =</span> r)) <span class="sc">+</span></span>
+<span id="cb45-18"><a href="intro.html#cb45-18" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb45-19"><a href="intro.html#cb45-19" tabindex="-1"></a>  <span class="fu">scale_fill_gradient2</span>(<span class="at">low =</span> <span class="st">&quot;#2E86AB&quot;</span>, <span class="at">mid =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;#C1443C&quot;</span>,</span>
+<span id="cb45-20"><a href="intro.html#cb45-20" tabindex="-1"></a>                        <span class="at">midpoint =</span> <span class="dv">0</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb45-21"><a href="intro.html#cb45-21" tabindex="-1"></a>                        <span class="at">name =</span> <span class="st">&quot;Coeficiente de</span><span class="sc">\n</span><span class="st">Correlacion de</span><span class="sc">\n</span><span class="st">Spearman (r)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb45-22"><a href="intro.html#cb45-22" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Matriz de Correlacion de Spearman (Train Set - 23 Variables)&quot;</span>,</span>
+<span id="cb45-23"><a href="intro.html#cb45-23" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb45-24"><a href="intro.html#cb45-24" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">8</span>),</span>
+<span id="cb45-25"><a href="intro.html#cb45-25" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>),</span>
+<span id="cb45-26"><a href="intro.html#cb45-26" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
 <p><img src="caracterizacion-gliomas_files/figure-html/spearman-heatmap-eda-1.png" width="1320" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="intro.html#cb46-1" tabindex="-1"></a>target_corr <span class="ot">&lt;-</span> spearman_corr[, <span class="st">&quot;Grade&quot;</span>]</span>
 <span id="cb46-2"><a href="intro.html#cb46-2" tabindex="-1"></a>target_corr <span class="ot">&lt;-</span> target_corr[<span class="fu">names</span>(target_corr) <span class="sc">!=</span> <span class="st">&quot;Grade&quot;</span>]</span>
@@ -3246,83 +3248,160 @@ iguales, PDGFRA muestra una separación algo más evidente entre los grupos.</p>
 <span id="cb46-13"><a href="intro.html#cb46-13" tabindex="-1"></a>                <span class="at">hjust =</span> <span class="fu">ifelse</span>(r <span class="sc">&gt;=</span> <span class="dv">0</span>, <span class="sc">-</span><span class="fl">0.15</span>, <span class="fl">1.1</span>)),</span>
 <span id="cb46-14"><a href="intro.html#cb46-14" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">3</span>, <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>) <span class="sc">+</span></span>
 <span id="cb46-15"><a href="intro.html#cb46-15" tabindex="-1"></a>  <span class="fu">coord_flip</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.85</span>, <span class="fl">0.65</span>)) <span class="sc">+</span></span>
-<span id="cb46-16"><a href="intro.html#cb46-16" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;neg&quot;</span> <span class="ot">=</span> PALETTE_GRADE[<span class="st">&quot;LGG (0)&quot;</span>], <span class="st">&quot;pos&quot;</span> <span class="ot">=</span> PALETTE_GRADE[<span class="st">&quot;GBM (1)&quot;</span>]), <span class="at">guide =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
-<span id="cb46-17"><a href="intro.html#cb46-17" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Correlación de Spearman de cada Atributo con la Severidad (Grade)&quot;</span>,</span>
-<span id="cb46-18"><a href="intro.html#cb46-18" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&quot;Coeficiente de Correlación (r)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb46-19"><a href="intro.html#cb46-19" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.border =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<span id="cb46-16"><a href="intro.html#cb46-16" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb46-17"><a href="intro.html#cb46-17" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;neg&quot;</span> <span class="ot">=</span> <span class="st">&quot;#4C72B0&quot;</span>, <span class="st">&quot;pos&quot;</span> <span class="ot">=</span> <span class="st">&quot;#C44E52&quot;</span>), </span>
+<span id="cb46-18"><a href="intro.html#cb46-18" tabindex="-1"></a>    <span class="at">guide =</span> <span class="st">&quot;none&quot;</span></span>
+<span id="cb46-19"><a href="intro.html#cb46-19" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb46-20"><a href="intro.html#cb46-20" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Correlacion de Spearman de cada Atributo con la Severidad (Grade)&quot;</span>,</span>
+<span id="cb46-21"><a href="intro.html#cb46-21" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&quot;Coeficiente de Correlacion (r)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb46-22"><a href="intro.html#cb46-22" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.border =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
 <p><img src="caracterizacion-gliomas_files/figure-html/spearman-target-eda-1.png" width="1080" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="intro.html#cb47-1" tabindex="-1"></a>calcular_asociacion <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb47-2"><a href="intro.html#cb47-2" tabindex="-1"></a>  tabla <span class="ot">&lt;-</span> <span class="fu">table</span>(x, y)</span>
-<span id="cb47-3"><a href="intro.html#cb47-3" tabindex="-1"></a>  chi2_res <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">chisq.test</span>(tabla, <span class="at">correct =</span> <span class="cn">FALSE</span>))</span>
-<span id="cb47-4"><a href="intro.html#cb47-4" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">sum</span>(tabla)</span>
-<span id="cb47-5"><a href="intro.html#cb47-5" tabindex="-1"></a>  phi2 <span class="ot">&lt;-</span> <span class="fu">unname</span>(chi2_res<span class="sc">$</span>statistic) <span class="sc">/</span> n</span>
-<span id="cb47-6"><a href="intro.html#cb47-6" tabindex="-1"></a>  r <span class="ot">&lt;-</span> <span class="fu">nrow</span>(tabla); k <span class="ot">&lt;-</span> <span class="fu">ncol</span>(tabla)</span>
-<span id="cb47-7"><a href="intro.html#cb47-7" tabindex="-1"></a></span>
-<span id="cb47-8"><a href="intro.html#cb47-8" tabindex="-1"></a>  phi2corr <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="dv">0</span>, phi2 <span class="sc">-</span> ((k <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (r <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">/</span> (n <span class="sc">-</span> <span class="dv">1</span>))</span>
-<span id="cb47-9"><a href="intro.html#cb47-9" tabindex="-1"></a>  rcorr <span class="ot">&lt;-</span> r <span class="sc">-</span> ((r <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (n <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb47-10"><a href="intro.html#cb47-10" tabindex="-1"></a>  kcorr <span class="ot">&lt;-</span> k <span class="sc">-</span> ((k <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (n <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb47-11"><a href="intro.html#cb47-11" tabindex="-1"></a>  denominator <span class="ot">&lt;-</span> <span class="fu">min</span>(kcorr <span class="sc">-</span> <span class="dv">1</span>, rcorr <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb47-12"><a href="intro.html#cb47-12" tabindex="-1"></a>  v_cramer <span class="ot">&lt;-</span> <span class="cf">if</span> (denominator <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="fu">sqrt</span>(phi2corr <span class="sc">/</span> denominator) <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb47-13"><a href="intro.html#cb47-13" tabindex="-1"></a></span>
-<span id="cb47-14"><a href="intro.html#cb47-14" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">chi2 =</span> <span class="fu">unname</span>(chi2_res<span class="sc">$</span>statistic), <span class="at">p_val =</span> chi2_res<span class="sc">$</span>p.value, <span class="at">v =</span> v_cramer)</span>
-<span id="cb47-15"><a href="intro.html#cb47-15" tabindex="-1"></a>}</span>
-<span id="cb47-16"><a href="intro.html#cb47-16" tabindex="-1"></a></span>
-<span id="cb47-17"><a href="intro.html#cb47-17" tabindex="-1"></a>train_data_bin <span class="ot">&lt;-</span> train_data <span class="sc">|&gt;</span></span>
-<span id="cb47-18"><a href="intro.html#cb47-18" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Race =</span> <span class="fu">ifelse</span>(<span class="fu">as.character</span>(Race) <span class="sc">==</span> <span class="st">&quot;0&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb47-19"><a href="intro.html#cb47-19" tabindex="-1"></a></span>
-<span id="cb47-20"><a href="intro.html#cb47-20" tabindex="-1"></a>cat_cols <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(train_data_bin), <span class="st">&quot;Age_at_diagnosis&quot;</span>)</span>
-<span id="cb47-21"><a href="intro.html#cb47-21" tabindex="-1"></a>n_cols <span class="ot">&lt;-</span> <span class="fu">length</span>(cat_cols)</span>
-<span id="cb47-22"><a href="intro.html#cb47-22" tabindex="-1"></a></span>
-<span id="cb47-23"><a href="intro.html#cb47-23" tabindex="-1"></a>cramer_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span>, <span class="at">nrow =</span> n_cols, <span class="at">ncol =</span> n_cols,</span>
-<span id="cb47-24"><a href="intro.html#cb47-24" tabindex="-1"></a>                        <span class="at">dimnames =</span> <span class="fu">list</span>(cat_cols, cat_cols))</span>
-<span id="cb47-25"><a href="intro.html#cb47-25" tabindex="-1"></a>chi2_results     <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb47-26"><a href="intro.html#cb47-26" tabindex="-1"></a>pares_asociados  <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="intro.html#cb47-1" tabindex="-1"></a>phi_maximo <span class="ot">&lt;-</span> <span class="cf">function</span>(tabla) {</span>
+<span id="cb47-2"><a href="intro.html#cb47-2" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">all</span>(<span class="fu">dim</span>(tabla) <span class="sc">==</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))) <span class="fu">return</span>(<span class="cn">NA_real_</span>)</span>
+<span id="cb47-3"><a href="intro.html#cb47-3" tabindex="-1"></a>  n  <span class="ot">&lt;-</span> <span class="fu">sum</span>(tabla)</span>
+<span id="cb47-4"><a href="intro.html#cb47-4" tabindex="-1"></a>  p1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(tabla[<span class="dv">2</span>, ]) <span class="sc">/</span> n</span>
+<span id="cb47-5"><a href="intro.html#cb47-5" tabindex="-1"></a>  p2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(tabla[, <span class="dv">2</span>]) <span class="sc">/</span> n</span>
+<span id="cb47-6"><a href="intro.html#cb47-6" tabindex="-1"></a>  a  <span class="ot">&lt;-</span> <span class="fu">min</span>(p1, p2); b <span class="ot">&lt;-</span> <span class="fu">max</span>(p1, p2)</span>
+<span id="cb47-7"><a href="intro.html#cb47-7" tabindex="-1"></a>  <span class="cf">if</span> (a <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">||</span> b <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="fu">return</span>(<span class="cn">NA_real_</span>)</span>
+<span id="cb47-8"><a href="intro.html#cb47-8" tabindex="-1"></a>  <span class="fu">sqrt</span>((a <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> b)) <span class="sc">/</span> (b <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> a)))</span>
+<span id="cb47-9"><a href="intro.html#cb47-9" tabindex="-1"></a>}</span>
+<span id="cb47-10"><a href="intro.html#cb47-10" tabindex="-1"></a></span>
+<span id="cb47-11"><a href="intro.html#cb47-11" tabindex="-1"></a>phi_signado <span class="ot">&lt;-</span> <span class="cf">function</span>(tabla) {</span>
+<span id="cb47-12"><a href="intro.html#cb47-12" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">all</span>(<span class="fu">dim</span>(tabla) <span class="sc">==</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))) <span class="fu">return</span>(<span class="cn">NA_real_</span>)</span>
+<span id="cb47-13"><a href="intro.html#cb47-13" tabindex="-1"></a>  a <span class="ot">&lt;-</span> tabla[<span class="dv">1</span>, <span class="dv">1</span>]; b <span class="ot">&lt;-</span> tabla[<span class="dv">1</span>, <span class="dv">2</span>]; cc <span class="ot">&lt;-</span> tabla[<span class="dv">2</span>, <span class="dv">1</span>]; d <span class="ot">&lt;-</span> tabla[<span class="dv">2</span>, <span class="dv">2</span>]</span>
+<span id="cb47-14"><a href="intro.html#cb47-14" tabindex="-1"></a>  den <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">as.numeric</span>(a <span class="sc">+</span> b) <span class="sc">*</span> (cc <span class="sc">+</span> d) <span class="sc">*</span> (a <span class="sc">+</span> cc) <span class="sc">*</span> (b <span class="sc">+</span> d))</span>
+<span id="cb47-15"><a href="intro.html#cb47-15" tabindex="-1"></a>  <span class="cf">if</span> (den <span class="sc">&gt;</span> <span class="dv">0</span>) (a <span class="sc">*</span> d <span class="sc">-</span> b <span class="sc">*</span> cc) <span class="sc">/</span> den <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb47-16"><a href="intro.html#cb47-16" tabindex="-1"></a>}</span>
+<span id="cb47-17"><a href="intro.html#cb47-17" tabindex="-1"></a></span>
+<span id="cb47-18"><a href="intro.html#cb47-18" tabindex="-1"></a>calcular_asociacion <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb47-19"><a href="intro.html#cb47-19" tabindex="-1"></a>  tabla <span class="ot">&lt;-</span> <span class="fu">table</span>(x, y)</span>
+<span id="cb47-20"><a href="intro.html#cb47-20" tabindex="-1"></a></span>
+<span id="cb47-21"><a href="intro.html#cb47-21" tabindex="-1"></a>  chi2_c    <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">chisq.test</span>(tabla, <span class="at">correct =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb47-22"><a href="intro.html#cb47-22" tabindex="-1"></a>  chi2_s    <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">chisq.test</span>(tabla, <span class="at">correct =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb47-23"><a href="intro.html#cb47-23" tabindex="-1"></a>  esperadas <span class="ot">&lt;-</span> chi2_c<span class="sc">$</span>expected</span>
+<span id="cb47-24"><a href="intro.html#cb47-24" tabindex="-1"></a></span>
+<span id="cb47-25"><a href="intro.html#cb47-25" tabindex="-1"></a>  supuesto_valido <span class="ot">&lt;-</span> <span class="fu">all</span>(esperadas <span class="sc">&gt;=</span> <span class="dv">5</span>)</span>
+<span id="cb47-26"><a href="intro.html#cb47-26" tabindex="-1"></a>  freq_esp_min    <span class="ot">&lt;-</span> <span class="fu">min</span>(esperadas)</span>
 <span id="cb47-27"><a href="intro.html#cb47-27" tabindex="-1"></a></span>
-<span id="cb47-28"><a href="intro.html#cb47-28" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(n_cols)) {</span>
-<span id="cb47-29"><a href="intro.html#cb47-29" tabindex="-1"></a>  var1 <span class="ot">&lt;-</span> cat_cols[i]</span>
-<span id="cb47-30"><a href="intro.html#cb47-30" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">seq_len</span>(i <span class="sc">-</span> <span class="dv">1</span>)) {</span>
-<span id="cb47-31"><a href="intro.html#cb47-31" tabindex="-1"></a>    var2 <span class="ot">&lt;-</span> cat_cols[j]</span>
-<span id="cb47-32"><a href="intro.html#cb47-32" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">calcular_asociacion</span>(train_data_bin[[var1]], train_data_bin[[var2]])</span>
-<span id="cb47-33"><a href="intro.html#cb47-33" tabindex="-1"></a>    cramer_matrix[i, j] <span class="ot">&lt;-</span> res<span class="sc">$</span>v</span>
-<span id="cb47-34"><a href="intro.html#cb47-34" tabindex="-1"></a>    cramer_matrix[j, i] <span class="ot">&lt;-</span> res<span class="sc">$</span>v</span>
+<span id="cb47-28"><a href="intro.html#cb47-28" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">all</span>(<span class="fu">dim</span>(tabla) <span class="sc">==</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="sc">&amp;&amp;</span> <span class="sc">!</span>supuesto_valido) {</span>
+<span id="cb47-29"><a href="intro.html#cb47-29" tabindex="-1"></a>    p_val <span class="ot">&lt;-</span> <span class="fu">fisher.test</span>(tabla)<span class="sc">$</span>p.value</span>
+<span id="cb47-30"><a href="intro.html#cb47-30" tabindex="-1"></a>    test  <span class="ot">&lt;-</span> <span class="st">&quot;Fisher exacto&quot;</span></span>
+<span id="cb47-31"><a href="intro.html#cb47-31" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb47-32"><a href="intro.html#cb47-32" tabindex="-1"></a>    p_val <span class="ot">&lt;-</span> chi2_c<span class="sc">$</span>p.value</span>
+<span id="cb47-33"><a href="intro.html#cb47-33" tabindex="-1"></a>    test  <span class="ot">&lt;-</span> <span class="st">&quot;Chi-cuadrado&quot;</span></span>
+<span id="cb47-34"><a href="intro.html#cb47-34" tabindex="-1"></a>  }</span>
 <span id="cb47-35"><a href="intro.html#cb47-35" tabindex="-1"></a></span>
-<span id="cb47-36"><a href="intro.html#cb47-36" tabindex="-1"></a>    <span class="cf">if</span> (var2 <span class="sc">==</span> <span class="st">&quot;Grade&quot;</span>) {</span>
-<span id="cb47-37"><a href="intro.html#cb47-37" tabindex="-1"></a>      chi2_results[[<span class="fu">length</span>(chi2_results) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb47-38"><a href="intro.html#cb47-38" tabindex="-1"></a>        <span class="at">Variable =</span> var1, <span class="st">`</span><span class="at">Chi2 Stat</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(res<span class="sc">$</span>chi2, <span class="dv">2</span>),</span>
-<span id="cb47-39"><a href="intro.html#cb47-39" tabindex="-1"></a>        <span class="st">`</span><span class="at">p-value</span><span class="st">`</span> <span class="ot">=</span> res<span class="sc">$</span>p_val, <span class="st">`</span><span class="at">V de Cramer</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(res<span class="sc">$</span>v, <span class="dv">4</span>))</span>
-<span id="cb47-40"><a href="intro.html#cb47-40" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (var1 <span class="sc">==</span> <span class="st">&quot;Grade&quot;</span>) {</span>
-<span id="cb47-41"><a href="intro.html#cb47-41" tabindex="-1"></a>      chi2_results[[<span class="fu">length</span>(chi2_results) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb47-42"><a href="intro.html#cb47-42" tabindex="-1"></a>        <span class="at">Variable =</span> var2, <span class="st">`</span><span class="at">Chi2 Stat</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(res<span class="sc">$</span>chi2, <span class="dv">2</span>),</span>
-<span id="cb47-43"><a href="intro.html#cb47-43" tabindex="-1"></a>        <span class="st">`</span><span class="at">p-value</span><span class="st">`</span> <span class="ot">=</span> res<span class="sc">$</span>p_val, <span class="st">`</span><span class="at">V de Cramer</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(res<span class="sc">$</span>v, <span class="dv">4</span>))</span>
-<span id="cb47-44"><a href="intro.html#cb47-44" tabindex="-1"></a>    }</span>
-<span id="cb47-45"><a href="intro.html#cb47-45" tabindex="-1"></a></span>
-<span id="cb47-46"><a href="intro.html#cb47-46" tabindex="-1"></a>    <span class="cf">if</span> (var1 <span class="sc">!=</span> <span class="st">&quot;Grade&quot;</span> <span class="sc">&amp;&amp;</span> var2 <span class="sc">!=</span> <span class="st">&quot;Grade&quot;</span> <span class="sc">&amp;&amp;</span> res<span class="sc">$</span>v <span class="sc">&gt;</span> <span class="fl">0.4</span>) {</span>
-<span id="cb47-47"><a href="intro.html#cb47-47" tabindex="-1"></a>      pares_asociados[[<span class="fu">length</span>(pares_asociados) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb47-48"><a href="intro.html#cb47-48" tabindex="-1"></a>        <span class="st">`</span><span class="at">Variable 1</span><span class="st">`</span> <span class="ot">=</span> var1, <span class="st">`</span><span class="at">Variable 2</span><span class="st">`</span> <span class="ot">=</span> var2, <span class="st">`</span><span class="at">V de Cramer (V)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(res<span class="sc">$</span>v, <span class="dv">4</span>))</span>
-<span id="cb47-49"><a href="intro.html#cb47-49" tabindex="-1"></a>    }</span>
-<span id="cb47-50"><a href="intro.html#cb47-50" tabindex="-1"></a>  }</span>
-<span id="cb47-51"><a href="intro.html#cb47-51" tabindex="-1"></a>}</span>
-<span id="cb47-52"><a href="intro.html#cb47-52" tabindex="-1"></a></span>
-<span id="cb47-53"><a href="intro.html#cb47-53" tabindex="-1"></a>df_asociacion <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(chi2_results) <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">V de Cramer</span><span class="st">`</span>))</span>
-<span id="cb47-54"><a href="intro.html#cb47-54" tabindex="-1"></a></span>
-<span id="cb47-55"><a href="intro.html#cb47-55" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;ASOCIACIÓN CATEGÓRICA CON GRADE (CHI-CUADRADO Y V DE CRAMER)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
-<pre><code>## ASOCIACIÓN CATEGÓRICA CON GRADE (CHI-CUADRADO Y V DE CRAMER)</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="intro.html#cb49-1" tabindex="-1"></a><span class="fu">kable</span>(df_asociacion, <span class="at">row.names =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb49-2"><a href="intro.html#cb49-2" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<table class="table table-striped table-hover table-condensed" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<span id="cb47-36"><a href="intro.html#cb47-36" tabindex="-1"></a>  n    <span class="ot">&lt;-</span> <span class="fu">sum</span>(tabla)</span>
+<span id="cb47-37"><a href="intro.html#cb47-37" tabindex="-1"></a>  phi2 <span class="ot">&lt;-</span> <span class="fu">unname</span>(chi2_s<span class="sc">$</span>statistic) <span class="sc">/</span> n</span>
+<span id="cb47-38"><a href="intro.html#cb47-38" tabindex="-1"></a>  r <span class="ot">&lt;-</span> <span class="fu">nrow</span>(tabla); k <span class="ot">&lt;-</span> <span class="fu">ncol</span>(tabla)</span>
+<span id="cb47-39"><a href="intro.html#cb47-39" tabindex="-1"></a>  phi2corr <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="dv">0</span>, phi2 <span class="sc">-</span> ((k <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (r <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">/</span> (n <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb47-40"><a href="intro.html#cb47-40" tabindex="-1"></a>  rcorr    <span class="ot">&lt;-</span> r <span class="sc">-</span> ((r <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb47-41"><a href="intro.html#cb47-41" tabindex="-1"></a>  kcorr    <span class="ot">&lt;-</span> k <span class="sc">-</span> ((k <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb47-42"><a href="intro.html#cb47-42" tabindex="-1"></a>  den      <span class="ot">&lt;-</span> <span class="fu">min</span>(kcorr <span class="sc">-</span> <span class="dv">1</span>, rcorr <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb47-43"><a href="intro.html#cb47-43" tabindex="-1"></a>  v_cramer <span class="ot">&lt;-</span> <span class="cf">if</span> (den <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="fu">sqrt</span>(phi2corr <span class="sc">/</span> den) <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb47-44"><a href="intro.html#cb47-44" tabindex="-1"></a></span>
+<span id="cb47-45"><a href="intro.html#cb47-45" tabindex="-1"></a>  phi      <span class="ot">&lt;-</span> <span class="fu">phi_signado</span>(tabla)</span>
+<span id="cb47-46"><a href="intro.html#cb47-46" tabindex="-1"></a>  pmax     <span class="ot">&lt;-</span> <span class="fu">phi_maximo</span>(tabla)</span>
+<span id="cb47-47"><a href="intro.html#cb47-47" tabindex="-1"></a>  phi_norm <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(pmax) <span class="sc">&amp;&amp;</span> pmax <span class="sc">&gt;</span> <span class="dv">0</span>) phi <span class="sc">/</span> pmax <span class="cf">else</span> <span class="cn">NA_real_</span></span>
+<span id="cb47-48"><a href="intro.html#cb47-48" tabindex="-1"></a></span>
+<span id="cb47-49"><a href="intro.html#cb47-49" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb47-50"><a href="intro.html#cb47-50" tabindex="-1"></a>    <span class="at">chi2 =</span> <span class="fu">unname</span>(chi2_s<span class="sc">$</span>statistic), <span class="at">p_value =</span> p_val, <span class="at">test =</span> test,</span>
+<span id="cb47-51"><a href="intro.html#cb47-51" tabindex="-1"></a>    <span class="at">v_cramer =</span> v_cramer, <span class="at">phi =</span> phi, <span class="at">phi_max =</span> pmax, <span class="at">phi_norm =</span> phi_norm,</span>
+<span id="cb47-52"><a href="intro.html#cb47-52" tabindex="-1"></a>    <span class="at">supuesto_valido =</span> supuesto_valido, <span class="at">freq_esp_min =</span> freq_esp_min</span>
+<span id="cb47-53"><a href="intro.html#cb47-53" tabindex="-1"></a>  )</span>
+<span id="cb47-54"><a href="intro.html#cb47-54" tabindex="-1"></a>}</span>
+<span id="cb47-55"><a href="intro.html#cb47-55" tabindex="-1"></a></span>
+<span id="cb47-56"><a href="intro.html#cb47-56" tabindex="-1"></a></span>
+<span id="cb47-57"><a href="intro.html#cb47-57" tabindex="-1"></a>resaltar_supuesto <span class="ot">&lt;-</span> <span class="cf">function</span>(kbl, supuesto_ok) {</span>
+<span id="cb47-58"><a href="intro.html#cb47-58" tabindex="-1"></a>  filas <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span>supuesto_ok)</span>
+<span id="cb47-59"><a href="intro.html#cb47-59" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(filas) <span class="sc">&gt;</span> <span class="dv">0</span>) kbl <span class="ot">&lt;-</span> kbl <span class="sc">|&gt;</span> <span class="fu">row_spec</span>(filas, <span class="at">background =</span> <span class="st">&quot;#fff3cd&quot;</span>)</span>
+<span id="cb47-60"><a href="intro.html#cb47-60" tabindex="-1"></a>  kbl</span>
+<span id="cb47-61"><a href="intro.html#cb47-61" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="asociación-con-la-variable-objetivo-grade" class="section level3 hasAnchor" number="2.5.6">
+<h3><span class="header-section-number">2.5.6</span> Asociación con la variable objetivo (<code>Grade</code>)<a href="intro.html#asociaci%C3%B3n-con-la-variable-objetivo-grade" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Se calcula, para cada variable categórica del conjunto de entrenamiento, su asociación con <code>Grade</code> mediante Chi-cuadrado y la V de Cramér (con corrección de Bergsma). Las filas resaltadas en amarillo señalan los pares donde no se cumple el supuesto de frecuencia esperada ≥ 5, resueltos mediante la prueba exacta de Fisher en lugar de Chi-cuadrado.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="intro.html#cb48-1" tabindex="-1"></a>train_data_cat <span class="ot">&lt;-</span> train_data <span class="sc">|&gt;</span></span>
+<span id="cb48-2"><a href="intro.html#cb48-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Race_binary =</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(<span class="fu">as.character</span>(Race),</span>
+<span id="cb48-3"><a href="intro.html#cb48-3" tabindex="-1"></a>                                      <span class="st">&quot;0&quot;</span> <span class="ot">=</span> <span class="st">&quot;0&quot;</span>, <span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span> <span class="ot">=</span> <span class="st">&quot;1&quot;</span>, <span class="st">&quot;3&quot;</span> <span class="ot">=</span> <span class="st">&quot;1&quot;</span>))</span>
+<span id="cb48-4"><a href="intro.html#cb48-4" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="intro.html#cb48-5" tabindex="-1"></a>cat_cols <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(train_data_cat), <span class="fu">c</span>(<span class="st">&quot;Age_at_diagnosis&quot;</span>, <span class="st">&quot;Race&quot;</span>))</span>
+<span id="cb48-6"><a href="intro.html#cb48-6" tabindex="-1"></a>n_cols   <span class="ot">&lt;-</span> <span class="fu">length</span>(cat_cols)</span>
+<span id="cb48-7"><a href="intro.html#cb48-7" tabindex="-1"></a></span>
+<span id="cb48-8"><a href="intro.html#cb48-8" tabindex="-1"></a>cramer_matrix    <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span>, <span class="at">nrow =</span> n_cols, <span class="at">ncol =</span> n_cols,</span>
+<span id="cb48-9"><a href="intro.html#cb48-9" tabindex="-1"></a>                            <span class="at">dimnames =</span> <span class="fu">list</span>(cat_cols, cat_cols))</span>
+<span id="cb48-10"><a href="intro.html#cb48-10" tabindex="-1"></a>resultados_grade <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb48-11"><a href="intro.html#cb48-11" tabindex="-1"></a>resultados_pares <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb48-12"><a href="intro.html#cb48-12" tabindex="-1"></a></span>
+<span id="cb48-13"><a href="intro.html#cb48-13" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(n_cols)) {</span>
+<span id="cb48-14"><a href="intro.html#cb48-14" tabindex="-1"></a>  var1 <span class="ot">&lt;-</span> cat_cols[i]</span>
+<span id="cb48-15"><a href="intro.html#cb48-15" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">seq_len</span>(i <span class="sc">-</span> <span class="dv">1</span>)) {</span>
+<span id="cb48-16"><a href="intro.html#cb48-16" tabindex="-1"></a>    var2 <span class="ot">&lt;-</span> cat_cols[j]</span>
+<span id="cb48-17"><a href="intro.html#cb48-17" tabindex="-1"></a>    r <span class="ot">&lt;-</span> <span class="fu">calcular_asociacion</span>(train_data_cat[[var1]], train_data_cat[[var2]])</span>
+<span id="cb48-18"><a href="intro.html#cb48-18" tabindex="-1"></a></span>
+<span id="cb48-19"><a href="intro.html#cb48-19" tabindex="-1"></a>    cramer_matrix[i, j] <span class="ot">&lt;-</span> r<span class="sc">$</span>v_cramer</span>
+<span id="cb48-20"><a href="intro.html#cb48-20" tabindex="-1"></a>    cramer_matrix[j, i] <span class="ot">&lt;-</span> r<span class="sc">$</span>v_cramer</span>
+<span id="cb48-21"><a href="intro.html#cb48-21" tabindex="-1"></a></span>
+<span id="cb48-22"><a href="intro.html#cb48-22" tabindex="-1"></a>    <span class="cf">if</span> (var1 <span class="sc">==</span> <span class="st">&quot;Grade&quot;</span> <span class="sc">||</span> var2 <span class="sc">==</span> <span class="st">&quot;Grade&quot;</span>) {</span>
+<span id="cb48-23"><a href="intro.html#cb48-23" tabindex="-1"></a>      otra <span class="ot">&lt;-</span> <span class="cf">if</span> (var1 <span class="sc">==</span> <span class="st">&quot;Grade&quot;</span>) var2 <span class="cf">else</span> var1</span>
+<span id="cb48-24"><a href="intro.html#cb48-24" tabindex="-1"></a>      resultados_grade[[<span class="fu">length</span>(resultados_grade) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb48-25"><a href="intro.html#cb48-25" tabindex="-1"></a>        <span class="at">Variable =</span> otra, <span class="at">Test =</span> r<span class="sc">$</span>test,</span>
+<span id="cb48-26"><a href="intro.html#cb48-26" tabindex="-1"></a>        <span class="st">`</span><span class="at">Chi2 (sin Yates)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(r<span class="sc">$</span>chi2, <span class="dv">2</span>),</span>
+<span id="cb48-27"><a href="intro.html#cb48-27" tabindex="-1"></a>        <span class="st">`</span><span class="at">p-value</span><span class="st">`</span>          <span class="ot">=</span> r<span class="sc">$</span>p_value,</span>
+<span id="cb48-28"><a href="intro.html#cb48-28" tabindex="-1"></a>        <span class="st">`</span><span class="at">V de Cramer</span><span class="st">`</span>      <span class="ot">=</span> <span class="fu">round</span>(r<span class="sc">$</span>v_cramer, <span class="dv">4</span>),</span>
+<span id="cb48-29"><a href="intro.html#cb48-29" tabindex="-1"></a>        <span class="st">`</span><span class="at">Supuesto OK</span><span class="st">`</span>      <span class="ot">=</span> r<span class="sc">$</span>supuesto_valido,</span>
+<span id="cb48-30"><a href="intro.html#cb48-30" tabindex="-1"></a>        <span class="st">`</span><span class="at">Freq. esp. min</span><span class="st">`</span>   <span class="ot">=</span> <span class="fu">round</span>(r<span class="sc">$</span>freq_esp_min, <span class="dv">2</span>)</span>
+<span id="cb48-31"><a href="intro.html#cb48-31" tabindex="-1"></a>      )</span>
+<span id="cb48-32"><a href="intro.html#cb48-32" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb48-33"><a href="intro.html#cb48-33" tabindex="-1"></a>      resultados_pares[[<span class="fu">length</span>(resultados_pares) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb48-34"><a href="intro.html#cb48-34" tabindex="-1"></a>        <span class="st">`</span><span class="at">Variable 1</span><span class="st">`</span> <span class="ot">=</span> var1, <span class="st">`</span><span class="at">Variable 2</span><span class="st">`</span> <span class="ot">=</span> var2, <span class="at">Test =</span> r<span class="sc">$</span>test,</span>
+<span id="cb48-35"><a href="intro.html#cb48-35" tabindex="-1"></a>        <span class="st">`</span><span class="at">V de Cramer</span><span class="st">`</span>     <span class="ot">=</span> <span class="fu">round</span>(r<span class="sc">$</span>v_cramer, <span class="dv">4</span>),</span>
+<span id="cb48-36"><a href="intro.html#cb48-36" tabindex="-1"></a>        <span class="at">phi               =</span> <span class="fu">round</span>(r<span class="sc">$</span>phi, <span class="dv">4</span>),</span>
+<span id="cb48-37"><a href="intro.html#cb48-37" tabindex="-1"></a>        <span class="st">`</span><span class="at">phi max teorico</span><span class="st">`</span> <span class="ot">=</span> <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(r<span class="sc">$</span>phi_max)) <span class="fu">round</span>(r<span class="sc">$</span>phi_max, <span class="dv">4</span>) <span class="cf">else</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb48-38"><a href="intro.html#cb48-38" tabindex="-1"></a>        <span class="st">`</span><span class="at">phi / phi max</span><span class="st">`</span>   <span class="ot">=</span> <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(r<span class="sc">$</span>phi_norm)) <span class="fu">round</span>(r<span class="sc">$</span>phi_norm, <span class="dv">4</span>) <span class="cf">else</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb48-39"><a href="intro.html#cb48-39" tabindex="-1"></a>        <span class="st">`</span><span class="at">p-value</span><span class="st">`</span>         <span class="ot">=</span> r<span class="sc">$</span>p_value,</span>
+<span id="cb48-40"><a href="intro.html#cb48-40" tabindex="-1"></a>        <span class="st">`</span><span class="at">Supuesto OK</span><span class="st">`</span>     <span class="ot">=</span> r<span class="sc">$</span>supuesto_valido,</span>
+<span id="cb48-41"><a href="intro.html#cb48-41" tabindex="-1"></a>        <span class="st">`</span><span class="at">Freq. esp. min</span><span class="st">`</span>  <span class="ot">=</span> <span class="fu">round</span>(r<span class="sc">$</span>freq_esp_min, <span class="dv">2</span>)</span>
+<span id="cb48-42"><a href="intro.html#cb48-42" tabindex="-1"></a>      )</span>
+<span id="cb48-43"><a href="intro.html#cb48-43" tabindex="-1"></a>    }</span>
+<span id="cb48-44"><a href="intro.html#cb48-44" tabindex="-1"></a>  }</span>
+<span id="cb48-45"><a href="intro.html#cb48-45" tabindex="-1"></a>}</span>
+<span id="cb48-46"><a href="intro.html#cb48-46" tabindex="-1"></a></span>
+<span id="cb48-47"><a href="intro.html#cb48-47" tabindex="-1"></a>df_asociacion <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(resultados_grade) <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">V de Cramer</span><span class="st">`</span>))</span>
+<span id="cb48-48"><a href="intro.html#cb48-48" tabindex="-1"></a>df_pares      <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(resultados_pares)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="intro.html#cb49-1" tabindex="-1"></a><span class="fu">kable</span>(df_asociacion <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Supuesto OK</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="st">`</span><span class="at">Supuesto OK</span><span class="st">`</span>, <span class="st">&quot;Si&quot;</span>, <span class="st">&quot;No&quot;</span>)),</span>
+<span id="cb49-2"><a href="intro.html#cb49-2" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb49-3"><a href="intro.html#cb49-3" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">&quot;Asociacion de cada variable con Grade (Chi-cuadrado / Fisher exacto y V de Cramer).&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-4"><a href="intro.html#cb49-4" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>), <span class="at">full_width =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-5"><a href="intro.html#cb49-5" tabindex="-1"></a>  <span class="fu">resaltar_supuesto</span>(df_asociacion<span class="sc">$</span><span class="st">`</span><span class="at">Supuesto OK</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-6"><a href="intro.html#cb49-6" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">&quot;100%&quot;</span>, <span class="at">height =</span> <span class="st">&quot;420px&quot;</span>)</span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:420px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped table-hover table-condensed" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:tabla-asociacion-grade-eda">Table 2.25: </span><span id="tab:tabla-asociacion-grade-eda">Table 2.26: </span>Asociacion de cada variable con Grade (Chi-cuadrado / Fisher exacto y V de Cramer).
+</caption>
 <thead>
 <tr>
-<th style="text-align:left;">
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 Variable
 </th>
-<th style="text-align:right;">
-Chi2 Stat
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Test
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Chi2 (sin Yates)
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 p-value
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 V de Cramer
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Supuesto OK
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Freq. esp. min
 </th>
 </tr>
 </thead>
@@ -3331,327 +3410,764 @@ V de Cramer
 <td style="text-align:left;">
 IDH1
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 331.62
 </td>
 <td style="text-align:right;">
-0.0000000
+0.0000
 </td>
 <td style="text-align:right;">
 0.7025
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+135.33
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 PTEN
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 90.46
 </td>
 <td style="text-align:right;">
-0.0000000
+0.0000
 </td>
 <td style="text-align:right;">
 0.3654
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+47.49
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 ATRX
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 71.75
 </td>
 <td style="text-align:right;">
-0.0000000
+0.0000
 </td>
 <td style="text-align:right;">
 0.3249
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+72.29
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 CIC
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 65.76
 </td>
 <td style="text-align:right;">
-0.0000000
+0.0000
 </td>
 <td style="text-align:right;">
 0.3109
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+38.66
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 EGFR
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 29.39
 </td>
 <td style="text-align:right;">
-0.0000001
+0.0000
 </td>
 <td style="text-align:right;">
 0.2059
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+32.78
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 FUBP1
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 25.54
 </td>
 <td style="text-align:right;">
-0.0000004
+0.0000
 </td>
 <td style="text-align:right;">
 0.1914
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+17.65
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 NOTCH1
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 25.16
 </td>
 <td style="text-align:right;">
-0.0000005
+0.0000
 </td>
 <td style="text-align:right;">
 0.1899
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+13.87
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 RB1
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 22.55
 </td>
 <td style="text-align:right;">
-0.0000020
+0.0000
 </td>
 <td style="text-align:right;">
 0.1794
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+13.87
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 TP53
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 10.66
 </td>
 <td style="text-align:right;">
-0.0010942
+0.0014
 </td>
 <td style="text-align:right;">
 0.1201
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+113.47
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 IDH2
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 9.40
 </td>
 <td style="text-align:right;">
-0.0021700
+0.0045
 </td>
 <td style="text-align:right;">
 0.1120
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+8.83
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 MUC16
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 8.83
 </td>
 <td style="text-align:right;">
-0.0029663
+0.0044
 </td>
 <td style="text-align:right;">
 0.1081
 </td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+31.10
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Race
+Race_binary
+</td>
+<td style="text-align:left;">
+Chi-cuadrado
 </td>
 <td style="text-align:right;">
 8.74
 </td>
 <td style="text-align:right;">
-0.0031193
+0.0048
 </td>
 <td style="text-align:right;">
 0.1074
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+25.22
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 GRIN2A
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 8.04
 </td>
 <td style="text-align:right;">
-0.0045677
+0.0093
 </td>
 <td style="text-align:right;">
 0.1025
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+7.99
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 PIK3R1
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 6.47
 </td>
 <td style="text-align:right;">
-0.0109711
+0.0175
 </td>
 <td style="text-align:right;">
 0.0903
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+16.39
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 SMARCA4
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 5.93
 </td>
 <td style="text-align:right;">
-0.0148633
+0.0264
 </td>
 <td style="text-align:right;">
 0.0858
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+9.67
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 PDGFRA
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 4.61
 </td>
 <td style="text-align:right;">
-0.0318051
+0.0568
 </td>
 <td style="text-align:right;">
 0.0734
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+7.56
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 NF1
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 3.34
 </td>
 <td style="text-align:right;">
-0.0675220
+0.0916
 </td>
 <td style="text-align:right;">
 0.0591
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+23.54
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 Gender
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 2.92
 </td>
 <td style="text-align:right;">
-0.0874873
+0.1033
 </td>
 <td style="text-align:right;">
 0.0535
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+114.73
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 CSMD3
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 1.01
 </td>
 <td style="text-align:right;">
-0.3157480
+0.4305
 </td>
 <td style="text-align:right;">
 0.0027
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+9.67
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 PIK3CA
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 0.73
 </td>
 <td style="text-align:right;">
-0.3930497
+0.4753
 </td>
 <td style="text-align:right;">
 0.0000
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+23.96
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 BCOR
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 0.01
 </td>
 <td style="text-align:right;">
-0.9139980
+1.0000
 </td>
 <td style="text-align:right;">
 0.0000
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+9.25
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 FAT4
 </td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
 <td style="text-align:right;">
 0.48
 </td>
 <td style="text-align:right;">
-0.4872453
+0.6508
 </td>
 <td style="text-align:right;">
 0.0000
 </td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+7.56
+</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="intro.html#cb50-1" tabindex="-1"></a>df_pares_asociados <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(pares_asociados)</span>
-<span id="cb50-2"><a href="intro.html#cb50-2" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">nrow</span>(df_pares_asociados) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb50-3"><a href="intro.html#cb50-3" tabindex="-1"></a>  df_pares_asociados <span class="ot">&lt;-</span> df_pares_asociados <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">V de Cramer (V)</span><span class="st">`</span>))</span>
-<span id="cb50-4"><a href="intro.html#cb50-4" tabindex="-1"></a>}</span>
-<span id="cb50-5"><a href="intro.html#cb50-5" tabindex="-1"></a></span>
-<span id="cb50-6"><a href="intro.html#cb50-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">PARES DE GENES CON ALTA ASOCIACIÓN MUTUA (V &gt; 0,4)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-## PARES DE GENES CON ALTA ASOCIACIÓN MUTUA (V &gt; 0,4)</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="intro.html#cb52-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">nrow</span>(df_pares_asociados) <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb52-2"><a href="intro.html#cb52-2" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;No se detectaron pares de genes con alta redundancia mutua (V &gt; 0,4).</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb52-3"><a href="intro.html#cb52-3" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb52-4"><a href="intro.html#cb52-4" tabindex="-1"></a>  <span class="fu">kable</span>(df_pares_asociados, <span class="at">row.names =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb52-5"><a href="intro.html#cb52-5" tabindex="-1"></a>    <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;condensed&quot;</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb52-6"><a href="intro.html#cb52-6" tabindex="-1"></a>}</span></code></pre></div>
-<table class="table table-striped table-condensed" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+</div>
+</div>
+<div id="pares-de-predictores-con-alta-asociación-mutua" class="section level3 hasAnchor" number="2.5.7">
+<h3><span class="header-section-number">2.5.7</span> Pares de predictores con alta asociación mutua<a href="intro.html#pares-de-predictores-con-alta-asociaci%C3%B3n-mutua" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="intro.html#cb50-1" tabindex="-1"></a>UMBRAL_V <span class="ot">&lt;-</span> <span class="fl">0.40</span></span>
+<span id="cb50-2"><a href="intro.html#cb50-2" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="intro.html#cb50-3" tabindex="-1"></a>df_pares_asociados <span class="ot">&lt;-</span> df_pares <span class="sc">|&gt;</span></span>
+<span id="cb50-4"><a href="intro.html#cb50-4" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">V de Cramer</span><span class="st">`</span> <span class="sc">&gt;</span> UMBRAL_V) <span class="sc">|&gt;</span></span>
+<span id="cb50-5"><a href="intro.html#cb50-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">V de Cramer</span><span class="st">`</span>))</span>
+<span id="cb50-6"><a href="intro.html#cb50-6" tabindex="-1"></a></span>
+<span id="cb50-7"><a href="intro.html#cb50-7" tabindex="-1"></a>n_pares_asoc_invalidos <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="sc">!</span>df_pares_asociados<span class="sc">$</span><span class="st">`</span><span class="at">Supuesto OK</span><span class="st">`</span>)</span></code></pre></div>
+<p>Se identificaron 4 pares de predictores con V de Cramér superior a 0.4, de los cuales 0 no cumplen el supuesto de frecuencia esperada ≥ 5 (resaltados en amarillo) y se resolvieron mediante la prueba exacta de Fisher.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="intro.html#cb51-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">nrow</span>(df_pares_asociados) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb51-2"><a href="intro.html#cb51-2" tabindex="-1"></a>  <span class="fu">kable</span>(df_pares_asociados <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Supuesto OK</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="st">`</span><span class="at">Supuesto OK</span><span class="st">`</span>, <span class="st">&quot;Si&quot;</span>, <span class="st">&quot;No&quot;</span>)),</span>
+<span id="cb51-3"><a href="intro.html#cb51-3" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb51-4"><a href="intro.html#cb51-4" tabindex="-1"></a>        <span class="at">caption =</span> <span class="fu">sprintf</span>(<span class="st">&quot;Pares de predictores con V de Cramer &gt; %.2f.&quot;</span>, UMBRAL_V)) <span class="sc">|&gt;</span></span>
+<span id="cb51-5"><a href="intro.html#cb51-5" tabindex="-1"></a>    <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;condensed&quot;</span>), <span class="at">full_width =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb51-6"><a href="intro.html#cb51-6" tabindex="-1"></a>    <span class="fu">resaltar_supuesto</span>(df_pares_asociados<span class="sc">$</span><span class="st">`</span><span class="at">Supuesto OK</span><span class="st">`</span>)</span>
+<span id="cb51-7"><a href="intro.html#cb51-7" tabindex="-1"></a>}</span></code></pre></div>
+<table class="table table-striped table-condensed" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:tabla-pares-render-eda">Table 2.27: </span><span id="tab:tabla-pares-render-eda">Table 2.28: </span>Pares de predictores con V de Cramer &gt; 0.40.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Variable 1
+</th>
+<th style="text-align:left;">
+Variable 2
+</th>
+<th style="text-align:left;">
+Test
+</th>
+<th style="text-align:right;">
+V de Cramer
+</th>
+<th style="text-align:right;">
+phi
+</th>
+<th style="text-align:right;">
+phi max teorico
+</th>
+<th style="text-align:right;">
+phi / phi max
+</th>
+<th style="text-align:right;">
+p-value
+</th>
+<th style="text-align:left;">
+Supuesto OK
+</th>
+<th style="text-align:right;">
+Freq. esp. min
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+ATRX
+</td>
+<td style="text-align:left;">
+TP53
+</td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
+<td style="text-align:right;">
+0.5475
+</td>
+<td style="text-align:right;">
+0.5484
+</td>
+<td style="text-align:right;">
+0.7155
+</td>
+<td style="text-align:right;">
+0.7665
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+69.21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FUBP1
+</td>
+<td style="text-align:left;">
+CIC
+</td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
+<td style="text-align:right;">
+0.4681
+</td>
+<td style="text-align:right;">
+0.4694
+</td>
+<td style="text-align:right;">
+0.6483
+</td>
+<td style="text-align:right;">
+0.7241
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+5.76
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ATRX
+</td>
+<td style="text-align:left;">
+IDH1
+</td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
+<td style="text-align:right;">
+0.4596
+</td>
+<td style="text-align:right;">
+0.4609
+</td>
+<td style="text-align:right;">
+0.6112
+</td>
+<td style="text-align:right;">
+0.7541
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+82.54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PTEN
+</td>
+<td style="text-align:left;">
+IDH1
+</td>
+<td style="text-align:left;">
+Chi-cuadrado
+</td>
+<td style="text-align:right;">
+0.4068
+</td>
+<td style="text-align:right;">
+-0.4083
+</td>
+<td style="text-align:right;">
+0.4685
+</td>
+<td style="text-align:right;">
+-0.8716
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:right;">
+54.23
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="diagnóstico-de-multicolinealidad-entre-predictores" class="section level3 hasAnchor" number="2.5.8">
+<h3><span class="header-section-number">2.5.8</span> Diagnóstico de multicolinealidad entre predictores<a href="intro.html#diagn%C3%B3stico-de-multicolinealidad-entre-predictores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El umbral clásico de <span class="math inline">\(|r| &gt; 0{,}70\)</span> para declarar redundancia severa entre predictores presupone que cualquier par de variables binarias podría, en principio, alcanzar ese nivel de asociación. Sin embargo, cuando dos variables binarias tienen prevalencias muy distintas (por ejemplo, un gen mutado en el 48% de los pacientes frente a otro mutado en apenas el 3%), el coeficiente <span class="math inline">\(\phi\)</span> (equivalente a Pearson/Spearman en tablas 2×2) tiene un <strong>techo teórico</strong> muy por debajo de 1, sin importar qué tan asociadas estén realmente ambas variables. Por ello, el diagnóstico se aborda desde cuatro ángulos complementarios.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="intro.html#cb52-1" tabindex="-1"></a>n_pares_total           <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df_pares)</span>
+<span id="cb52-2"><a href="intro.html#cb52-2" tabindex="-1"></a>n_pares_invalidos_total <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="sc">!</span>df_pares<span class="sc">$</span><span class="st">`</span><span class="at">Supuesto OK</span><span class="st">`</span>)</span>
+<span id="cb52-3"><a href="intro.html#cb52-3" tabindex="-1"></a>pct_invalidos           <span class="ot">&lt;-</span> n_pares_invalidos_total <span class="sc">/</span> n_pares_total <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
+<p><strong>1. Validez de los contrastes.</strong> De los 231 pares de predictores evaluados, 130 (56.3%) no cumplen el supuesto de frecuencia esperada ≥ 5 y se resolvieron mediante la prueba exacta de Fisher en lugar de Chi-cuadrado.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="intro.html#cb53-1" tabindex="-1"></a>UMBRAL_R    <span class="ot">&lt;-</span> <span class="fl">0.70</span></span>
+<span id="cb53-2"><a href="intro.html#cb53-2" tabindex="-1"></a>UMBRAL_NORM <span class="ot">&lt;-</span> <span class="fl">0.70</span></span>
+<span id="cb53-3"><a href="intro.html#cb53-3" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="intro.html#cb53-4" tabindex="-1"></a>pares_binarios     <span class="ot">&lt;-</span> df_pares <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">phi max teorico</span><span class="st">`</span>))</span>
+<span id="cb53-5"><a href="intro.html#cb53-5" tabindex="-1"></a>total_bin          <span class="ot">&lt;-</span> <span class="fu">nrow</span>(pares_binarios)</span>
+<span id="cb53-6"><a href="intro.html#cb53-6" tabindex="-1"></a>alcanzables        <span class="ot">&lt;-</span> <span class="fu">sum</span>(pares_binarios<span class="sc">$</span><span class="st">`</span><span class="at">phi max teorico</span><span class="st">`</span> <span class="sc">&gt;=</span> UMBRAL_R)</span>
+<span id="cb53-7"><a href="intro.html#cb53-7" tabindex="-1"></a>no_alcanzables      <span class="ot">&lt;-</span> total_bin <span class="sc">-</span> alcanzables</span>
+<span id="cb53-8"><a href="intro.html#cb53-8" tabindex="-1"></a>pct_alcanzables     <span class="ot">&lt;-</span> alcanzables <span class="sc">/</span> total_bin <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb53-9"><a href="intro.html#cb53-9" tabindex="-1"></a>pct_no_alcanzables  <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">-</span> pct_alcanzables</span>
+<span id="cb53-10"><a href="intro.html#cb53-10" tabindex="-1"></a></span>
+<span id="cb53-11"><a href="intro.html#cb53-11" tabindex="-1"></a>par_ejemplo    <span class="ot">&lt;-</span> pares_binarios <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="st">`</span><span class="at">phi max teorico</span><span class="st">`</span>) <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">1</span>)</span>
+<span id="cb53-12"><a href="intro.html#cb53-12" tabindex="-1"></a>var1_ejemplo   <span class="ot">&lt;-</span> par_ejemplo<span class="sc">$</span><span class="st">`</span><span class="at">Variable 1</span><span class="st">`</span></span>
+<span id="cb53-13"><a href="intro.html#cb53-13" tabindex="-1"></a>var2_ejemplo   <span class="ot">&lt;-</span> par_ejemplo<span class="sc">$</span><span class="st">`</span><span class="at">Variable 2</span><span class="st">`</span></span>
+<span id="cb53-14"><a href="intro.html#cb53-14" tabindex="-1"></a>phimax_ejemplo <span class="ot">&lt;-</span> par_ejemplo<span class="sc">$</span><span class="st">`</span><span class="at">phi max teorico</span><span class="st">`</span></span></code></pre></div>
+<p><strong>2. Viabilidad del umbral <span class="math inline">\(|r| &gt; 0.7\)</span>.</strong> De los 231 pares binarios evaluados, solo 87 (37.7%) pueden matemáticamente alcanzar <span class="math inline">\(|\phi| \geq 0.7\)</span> dado el desbalance de sus prevalencias marginales; para el 62.3% restante es, sencillamente, imposible. El caso más extremo es el par FAT4–IDH1, cuyo techo teórico es de apenas <span class="math inline">\(|\phi|_{max} = 0.173\)</span>. Por esta razón, un umbral absoluto sobre <span class="math inline">\(|r|\)</span> no resulta, por sí solo, un criterio informativo para la mayoría de los pares.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="intro.html#cb54-1" tabindex="-1"></a>pares_altos <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb54-2"><a href="intro.html#cb54-2" tabindex="-1"></a>columnas    <span class="ot">&lt;-</span> <span class="fu">colnames</span>(spearman_corr)</span>
+<span id="cb54-3"><a href="intro.html#cb54-3" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="intro.html#cb54-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(columnas)) {</span>
+<span id="cb54-5"><a href="intro.html#cb54-5" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">seq_len</span>(i <span class="sc">-</span> <span class="dv">1</span>)) {</span>
+<span id="cb54-6"><a href="intro.html#cb54-6" tabindex="-1"></a>    r_val <span class="ot">&lt;-</span> spearman_corr[i, j]</span>
+<span id="cb54-7"><a href="intro.html#cb54-7" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">abs</span>(r_val) <span class="sc">&gt;</span> UMBRAL_R) {</span>
+<span id="cb54-8"><a href="intro.html#cb54-8" tabindex="-1"></a>      pares_altos[[<span class="fu">length</span>(pares_altos) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb54-9"><a href="intro.html#cb54-9" tabindex="-1"></a>        <span class="st">`</span><span class="at">Variable 1</span><span class="st">`</span> <span class="ot">=</span> columnas[i], <span class="st">`</span><span class="at">Variable 2</span><span class="st">`</span> <span class="ot">=</span> columnas[j],</span>
+<span id="cb54-10"><a href="intro.html#cb54-10" tabindex="-1"></a>        <span class="at">r =</span> <span class="fu">round</span>(r_val, <span class="dv">4</span>))</span>
+<span id="cb54-11"><a href="intro.html#cb54-11" tabindex="-1"></a>    }</span>
+<span id="cb54-12"><a href="intro.html#cb54-12" tabindex="-1"></a>  }</span>
+<span id="cb54-13"><a href="intro.html#cb54-13" tabindex="-1"></a>}</span>
+<span id="cb54-14"><a href="intro.html#cb54-14" tabindex="-1"></a></span>
+<span id="cb54-15"><a href="intro.html#cb54-15" tabindex="-1"></a>df_redundancias    <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(pares_altos)</span>
+<span id="cb54-16"><a href="intro.html#cb54-16" tabindex="-1"></a>df_predictores_red <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">nrow</span>(df_redundancias) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb54-17"><a href="intro.html#cb54-17" tabindex="-1"></a>  df_redundancias <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">Variable 1</span><span class="st">`</span> <span class="sc">!=</span> <span class="st">&quot;Grade&quot;</span>, <span class="st">`</span><span class="at">Variable 2</span><span class="st">`</span> <span class="sc">!=</span> <span class="st">&quot;Grade&quot;</span>)</span>
+<span id="cb54-18"><a href="intro.html#cb54-18" tabindex="-1"></a>} <span class="cf">else</span> df_redundancias</span></code></pre></div>
+<p><strong>3. Criterio absoluto <span class="math inline">\(|r| &gt; 0.7\)</span>.</strong> Como es esperable dado el punto anterior, ningún par de predictores supera este umbral.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="intro.html#cb55-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">nrow</span>(df_predictores_red) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb55-2"><a href="intro.html#cb55-2" tabindex="-1"></a>  <span class="fu">kable</span>(df_predictores_red, <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb55-3"><a href="intro.html#cb55-3" tabindex="-1"></a>        <span class="at">caption =</span> <span class="fu">sprintf</span>(<span class="st">&quot;Pares de predictores con |r| de Spearman &gt; %.2f.&quot;</span>, UMBRAL_R)) <span class="sc">|&gt;</span></span>
+<span id="cb55-4"><a href="intro.html#cb55-4" tabindex="-1"></a>    <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;condensed&quot;</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb55-5"><a href="intro.html#cb55-5" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="intro.html#cb56-1" tabindex="-1"></a>df_norm  <span class="ot">&lt;-</span> df_pares <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">phi / phi max</span><span class="st">`</span>))</span>
+<span id="cb56-2"><a href="intro.html#cb56-2" tabindex="-1"></a>red_norm <span class="ot">&lt;-</span> df_norm <span class="sc">|&gt;</span></span>
+<span id="cb56-3"><a href="intro.html#cb56-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">abs</span>(<span class="st">`</span><span class="at">phi / phi max</span><span class="st">`</span>) <span class="sc">&gt;</span> UMBRAL_NORM) <span class="sc">|&gt;</span></span>
+<span id="cb56-4"><a href="intro.html#cb56-4" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(<span class="st">`</span><span class="at">phi / phi max</span><span class="st">`</span>)))</span></code></pre></div>
+<p><strong>4. Criterio normalizado <span class="math inline">\(|\phi / \phi_{max}| &gt; 0.7\)</span></strong>, que corrige el techo impuesto por las prevalencias marginales. Se identificaron 10 pares con redundancia relativa alta (tabla siguiente).</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="intro.html#cb57-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">nrow</span>(red_norm) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb57-2"><a href="intro.html#cb57-2" tabindex="-1"></a>  <span class="fu">kable</span>(red_norm <span class="sc">|&gt;</span></span>
+<span id="cb57-3"><a href="intro.html#cb57-3" tabindex="-1"></a>          <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Supuesto OK</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="st">`</span><span class="at">Supuesto OK</span><span class="st">`</span>, <span class="st">&quot;Si&quot;</span>, <span class="st">&quot;No&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb57-4"><a href="intro.html#cb57-4" tabindex="-1"></a>          <span class="fu">select</span>(<span class="st">`</span><span class="at">Variable 1</span><span class="st">`</span>, <span class="st">`</span><span class="at">Variable 2</span><span class="st">`</span>, phi, <span class="st">`</span><span class="at">phi max teorico</span><span class="st">`</span>,</span>
+<span id="cb57-5"><a href="intro.html#cb57-5" tabindex="-1"></a>                 <span class="st">`</span><span class="at">phi / phi max</span><span class="st">`</span>, <span class="st">`</span><span class="at">V de Cramer</span><span class="st">`</span>, <span class="st">`</span><span class="at">Supuesto OK</span><span class="st">`</span>),</span>
+<span id="cb57-6"><a href="intro.html#cb57-6" tabindex="-1"></a>        <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb57-7"><a href="intro.html#cb57-7" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">&quot;Pares con redundancia relativa alta (phi normalizado por su maximo teorico).&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb57-8"><a href="intro.html#cb57-8" tabindex="-1"></a>    <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;condensed&quot;</span>), <span class="at">full_width =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb57-9"><a href="intro.html#cb57-9" tabindex="-1"></a>    <span class="fu">resaltar_supuesto</span>(red_norm<span class="sc">$</span><span class="st">`</span><span class="at">Supuesto OK</span><span class="st">`</span>)</span>
+<span id="cb57-10"><a href="intro.html#cb57-10" tabindex="-1"></a>}</span></code></pre></div>
+<table class="table table-striped table-condensed" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:tabla-diagnostico-normalizado-eda">Table 2.29: </span><span id="tab:tabla-diagnostico-normalizado-eda">Table 2.30: </span>Pares con redundancia relativa alta (phi normalizado por su maximo teorico).
+</caption>
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -3661,42 +4177,67 @@ Variable 1
 Variable 2
 </th>
 <th style="text-align:right;">
-V de Cramer (V)
+phi
+</th>
+<th style="text-align:right;">
+phi max teorico
+</th>
+<th style="text-align:right;">
+phi / phi max
+</th>
+<th style="text-align:right;">
+V de Cramer
+</th>
+<th style="text-align:left;">
+Supuesto OK
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-ATRX
-</td>
-<td style="text-align:left;">
-TP53
-</td>
-<td style="text-align:right;">
-0.5475
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-FUBP1
-</td>
-<td style="text-align:left;">
-CIC
-</td>
-<td style="text-align:right;">
-0.4681
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ATRX
+IDH2
 </td>
 <td style="text-align:left;">
 IDH1
 </td>
 <td style="text-align:right;">
-0.4596
+-0.1727
+</td>
+<td style="text-align:right;">
+0.1871
+</td>
+<td style="text-align:right;">
+-0.9226
+</td>
+<td style="text-align:right;">
+0.1684
+</td>
+<td style="text-align:left;">
+Si
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EGFR
+</td>
+<td style="text-align:left;">
+IDH1
+</td>
+<td style="text-align:right;">
+-0.3391
+</td>
+<td style="text-align:right;">
+0.3776
+</td>
+<td style="text-align:right;">
+-0.8980
+</td>
+<td style="text-align:right;">
+0.3371
+</td>
+<td style="text-align:left;">
+Si
 </td>
 </tr>
 <tr>
@@ -3707,44 +4248,185 @@ PTEN
 IDH1
 </td>
 <td style="text-align:right;">
+-0.4083
+</td>
+<td style="text-align:right;">
+0.4685
+</td>
+<td style="text-align:right;">
+-0.8716
+</td>
+<td style="text-align:right;">
 0.4068
+</td>
+<td style="text-align:left;">
+Si
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RB1
+</td>
+<td style="text-align:left;">
+IDH1
+</td>
+<td style="text-align:right;">
+-0.2047
+</td>
+<td style="text-align:right;">
+0.2368
+</td>
+<td style="text-align:right;">
+-0.8644
+</td>
+<td style="text-align:right;">
+0.2011
+</td>
+<td style="text-align:left;">
+Si
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NOTCH1
+</td>
+<td style="text-align:left;">
+IDH1
+</td>
+<td style="text-align:right;">
+0.1954
+</td>
+<td style="text-align:right;">
+0.2368
+</td>
+<td style="text-align:right;">
+0.8252
+</td>
+<td style="text-align:right;">
+0.1917
+</td>
+<td style="text-align:left;">
+Si
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FUBP1
+</td>
+<td style="text-align:left;">
+IDH1
+</td>
+<td style="text-align:right;">
+0.2198
+</td>
+<td style="text-align:right;">
+0.2690
+</td>
+<td style="text-align:right;">
+0.8169
+</td>
+<td style="text-align:right;">
+0.2165
+</td>
+<td style="text-align:left;">
+Si
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CIC
+</td>
+<td style="text-align:left;">
+IDH1
+</td>
+<td style="text-align:right;">
+0.3283
+</td>
+<td style="text-align:right;">
+0.4150
+</td>
+<td style="text-align:right;">
+0.7910
+</td>
+<td style="text-align:right;">
+0.3262
+</td>
+<td style="text-align:left;">
+Si
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ATRX
+</td>
+<td style="text-align:left;">
+TP53
+</td>
+<td style="text-align:right;">
+0.5484
+</td>
+<td style="text-align:right;">
+0.7155
+</td>
+<td style="text-align:right;">
+0.7665
+</td>
+<td style="text-align:right;">
+0.5475
+</td>
+<td style="text-align:left;">
+Si
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ATRX
+</td>
+<td style="text-align:left;">
+IDH1
+</td>
+<td style="text-align:right;">
+0.4609
+</td>
+<td style="text-align:right;">
+0.6112
+</td>
+<td style="text-align:right;">
+0.7541
+</td>
+<td style="text-align:right;">
+0.4596
+</td>
+<td style="text-align:left;">
+Si
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FUBP1
+</td>
+<td style="text-align:left;">
+CIC
+</td>
+<td style="text-align:right;">
+0.4694
+</td>
+<td style="text-align:right;">
+0.6483
+</td>
+<td style="text-align:right;">
+0.7241
+</td>
+<td style="text-align:right;">
+0.4681
+</td>
+<td style="text-align:left;">
+Si
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="intro.html#cb53-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;IDENTIFICACIÓN DE PARES REDUNDANTES (|r| &gt; 0,7)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
-<pre><code>## IDENTIFICACIÓN DE PARES REDUNDANTES (|r| &gt; 0,7)</code></pre>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="intro.html#cb55-1" tabindex="-1"></a>pares_altos <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb55-2"><a href="intro.html#cb55-2" tabindex="-1"></a>columnas <span class="ot">&lt;-</span> <span class="fu">colnames</span>(spearman_corr)</span>
-<span id="cb55-3"><a href="intro.html#cb55-3" tabindex="-1"></a></span>
-<span id="cb55-4"><a href="intro.html#cb55-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(columnas)) {</span>
-<span id="cb55-5"><a href="intro.html#cb55-5" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">seq_len</span>(i <span class="sc">-</span> <span class="dv">1</span>)) {</span>
-<span id="cb55-6"><a href="intro.html#cb55-6" tabindex="-1"></a>    r_val <span class="ot">&lt;-</span> spearman_corr[i, j]</span>
-<span id="cb55-7"><a href="intro.html#cb55-7" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">abs</span>(r_val) <span class="sc">&gt;</span> <span class="fl">0.7</span>) {</span>
-<span id="cb55-8"><a href="intro.html#cb55-8" tabindex="-1"></a>      pares_altos[[<span class="fu">length</span>(pares_altos) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb55-9"><a href="intro.html#cb55-9" tabindex="-1"></a>        <span class="st">`</span><span class="at">Variable 1</span><span class="st">`</span> <span class="ot">=</span> columnas[i], <span class="st">`</span><span class="at">Variable 2</span><span class="st">`</span> <span class="ot">=</span> columnas[j],</span>
-<span id="cb55-10"><a href="intro.html#cb55-10" tabindex="-1"></a>        <span class="st">`</span><span class="at">Coeficiente (r)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(r_val, <span class="dv">4</span>))</span>
-<span id="cb55-11"><a href="intro.html#cb55-11" tabindex="-1"></a>    }</span>
-<span id="cb55-12"><a href="intro.html#cb55-12" tabindex="-1"></a>  }</span>
-<span id="cb55-13"><a href="intro.html#cb55-13" tabindex="-1"></a>}</span>
-<span id="cb55-14"><a href="intro.html#cb55-14" tabindex="-1"></a></span>
-<span id="cb55-15"><a href="intro.html#cb55-15" tabindex="-1"></a>df_redundancias <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(pares_altos)</span>
-<span id="cb55-16"><a href="intro.html#cb55-16" tabindex="-1"></a></span>
-<span id="cb55-17"><a href="intro.html#cb55-17" tabindex="-1"></a>df_predictores_red <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">nrow</span>(df_redundancias) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb55-18"><a href="intro.html#cb55-18" tabindex="-1"></a>  df_redundancias <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">Variable 1</span><span class="st">`</span> <span class="sc">!=</span> <span class="st">&quot;Grade&quot;</span>, <span class="st">`</span><span class="at">Variable 2</span><span class="st">`</span> <span class="sc">!=</span> <span class="st">&quot;Grade&quot;</span>)</span>
-<span id="cb55-19"><a href="intro.html#cb55-19" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb55-20"><a href="intro.html#cb55-20" tabindex="-1"></a>  df_redundancias</span>
-<span id="cb55-21"><a href="intro.html#cb55-21" tabindex="-1"></a>}</span>
-<span id="cb55-22"><a href="intro.html#cb55-22" tabindex="-1"></a></span>
-<span id="cb55-23"><a href="intro.html#cb55-23" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">nrow</span>(df_predictores_red) <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb55-24"><a href="intro.html#cb55-24" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;• No se detectaron pares de variables independientes con correlación |r| &gt; 0,7.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb55-25"><a href="intro.html#cb55-25" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;• Conclusión: No existen redundancias severas ni riesgo de multicolinealidad entre los predictores.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb55-26"><a href="intro.html#cb55-26" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb55-27"><a href="intro.html#cb55-27" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;• Advertencia: Se encontraron los siguientes pares con alta redundancia que justifican exclusión:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb55-28"><a href="intro.html#cb55-28" tabindex="-1"></a>  <span class="fu">print</span>(df_predictores_red)</span>
-<span id="cb55-29"><a href="intro.html#cb55-29" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## • No se detectaron pares de variables independientes con correlación |r| &gt; 0,7.
-## • Conclusión: No existen redundancias severas ni riesgo de multicolinealidad entre los predictores.</code></pre>
+<p><strong>5. Referencia cruzada.</strong> El criterio de V de Cramér (<span class="math inline">\(V &gt; 0.4\)</span>) identificó 4 pares (ver tabla de la sección anterior), consistente con el diagnóstico normalizado del punto 4.</p>
 <p>El análisis bivariado y de correlación de Spearman sobre el conjunto de entrenamiento (<span class="math inline">\(n = 671\)</span>) revela asociaciones clínico-moleculares altamente discriminantes entre Gliomas de Bajo Grado (LGG) y Glioblastoma Multiforme (GBM):</p>
 <p><strong>Asociaciones Individuales con la Severidad Tumoral (<code>Grade</code>):</strong></p>
 <ul>
@@ -3752,7 +4434,7 @@ IDH1
 <li><strong>Indicadores de Riesgo (Asociados a GBM):</strong> La variable <strong><code>Age_at_diagnosis</code></strong> representa el principal correlato clínico directo con la severidad (<span class="math inline">\(r = +0,53\)</span>), confirmando la mayor prevalencia de GBM en edades avanzadas. A nivel genómico, <strong><code>PTEN</code></strong> destaca como el marcador de riesgo más sólido (<span class="math inline">\(V = 0,3613\)</span>, <span class="math inline">\(r = +0,37\)</span>), seguido por <strong><code>EGFR</code></strong> (<span class="math inline">\(V = 0,2011\)</span>, <span class="math inline">\(r = +0,21\)</span>) y <strong><code>RB1</code></strong> (<span class="math inline">\(V = 0,1722\)</span>, <span class="math inline">\(r = +0,18\)</span>).</li>
 <li><strong>Variables No Significativas:</strong> Las variables con <span class="math inline">\(p &gt; 0,05\)</span> en Chi-cuadrado, valores de <span class="math inline">\(V &lt; 0,08\)</span> y magnitudes de <span class="math inline">\(\vert{}r\vert{} &lt; 0,10\)</span> (como <code>PDGFRA</code>, <code>NF1</code>, <code>Gender</code>, <code>CSMD3</code>, <code>BCOR</code>, <code>PIK3CA</code> y <code>FAT4</code>) aportan una varianza explicativa insignificante, respaldando su eliminación para simplificar el modelo predictivo y reducir costos diagnósticos.</li>
 </ul>
-<p><strong>Arquitectura de Interacción Inter-Genómica (<span class="math inline">\(V &gt; 0.40\)</span>):</strong></p>
+<p><strong>Arquitectura de Interacción Inter-Genómica (<span class="math inline">\(V &gt; 0,40\)</span>):</strong></p>
 <ul>
 <li><strong>Patrones de Co-ocurrencia:</strong> El par <strong><code>ATRX</code>–<code>TP53</code></strong> presenta la mayor fuerza de asociación mutua (<span class="math inline">\(V = 0,5440\)</span>, <span class="math inline">\(r \approx 0,35\)</span>), reflejando el eje de co-mutación clásico en la astrocitogénesis. Las interacciones <strong><code>FUBP1</code>–<code>CIC</code></strong> (<span class="math inline">\(V = 0,4592\)</span>) y <strong><code>ATRX</code>–<code>IDH1</code></strong> (<span class="math inline">\(V = 0,4562\)</span>) reafirman las firmas genómicas del linaje oligodendroglial y de gliomas de bajo grado.</li>
 <li><strong>Exclusión Mutua:</strong> La relación entre <strong><code>PTEN</code></strong> e <strong><code>IDH1</code></strong> (<span class="math inline">\(V = 0,4028\)</span>) responde a una regla de incompatibilidad biológica asociada al grado tumoral (<code>IDH1</code> mutado en LGG vs. <code>PTEN</code> alterado en GBM).</li>

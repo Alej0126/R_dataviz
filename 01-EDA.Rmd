@@ -568,8 +568,8 @@ medias <- train_data |> group_by(Grade) |> summarise(media = mean(Age_at_diagnos
 ggplot(train_data, aes(x = Grade, y = Age_at_diagnosis)) +
   geom_boxplot(fill = "#1E90FF", alpha = 0.6, color = "black") +
   geom_point(data = medias, aes(x = Grade, y = media), color = "red", size = 3) +
-  labs(title = "Distribución de la edad según el grado del tumor",
-       x = "Grado del tumor (Grade)", y = "Edad al diagnóstico")
+  labs(title = "Distribucion de la edad segun el grado del tumor",
+       x = "Grado del tumor (Grade)", y = "Edad al diagnostico")
 ```
 
 ```{r grade-age-tabla-eda}
@@ -589,7 +589,7 @@ age_grade <- train_data |>
   mutate(variable = "Age_at_diagnosis", niveles = as.character(Grade)) |>
   select(variable, niveles, Grade, n, media, ds, mediana, minimo, maximo, Q1, Q3, IQR)
 
-kable(age_grade, digits = 2, caption = "Estadística descriptiva de Age_at_diagnosis por nivel de Grade.") |>
+kable(age_grade, digits = 2, caption = "Estadistica descriptiva de Age_at_diagnosis por nivel de Grade.") |>
   kable_styling(bootstrap_options = c("striped", "condensed"), full_width = TRUE) |>
   scroll_box(width = "100%")
 ```
@@ -697,7 +697,7 @@ Se utiliza un nivel de significancia de $\alpha = 0,05$:
 
 ```{r chi2-gender-eda}
 tabla_gender_grade <- table(train_data$Gender, train_data$Grade)
-chi2_gender <- chisq.test(tabla_gender_grade, correct = FALSE)
+chi2_gender <- chisq.test(tabla_gender_grade)
 
 cat(sprintf("\nEstadístico χ²: %.4f\n", chi2_gender$statistic))
 cat(sprintf("p-value: %.4f\n", chi2_gender$p.value))
@@ -756,7 +756,7 @@ kable(
 ```
 
 ```{r chi2-race-eda}
-chi2_race <- chisq.test(tabla_race_agg, correct = FALSE)
+chi2_race <- chisq.test(tabla_race_agg)
 
 cat(sprintf("Chi-cuadrado: %.4f\n", chi2_race$statistic))
 cat(sprintf("Grados de libertad: %d\n", chi2_race$parameter))
@@ -779,7 +779,7 @@ Se analiza la distribución de las variables genéticas según los niveles de Gr
 prueba_independencia <- function(df, target, variable, alpha = 0.05) {
 
   tabla <- table(df[[variable]], df[[target]])
-  chi2_res <- suppressWarnings(chisq.test(tabla, correct = FALSE))
+  chi2_res <- suppressWarnings(chisq.test(tabla))
   esperadas <- chi2_res$expected
 
   usar_fisher <- all(dim(tabla) == c(2, 2)) && any(esperadas < 5)
@@ -892,7 +892,7 @@ A diferencia de variables como PTEN o CIC, la diferencia entre ambos grados en M
 que MUC16 podría aportar cierta información para diferenciar las clases, pero su capacidad discriminativa individual
 parece menor a partir de esta distribución.",
 
-  PIK3CA = "La distribución de PIK3CA es bastante similar entre los dos grupos de Grade. La ausencia de la alteración es
+  PIK3CA = "La distribucion de PIK3CA es bastante similar entre los dos grupos de Grade. La ausencia de la alteración es
 predominante tanto en Grade 0 (92,3 %) como en Grade 1 (90,4 %), mientras que su presencia representa únicamente
 el 7,7 % y 9,6 %, respectivamente. Aunque se observa una proporción ligeramente mayor de presencia de mutación de PIK3CA en
 Grade 1, la diferencia es pequeña (1,9 puntos porcentuales). Por lo tanto, a partir de esta comparación descriptiva,
@@ -1047,7 +1047,6 @@ spearman_long <- as.data.frame(spearman_corr) |>
   mutate(var1 = factor(var1, levels = colnames(spearman_corr)),
          var2 = factor(var2, levels = colnames(spearman_corr)))
 
-# Mascara triangular superior (equivalente a np.triu)
 spearman_long <- spearman_long |>
   mutate(ord1 = as.integer(var1), ord2 = as.integer(var2)) |>
   filter(ord2 <= ord1)
@@ -1056,8 +1055,8 @@ ggplot(spearman_long, aes(x = var2, y = var1, fill = r)) +
   geom_tile(color = "white", linewidth = 0.3) +
   scale_fill_gradient2(low = "#2E86AB", mid = "white", high = "#C1443C",
                         midpoint = 0, limits = c(-1, 1),
-                        name = "Coeficiente de\nCorrelación de\nSpearman (r)") +
-  labs(title = "Matriz de Correlación de Spearman (Train Set - 23 Variables)",
+                        name = "Coeficiente de\nCorrelacion de\nSpearman (r)") +
+  labs(title = "Matriz de Correlacion de Spearman (Train Set - 23 Variables)",
        x = NULL, y = NULL) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 8),
         axis.text.y = element_text(size = 8),
@@ -1080,120 +1079,252 @@ ggplot(df_target_corr, aes(x = variable, y = r, fill = signo)) +
                 hjust = ifelse(r >= 0, -0.15, 1.1)),
             size = 3, fontface = "bold") +
   coord_flip(ylim = c(-0.85, 0.65)) +
-  scale_fill_manual(values = c("neg" = PALETTE_GRADE["LGG (0)"], "pos" = PALETTE_GRADE["GBM (1)"]), guide = "none") +
-  labs(title = "Correlación de Spearman de cada Atributo con la Severidad (Grade)",
-       x = NULL, y = "Coeficiente de Correlación (r)") +
+  scale_fill_manual(
+    values = c("neg" = "#4C72B0", "pos" = "#C44E52"), 
+    guide = "none"
+  ) +
+  labs(title = "Correlacion de Spearman de cada Atributo con la Severidad (Grade)",
+       x = NULL, y = "Coeficiente de Correlacion (r)") +
   theme(panel.border = element_blank())
 ```
 
-```{r cramer-eda}
-calcular_asociacion <- function(x, y) {
-  tabla <- table(x, y)
-  chi2_res <- suppressWarnings(chisq.test(tabla, correct = FALSE))
-  n <- sum(tabla)
-  phi2 <- unname(chi2_res$statistic) / n
-  r <- nrow(tabla); k <- ncol(tabla)
-
-  phi2corr <- max(0, phi2 - ((k - 1) * (r - 1)) / (n - 1))
-  rcorr <- r - ((r - 1)^2) / (n - 1)
-  kcorr <- k - ((k - 1)^2) / (n - 1)
-  denominator <- min(kcorr - 1, rcorr - 1)
-  v_cramer <- if (denominator > 0) sqrt(phi2corr / denominator) else 0
-
-  list(chi2 = unname(chi2_res$statistic), p_val = chi2_res$p.value, v = v_cramer)
+```{r calcular-asociacion-eda}
+phi_maximo <- function(tabla) {
+  if (!all(dim(tabla) == c(2, 2))) return(NA_real_)
+  n  <- sum(tabla)
+  p1 <- sum(tabla[2, ]) / n
+  p2 <- sum(tabla[, 2]) / n
+  a  <- min(p1, p2); b <- max(p1, p2)
+  if (a %in% c(0, 1) || b %in% c(0, 1)) return(NA_real_)
+  sqrt((a * (1 - b)) / (b * (1 - a)))
 }
 
-train_data_bin <- train_data |>
-  mutate(Race = ifelse(as.character(Race) == "0", 0, 1))
+phi_signado <- function(tabla) {
+  if (!all(dim(tabla) == c(2, 2))) return(NA_real_)
+  a <- tabla[1, 1]; b <- tabla[1, 2]; cc <- tabla[2, 1]; d <- tabla[2, 2]
+  den <- sqrt(as.numeric(a + b) * (cc + d) * (a + cc) * (b + d))
+  if (den > 0) (a * d - b * cc) / den else 0
+}
 
-cat_cols <- setdiff(names(train_data_bin), "Age_at_diagnosis")
-n_cols <- length(cat_cols)
+calcular_asociacion <- function(x, y) {
+  tabla <- table(x, y)
 
-cramer_matrix <- matrix(1, nrow = n_cols, ncol = n_cols,
-                        dimnames = list(cat_cols, cat_cols))
-chi2_results     <- list()
-pares_asociados  <- list()
+  chi2_c    <- suppressWarnings(chisq.test(tabla, correct = TRUE))
+  chi2_s    <- suppressWarnings(chisq.test(tabla, correct = FALSE))
+  esperadas <- chi2_c$expected
+
+  supuesto_valido <- all(esperadas >= 5)
+  freq_esp_min    <- min(esperadas)
+
+  if (all(dim(tabla) == c(2, 2)) && !supuesto_valido) {
+    p_val <- fisher.test(tabla)$p.value
+    test  <- "Fisher exacto"
+  } else {
+    p_val <- chi2_c$p.value
+    test  <- "Chi-cuadrado"
+  }
+
+  n    <- sum(tabla)
+  phi2 <- unname(chi2_s$statistic) / n
+  r <- nrow(tabla); k <- ncol(tabla)
+  phi2corr <- max(0, phi2 - ((k - 1) * (r - 1)) / (n - 1))
+  rcorr    <- r - ((r - 1)^2) / (n - 1)
+  kcorr    <- k - ((k - 1)^2) / (n - 1)
+  den      <- min(kcorr - 1, rcorr - 1)
+  v_cramer <- if (den > 0) sqrt(phi2corr / den) else 0
+
+  phi      <- phi_signado(tabla)
+  pmax     <- phi_maximo(tabla)
+  phi_norm <- if (!is.na(pmax) && pmax > 0) phi / pmax else NA_real_
+
+  list(
+    chi2 = unname(chi2_s$statistic), p_value = p_val, test = test,
+    v_cramer = v_cramer, phi = phi, phi_max = pmax, phi_norm = phi_norm,
+    supuesto_valido = supuesto_valido, freq_esp_min = freq_esp_min
+  )
+}
+
+
+resaltar_supuesto <- function(kbl, supuesto_ok) {
+  filas <- which(!supuesto_ok)
+  if (length(filas) > 0) kbl <- kbl |> row_spec(filas, background = "#fff3cd")
+  kbl
+}
+```
+
+### Asociación con la variable objetivo (`Grade`)
+
+Se calcula, para cada variable categórica del conjunto de entrenamiento, su asociación con `Grade` mediante Chi-cuadrado y la V de Cramér (con corrección de Bergsma). Las filas resaltadas en amarillo señalan los pares donde no se cumple el supuesto de frecuencia esperada ≥ 5, resueltos mediante la prueba exacta de Fisher en lugar de Chi-cuadrado.
+
+```{r cramer-matrix-eda}
+train_data_cat <- train_data |>
+  mutate(Race_binary = dplyr::recode(as.character(Race),
+                                      "0" = "0", "1" = "1", "2" = "1", "3" = "1"))
+
+cat_cols <- setdiff(names(train_data_cat), c("Age_at_diagnosis", "Race"))
+n_cols   <- length(cat_cols)
+
+cramer_matrix    <- matrix(1, nrow = n_cols, ncol = n_cols,
+                            dimnames = list(cat_cols, cat_cols))
+resultados_grade <- list()
+resultados_pares <- list()
 
 for (i in seq_len(n_cols)) {
   var1 <- cat_cols[i]
   if (i > 1) for (j in seq_len(i - 1)) {
     var2 <- cat_cols[j]
-    res <- calcular_asociacion(train_data_bin[[var1]], train_data_bin[[var2]])
-    cramer_matrix[i, j] <- res$v
-    cramer_matrix[j, i] <- res$v
+    r <- calcular_asociacion(train_data_cat[[var1]], train_data_cat[[var2]])
 
-    if (var2 == "Grade") {
-      chi2_results[[length(chi2_results) + 1]] <- tibble(
-        Variable = var1, `Chi2 Stat` = round(res$chi2, 2),
-        `p-value` = res$p_val, `V de Cramer` = round(res$v, 4))
-    } else if (var1 == "Grade") {
-      chi2_results[[length(chi2_results) + 1]] <- tibble(
-        Variable = var2, `Chi2 Stat` = round(res$chi2, 2),
-        `p-value` = res$p_val, `V de Cramer` = round(res$v, 4))
-    }
+    cramer_matrix[i, j] <- r$v_cramer
+    cramer_matrix[j, i] <- r$v_cramer
 
-    if (var1 != "Grade" && var2 != "Grade" && res$v > 0.4) {
-      pares_asociados[[length(pares_asociados) + 1]] <- tibble(
-        `Variable 1` = var1, `Variable 2` = var2, `V de Cramer (V)` = round(res$v, 4))
+    if (var1 == "Grade" || var2 == "Grade") {
+      otra <- if (var1 == "Grade") var2 else var1
+      resultados_grade[[length(resultados_grade) + 1]] <- tibble(
+        Variable = otra, Test = r$test,
+        `Chi2 (sin Yates)` = round(r$chi2, 2),
+        `p-value`          = r$p_value,
+        `V de Cramer`      = round(r$v_cramer, 4),
+        `Supuesto OK`      = r$supuesto_valido,
+        `Freq. esp. min`   = round(r$freq_esp_min, 2)
+      )
+    } else {
+      resultados_pares[[length(resultados_pares) + 1]] <- tibble(
+        `Variable 1` = var1, `Variable 2` = var2, Test = r$test,
+        `V de Cramer`     = round(r$v_cramer, 4),
+        phi               = round(r$phi, 4),
+        `phi max teorico` = if (!is.na(r$phi_max)) round(r$phi_max, 4) else NA_real_,
+        `phi / phi max`   = if (!is.na(r$phi_norm)) round(r$phi_norm, 4) else NA_real_,
+        `p-value`         = r$p_value,
+        `Supuesto OK`     = r$supuesto_valido,
+        `Freq. esp. min`  = round(r$freq_esp_min, 2)
+      )
     }
   }
 }
 
-df_asociacion <- bind_rows(chi2_results) |> arrange(desc(`V de Cramer`))
-
-cat("ASOCIACIÓN CATEGÓRICA CON GRADE (CHI-CUADRADO Y V DE CRAMER)\n")
-kable(df_asociacion, row.names = FALSE) |>
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = FALSE)
+df_asociacion <- bind_rows(resultados_grade) |> arrange(desc(`V de Cramer`))
+df_pares      <- bind_rows(resultados_pares)
 ```
 
-```{r cramer-pares-eda}
-df_pares_asociados <- bind_rows(pares_asociados)
+```{r tabla-asociacion-grade-eda}
+kable(df_asociacion |> mutate(`Supuesto OK` = ifelse(`Supuesto OK`, "Si", "No")),
+      digits = 4, row.names = FALSE,
+      caption = "Asociacion de cada variable con Grade (Chi-cuadrado / Fisher exacto y V de Cramer).") |>
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE) |>
+  resaltar_supuesto(df_asociacion$`Supuesto OK`) |>
+  scroll_box(width = "100%", height = "420px")
+```
+
+### Pares de predictores con alta asociación mutua
+
+```{r tabla-pares-eda}
+UMBRAL_V <- 0.40
+
+df_pares_asociados <- df_pares |>
+  filter(`V de Cramer` > UMBRAL_V) |>
+  arrange(desc(`V de Cramer`))
+
+n_pares_asoc_invalidos <- sum(!df_pares_asociados$`Supuesto OK`)
+```
+
+Se identificaron `r nrow(df_pares_asociados)` pares de predictores con V de Cramér superior a `r UMBRAL_V`, de los cuales `r n_pares_asoc_invalidos` no cumplen el supuesto de frecuencia esperada ≥ 5 (resaltados en amarillo) y se resolvieron mediante la prueba exacta de Fisher.
+
+```{r tabla-pares-render-eda}
 if (nrow(df_pares_asociados) > 0) {
-  df_pares_asociados <- df_pares_asociados |> arrange(desc(`V de Cramer (V)`))
-}
-
-cat("\nPARES DE GENES CON ALTA ASOCIACIÓN MUTUA (V > 0,4)\n")
-if (nrow(df_pares_asociados) == 0) {
-  cat("No se detectaron pares de genes con alta redundancia mutua (V > 0,4).\n")
-} else {
-  kable(df_pares_asociados, row.names = FALSE) |>
-    kable_styling(bootstrap_options = c("striped", "condensed"), full_width = FALSE)
+  kable(df_pares_asociados |> mutate(`Supuesto OK` = ifelse(`Supuesto OK`, "Si", "No")),
+        digits = 4, row.names = FALSE,
+        caption = sprintf("Pares de predictores con V de Cramer > %.2f.", UMBRAL_V)) |>
+    kable_styling(bootstrap_options = c("striped", "condensed"), full_width = TRUE) |>
+    resaltar_supuesto(df_pares_asociados$`Supuesto OK`)
 }
 ```
 
-```{r redundancias-spearman-eda}
-cat("IDENTIFICACIÓN DE PARES REDUNDANTES (|r| > 0,7)\n")
+### Diagnóstico de multicolinealidad entre predictores
 
+El umbral clásico de $|r| > 0{,}70$ para declarar redundancia severa entre predictores presupone que cualquier par de variables binarias podría, en principio, alcanzar ese nivel de asociación. Sin embargo, cuando dos variables binarias tienen prevalencias muy distintas (por ejemplo, un gen mutado en el 48% de los pacientes frente a otro mutado en apenas el 3%), el coeficiente $\phi$ (equivalente a Pearson/Spearman en tablas 2×2) tiene un **techo teórico** muy por debajo de 1, sin importar qué tan asociadas estén realmente ambas variables. Por ello, el diagnóstico se aborda desde cuatro ángulos complementarios.
+
+```{r diagnostico-validez-eda}
+n_pares_total           <- nrow(df_pares)
+n_pares_invalidos_total <- sum(!df_pares$`Supuesto OK`)
+pct_invalidos           <- n_pares_invalidos_total / n_pares_total * 100
+```
+
+**1. Validez de los contrastes.** De los `r n_pares_total` pares de predictores evaluados, `r n_pares_invalidos_total` (`r sprintf("%.1f%%", pct_invalidos)`) no cumplen el supuesto de frecuencia esperada ≥ 5 y se resolvieron mediante la prueba exacta de Fisher en lugar de Chi-cuadrado.
+
+```{r diagnostico-viabilidad-eda}
+UMBRAL_R    <- 0.70
+UMBRAL_NORM <- 0.70
+
+pares_binarios     <- df_pares |> filter(!is.na(`phi max teorico`))
+total_bin          <- nrow(pares_binarios)
+alcanzables        <- sum(pares_binarios$`phi max teorico` >= UMBRAL_R)
+no_alcanzables      <- total_bin - alcanzables
+pct_alcanzables     <- alcanzables / total_bin * 100
+pct_no_alcanzables  <- 100 - pct_alcanzables
+
+par_ejemplo    <- pares_binarios |> arrange(`phi max teorico`) |> slice(1)
+var1_ejemplo   <- par_ejemplo$`Variable 1`
+var2_ejemplo   <- par_ejemplo$`Variable 2`
+phimax_ejemplo <- par_ejemplo$`phi max teorico`
+```
+
+**2. Viabilidad del umbral $|r| > `r UMBRAL_R`$.** De los `r total_bin` pares binarios evaluados, solo `r alcanzables` (`r sprintf("%.1f%%", pct_alcanzables)`) pueden matemáticamente alcanzar $|\phi| \geq `r UMBRAL_R`$ dado el desbalance de sus prevalencias marginales; para el `r sprintf("%.1f%%", pct_no_alcanzables)` restante es, sencillamente, imposible. El caso más extremo es el par `r var1_ejemplo`–`r var2_ejemplo`, cuyo techo teórico es de apenas $|\phi|_{max} = `r sprintf("%.3f", phimax_ejemplo)`$. Por esta razón, un umbral absoluto sobre $|r|$ no resulta, por sí solo, un criterio informativo para la mayoría de los pares.
+
+```{r diagnostico-absoluto-eda}
 pares_altos <- list()
-columnas <- colnames(spearman_corr)
+columnas    <- colnames(spearman_corr)
 
 for (i in seq_along(columnas)) {
   if (i > 1) for (j in seq_len(i - 1)) {
     r_val <- spearman_corr[i, j]
-    if (abs(r_val) > 0.7) {
+    if (abs(r_val) > UMBRAL_R) {
       pares_altos[[length(pares_altos) + 1]] <- tibble(
         `Variable 1` = columnas[i], `Variable 2` = columnas[j],
-        `Coeficiente (r)` = round(r_val, 4))
+        r = round(r_val, 4))
     }
   }
 }
 
-df_redundancias <- bind_rows(pares_altos)
-
+df_redundancias    <- bind_rows(pares_altos)
 df_predictores_red <- if (nrow(df_redundancias) > 0) {
   df_redundancias |> filter(`Variable 1` != "Grade", `Variable 2` != "Grade")
-} else {
-  df_redundancias
-}
+} else df_redundancias
+```
 
-if (nrow(df_predictores_red) == 0) {
-  cat("• No se detectaron pares de variables independientes con correlación |r| > 0,7.\n")
-  cat("• Conclusión: No existen redundancias severas ni riesgo de multicolinealidad entre los predictores.\n")
-} else {
-  cat("• Advertencia: Se encontraron los siguientes pares con alta redundancia que justifican exclusión:\n")
-  print(df_predictores_red)
+**3. Criterio absoluto $|r| > `r UMBRAL_R`$.** `r if (nrow(df_predictores_red) == 0) "Como es esperable dado el punto anterior, ningún par de predictores supera este umbral." else sprintf("Se identificaron %d pares que superan este umbral (tabla siguiente).", nrow(df_predictores_red))`
+
+```{r tabla-diagnostico-absoluto-eda}
+if (nrow(df_predictores_red) > 0) {
+  kable(df_predictores_red, digits = 4, row.names = FALSE,
+        caption = sprintf("Pares de predictores con |r| de Spearman > %.2f.", UMBRAL_R)) |>
+    kable_styling(bootstrap_options = c("striped", "condensed"), full_width = FALSE)
 }
 ```
+
+```{r diagnostico-normalizado-eda}
+df_norm  <- df_pares |> filter(!is.na(`phi / phi max`))
+red_norm <- df_norm |>
+  filter(abs(`phi / phi max`) > UMBRAL_NORM) |>
+  arrange(desc(abs(`phi / phi max`)))
+```
+
+**4. Criterio normalizado $|\phi / \phi_{max}| > `r UMBRAL_NORM`$**, que corrige el techo impuesto por las prevalencias marginales. `r if (nrow(red_norm) == 0) "No se detectaron pares con redundancia relativa alta bajo este criterio." else sprintf("Se identificaron %d pares con redundancia relativa alta (tabla siguiente).", nrow(red_norm))`
+
+```{r tabla-diagnostico-normalizado-eda}
+if (nrow(red_norm) > 0) {
+  kable(red_norm |>
+          mutate(`Supuesto OK` = ifelse(`Supuesto OK`, "Si", "No")) |>
+          select(`Variable 1`, `Variable 2`, phi, `phi max teorico`,
+                 `phi / phi max`, `V de Cramer`, `Supuesto OK`),
+        digits = 4, row.names = FALSE,
+        caption = "Pares con redundancia relativa alta (phi normalizado por su maximo teorico).") |>
+    kable_styling(bootstrap_options = c("striped", "condensed"), full_width = TRUE) |>
+    resaltar_supuesto(red_norm$`Supuesto OK`)
+}
+```
+
+**5. Referencia cruzada.** El criterio de V de Cramér ($V > `r UMBRAL_V`$) identificó `r nrow(df_pares_asociados)` pares (ver tabla de la sección anterior), consistente con el diagnóstico normalizado del punto 4.
 
 El análisis bivariado y de correlación de Spearman sobre el conjunto de entrenamiento ($n = 671$) revela asociaciones clínico-moleculares altamente discriminantes entre Gliomas de Bajo Grado (LGG) y Glioblastoma Multiforme (GBM):
 
@@ -1203,7 +1334,9 @@ El análisis bivariado y de correlación de Spearman sobre el conjunto de entren
 * **Indicadores de Riesgo (Asociados a GBM):** La variable **`Age_at_diagnosis`** representa el principal correlato clínico directo con la severidad ($r = +0,53$), confirmando la mayor prevalencia de GBM en edades avanzadas. A nivel genómico, **`PTEN`** destaca como el marcador de riesgo más sólido ($V = 0,3613$, $r = +0,37$), seguido por **`EGFR`** ($V = 0,2011$, $r = +0,21$) y **`RB1`** ($V = 0,1722$, $r = +0,18$).
 * **Variables No Significativas:** Las variables con $p > 0,05$ en Chi-cuadrado, valores de $V < 0,08$ y magnitudes de $\vert{}r\vert{} < 0,10$ (como `PDGFRA`, `NF1`, `Gender`, `CSMD3`, `BCOR`, `PIK3CA` y `FAT4`) aportan una varianza explicativa insignificante, respaldando su eliminación para simplificar el modelo predictivo y reducir costos diagnósticos.
 
-**Arquitectura de Interacción Inter-Genómica ($V > 0.40$):**
+**Arquitectura de Interacción Inter-Genómica ($V > 0,40$):**
 
 * **Patrones de Co-ocurrencia:** El par **`ATRX`–`TP53`** presenta la mayor fuerza de asociación mutua ($V = 0,5440$, $r \approx 0,35$), reflejando el eje de co-mutación clásico en la astrocitogénesis. Las interacciones **`FUBP1`–`CIC`** ($V = 0,4592$) y **`ATRX`–`IDH1`** ($V = 0,4562$) reafirman las firmas genómicas del linaje oligodendroglial y de gliomas de bajo grado.
 * **Exclusión Mutua:** La relación entre **`PTEN`** e **`IDH1`** ($V = 0,4028$) responde a una regla de incompatibilidad biológica asociada al grado tumoral (`IDH1` mutado en LGG vs. `PTEN` alterado en GBM).
+
+

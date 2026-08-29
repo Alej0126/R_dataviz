@@ -60,3 +60,9 @@ tab:unnamed-chunk-2
 tab:estructura-eda
 tab:age-outliers-eda
 tab:age-normalidad-eda
+tab:tabla-asociacion-grade-eda
+tab:tabla-pares-render-eda
+tab:tabla-diagnostico-normalizado-eda
+asociación-con-la-variable-objetivo-grade
+pares-de-predictores-con-alta-asociación-mutua
+diagnóstico-de-multicolinealidad-entre-predictores
