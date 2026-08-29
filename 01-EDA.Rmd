@@ -70,7 +70,7 @@ kable(head(df_mutations), caption = "Primeros registros del conjunto de datos.")
 
 
 ```{r}
-kable(tail(df_mutations), caption = "Últimos registros del conjunto de datos.") |>
+kable(tail(df_mutations), caption = "Ultimos registros del conjunto de datos.") |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
                 full_width = TRUE, font_size = 12) |>
   scroll_box(width = "100%")
@@ -112,7 +112,7 @@ info_df <- tibble(
   `Tipo de dato`    = map_chr(df_mutations, ~ class(.x)[1]),
   `Valores no nulos` = map_int(df_mutations, ~ sum(!is.na(.x))),
   `Valores nulos`    = map_int(df_mutations, ~ sum(is.na(.x))),
-  `Valores únicos`   = map_int(df_mutations, ~ n_distinct(.x))
+  `Valores unicos`   = map_int(df_mutations, ~ n_distinct(.x))
 )
 
 datatable(
@@ -128,7 +128,7 @@ columnas_categoricas <- setdiff(names(df_mutations), "Age_at_diagnosis")
 df_mutations <- df_mutations |>
   mutate(across(all_of(columnas_categoricas), as.factor))
 
-kable(t(map_chr(df_mutations, ~ class(.x)[1])), caption = "Tipo de dato por variable tras la recodificación.") |>
+kable(t(map_chr(df_mutations, ~ class(.x)[1])), caption = "Tipo de dato por variable tras la recodificacion.") |>
   kable_styling(bootstrap_options = c("striped", "condensed"), font_size = 11) |>
   scroll_box(width = "100%")
 ```
@@ -241,27 +241,27 @@ ggplot(conteo, aes(x = Grade, y = n, fill = Grade)) +
             vjust = -0.3, fontface = "bold", size = 3.8) +
   scale_fill_manual(values = PALETTE_GRADE, guide = "none") +
   scale_y_continuous(expand = expansion(mult = c(0, 0.25))) +
-  labs(title = "Distribución de la variable objetivo: Grado tumoral",
-       x = NULL, y = "Número de pacientes")
+  labs(title = "Distribucion de la variable objetivo: Grado tumoral",
+       x = NULL, y = "Numero de pacientes")
 ```
 
 La elección de una partición estratificada (*Stratified Train-Test Split*) se justifica por la necesidad de preservar la proporción original de las clases de la variable objetivo (`Grade`) en ambos subconjuntos de datos. En el dataset completo, la distribución presenta un ligero desbalance (ratio ≈ 1.4:1), donde el 58,05% corresponde a Gliomas de Bajo Grado (LGG) y el 41,95% a Glioblastomas (GBM); una división sin estratificar podría dejar los conjuntos de `train` y `test` sesgados a un solo grupo de la variable `Grade`.
 
-La partición 80/20 estratificada por `Grade` (semilla fija = 42) se realizó una única vez para todo el proyecto y se exportó a `train_data.csv` / `test_data.csv`, de modo que todos los cuadernos —tanto los de EDA como los de modelado, en Python o en R— parten exactamente de la misma partición y no existe riesgo de que cada entorno genere una división distinta. Por ello, aquí simplemente se leen esos archivos en lugar de recalcular la partición.
+La partición 80/20 estratificada por Grade se realizó una única vez durante el análisis exploratorio de datos (EDA) en el Jupyter Notebook, y fue exportada como archivos CSV (train_data.csv) para su uso en todo el proyecto. De este modo, se parte exactamente de la misma partición y no existe riesgo de que cada entorno genere una división distinta. Por ello, aquí simplemente se leen esos archivos en lugar de recalcular la partición.
+
+
 
 ```{r split-eda}
 train_data <- read_csv("Dataset/train_data.csv", show_col_types = FALSE)
-
-# Se recodifican las variables categóricas exactamente igual que en df_mutations,
-# para que el resto del documento (detección automática de variables genéticas,
-# pruebas de independencia, paleta de colores, etc.) funcione sin cambios.
-train_data <- train_data |> mutate(across(all_of(columnas_categoricas), as.factor))
+columnas_categoricas_train <- setdiff(names(train_data), "Age_at_diagnosis")
+train_data <- train_data |> 
+  mutate(across(all_of(columnas_categoricas_train), as.factor))
 
 X_train <- train_data |> select(-Grade)
 y_train <- train_data$Grade
 ```
 
-Para asegurar una evaluación rigurosa del modelo y prevenir la fuga de datos, el conjunto original de 839 registros se dividió previamente en una proporción 80/20 mediante una partición estratificada basada en la variable objetivo (`Grade`). De este modo, se reservó un conjunto de prueba (*Test set*) compuesto por 168 pacientes exclusivamente para la validación final del rendimiento, mientras que las 671 observaciones restantes formaron el conjunto de entrenamiento (*Train set*), garantizando que el patrón de distribución de las clases —aproximadamente 58% para tumores de bajo grado (LGG) y 42% para glioblastomas (GBM)— se mantuviera perfectamente balanceado entre ambas subdivisiones.
+Para asegurar una evaluación rigurosa del modelo y prevenir la fuga de datos, el conjunto original de 839 registros se dividió previamente en una proporción 80/20 mediante una partición estratificada basada en la variable objetivo (`Grade`). De este modo, se reservó un conjunto de prueba (*Test set*) compuesto por 168 pacientes exclusivamente para la validación final del rendimiento, mientras que las 671 observaciones restantes formaron el conjunto de entrenamiento (*Train set*), garantizando que el patrón de distribución de las clases se mantuviera perfectamente balanceado entre ambas subdivisiones.
 
 
 
@@ -294,7 +294,7 @@ ggplot(conteo, aes(x = 2, y = n, fill = Grade)) +
   scale_fill_manual(values = PALETTE_GRADE, guide = "none") +
   theme_void() +
   theme(plot.title = element_text(face = "bold", hjust = 0.5, size = 12)) +
-  labs(title = "Distribución de la variable objetivo: Grado tumoral")
+  labs(title = "Distribucion de la variable objetivo: Grado tumoral")
 ```
 
 En el conjunto de entrenamiento (671 pacientes), la variable objetivo `Grade` presenta una distribución de 389 casos correspondientes a Gliomas de Bajo Grado (LGG, 58%) y 282 casos a Glioblastoma Multiforme (GBM, 42%). La relación entre clases es aproximadamente de **1,38 a 1**, lo que indica que **no hay un desbalance severo**.
@@ -307,28 +307,28 @@ En el conjunto de entrenamiento (671 pacientes), la variable objetivo `Grade` pr
 age_vec <- train_data$Age_at_diagnosis
 
 summary_age <- tibble(
-  `Métrica Estadística` = c(
-    "Total de Muestras (n)", "Media (μ)", "Desviación Estándar (σ)",
-    "Mínimo", "Primer Cuartil (Q1)", "Mediana (Q2)",
-    "Tercer Cuartil (Q3)", "Máximo", "Rango Intercuartílico (IQR)",
-    "Asimetría (Skewness)", "Curtosis"
+  `Metrica Estadistica` = c(
+    "Total de Muestras (n)", "Media (\u03bc)", "Desviaci\u00f3n Est\u00e1ndar (\u03c3)",
+    "M\u00ednimo", "Primer Cuartil (Q1)", "Mediana (Q2)",
+    "Tercer Cuartil (Q3)", "M\u00e1ximo", "Rango Intercuart\u00edlico (IQR)",
+    "Asimetr\u00eda (Skewness)", "Curtosis"
   ),
   Valor = c(
     sprintf("%d", length(age_vec)),
-    sprintf("%.2f años", mean(age_vec)),
-    sprintf("%.2f años", sd(age_vec)),
-    sprintf("%.2f años", min(age_vec)),
-    sprintf("%.2f años", quantile(age_vec, 0.25)),
-    sprintf("%.2f años", median(age_vec)),
-    sprintf("%.2f años", quantile(age_vec, 0.75)),
-    sprintf("%.2f años", max(age_vec)),
-    sprintf("%.2f años", IQR(age_vec)),
+    sprintf("%.2f a\u00f1os", mean(age_vec)),
+    sprintf("%.2f a\u00f1os", sd(age_vec)),
+    sprintf("%.2f a\u00f1os", min(age_vec)),
+    sprintf("%.2f a\u00f1os", quantile(age_vec, 0.25)),
+    sprintf("%.2f a\u00f1os", median(age_vec)),
+    sprintf("%.2f a\u00f1os", quantile(age_vec, 0.75)),
+    sprintf("%.2f a\u00f1os", max(age_vec)),
+    sprintf("%.2f a\u00f1os", IQR(age_vec)),
     sprintf("%.4f", skewness(age_vec)),
-    sprintf("%.4f", kurtosis(age_vec) - 3)  # curtosis en exceso, análoga a pandas .kurt()
+    sprintf("%.4f", kurtosis(age_vec) - 3) 
   )
 )
 
-kable(summary_age, caption = "Estadística descriptiva de Age_at_diagnosis (Train Set).") |>
+kable(summary_age, caption = "Estad\u00edstica descriptiva de Age_at_diagnosis (Train Set).") |>
   kable_styling(bootstrap_options = c("striped", "condensed"), full_width = FALSE)
 ```
 
@@ -340,8 +340,8 @@ p_hist <- ggplot(train_data, aes(x = Age_at_diagnosis)) +
   geom_vline(xintercept = mean(age_vec), color = "red", linetype = "dashed",
              linewidth = 0.8) +
   geom_vline(xintercept = median(age_vec), color = "darkgreen", linewidth = 0.8) +
-  labs(title = "Distribución de Edad al Diagnóstico (Train Set)",
-       x = "Edad (Años)", y = "Densidad") +
+  labs(title = "Distribucion de Edad al Diagnostico (Train Set)",
+       x = "Edad (Anos)", y = "Densidad") +
   annotate("text", x = mean(age_vec), y = Inf, vjust = 2, hjust = -0.1,
            label = sprintf("Media: %.1f", mean(age_vec)), color = "red", size = 3.2) +
   annotate("text", x = median(age_vec), y = Inf, vjust = 4, hjust = -0.1,
@@ -349,7 +349,7 @@ p_hist <- ggplot(train_data, aes(x = Age_at_diagnosis)) +
 
 p_box <- ggplot(train_data, aes(x = Age_at_diagnosis)) +
   geom_boxplot(fill = "#8da0cb", color = "black", width = 0.4) +
-  labs(title = "Boxplot de Edad (Detección de Outliers)", x = "Edad (Años)") +
+  labs(title = "Boxplot de Edad (Deteccion de Outliers)", x = "Edad (Anos)") +
   theme(axis.text.y = element_blank())
 
 p_hist + p_box
@@ -363,25 +363,58 @@ iqr <- q3 - q1
 limite_inferior <- q1 - 1.5 * iqr
 limite_superior <- q3 + 1.5 * iqr
 
-outliers <- train_data |> filter(Age_at_diagnosis < limite_inferior | Age_at_diagnosis > limite_superior)
+outliers <- train_data |>
+  filter(Age_at_diagnosis < limite_inferior | Age_at_diagnosis > limite_superior)
 
-cat("EVALUACIÓN MATEMÁTICA DE OUTLIERS (MÉTODO IQR)\n")
-cat(sprintf("• Límite Inferior Aceptable: %.2f años\n", limite_inferior))
-cat(sprintf("• Límite Superior Aceptable: %.2f años\n", limite_superior))
-cat(sprintf("• Cantidad de outliers detectados: %d\n", nrow(outliers)))
+tabla_outliers <- tibble(
+  Criterio = c("Q1 (percentil 25)", "Q3 (percentil 75)", "Rango intercuart\u00edlico (IQR)",
+               "L\u00edmite inferior aceptable", "L\u00edmite superior aceptable",
+               "Outliers detectados"),
+  Valor = c(
+    sprintf("%.2f a\u00f1os", q1),
+    sprintf("%.2f a\u00f1os", q3),
+    sprintf("%.2f a\u00f1os", iqr),
+    sprintf("%.2f a\u00f1os", limite_inferior),
+    sprintf("%.2f a\u00f1os", limite_superior),
+    sprintf("%d paciente(s)", nrow(outliers))
+  )
+)
+
+kable(tabla_outliers,
+      caption = "Evaluaci\u00f3n matem\u00e1tica de outliers en Age_at_diagnosis (m\u00e9todo IQR).") |>
+  kable_styling(bootstrap_options = c("striped", "condensed"), full_width = FALSE) |>
+  row_spec(6, bold = TRUE,
+           color = if (nrow(outliers) > 0) "white" else "black",
+           background = if (nrow(outliers) > 0) "#C44E52" else "#e8f5e9")
 ```
 
 ```{r age-normalidad-eda, fig.width=6, fig.height=4.5}
 shapiro_res <- shapiro.test(age_vec)
 
-cat("EVALUACIÓN DE NORMALIDAD: EDAD AL DIAGNÓSTICO (TRAIN SET)\n")
-cat(sprintf("• Asimetría (Skewness): %.4f\n", skewness(age_vec)))
-cat(sprintf("• Curtosis: %.4f\n", kurtosis(age_vec) - 3))
-cat(sprintf("• Test Shapiro-Wilk: Estadístico W = %.4f\n", shapiro_res$statistic))
-cat(sprintf("• Shapiro-Wilk p-value: %.4e\n", shapiro_res$p.value))
+tabla_normalidad <- tibble(
+  Criterio = c("Asimetr\u00eda (Skewness)", "Curtosis (exceso)",
+               "Estad\u00edstico Shapiro-Wilk (W)", "Shapiro-Wilk (p-value)",
+               "Conclusi\u00f3n (\u03b1 = 0.05)"),
+  Valor = c(
+    sprintf("%.4f", skewness(age_vec)),
+    sprintf("%.4f", kurtosis(age_vec) - 3),
+    sprintf("%.4f", shapiro_res$statistic),
+    sprintf("%.4e", shapiro_res$p.value),
+    ifelse(shapiro_res$p.value < 0.05,
+           "Se rechaza H\u2080: la distribuci\u00f3n no es normal",
+           "No se rechaza H\u2080: compatible con normalidad")
+  )
+)
+
+kable(tabla_normalidad,
+      caption = "Evaluaci\u00f3n de normalidad: Age_at_diagnosis (Train Set).") |>
+  kable_styling(bootstrap_options = c("striped", "condensed"), full_width = FALSE) |>
+  row_spec(5, bold = TRUE,
+           color = "white",
+           background = ifelse(shapiro_res$p.value < 0.05, "#C44E52", "#4C72B0"))
 
 qqPlot(age_vec, distribution = "norm", col = "#2b5c8f", col.lines = "red",
-       id = FALSE, main = "QQ-Plot de Normalidad", ylab = "Edad (Años)")
+       id = FALSE, main = "QQ-Plot de Normalidad", ylab = "Edad (A\u00f1os)")
 ```
 
 La detección de valores atípicos para la variable continua `Age_at_diagnosis` se evaluó tanto matemáticamente mediante la regla del Rango Intercuartílico ($1.5 \times \text{IQR}$) como mediante inspección visual con diagramas de caja. Con un $Q_1$ de $37,84$ años y un $Q_3$ de $62,62$ años ($\text{IQR} = 24,79$ años), los límites teóricos de corte se establecieron en $0,66$ y $99,82$ años. Al contrastar estos umbrales con el rango real de los pacientes ($14,42$ a $89,29$ años), se determinó la ausencia total de outliers o registros anómalos en la muestra de entrenamiento ($n = 671$).
@@ -413,9 +446,9 @@ ggplot(tabla_gender, aes(x = Genero, y = Frecuencia)) +
   geom_col(fill = "#4C72B0", width = 0.55) +
   geom_text(aes(label = sprintf("%.2f%%", Porcentaje)), vjust = -0.4) +
   scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
-  labs(title = "Distribución por género", x = "Género", y = "Frecuencia")
+  labs(title = "Distribucion por genero", x = "Genero", y = "Frecuencia")
 
-kable(tabla_gender, caption = "Frecuencia por género (Train Set).") |>
+kable(tabla_gender, caption = "Frecuencia por genero (Train Set).") |>
   kable_styling(bootstrap_options = c("striped", "condensed"), full_width = FALSE)
 ```
 
@@ -444,7 +477,7 @@ ggplot(tabla_race, aes(x = `Grupo racial`, y = Frecuencia)) +
   scale_x_discrete(labels = label_wrap(12)) +
   scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
   labs(
-    title = "Distribución por grupo racial",
+    title = "Distribucion por grupo racial",
     x = "Grupo racial",
     y = "Frecuencia"
   )
@@ -472,15 +505,31 @@ variables_geneticas <- train_data |>
   names()
 
 plots_genes_univ <- map(variables_geneticas, function(v) {
-  tabla <- train_data |> count(.data[[v]]) |> mutate(pct = n / sum(n) * 100)
-  ggplot(tabla, aes(x = .data[[v]], y = n)) +
-    geom_col(fill = "#4C72B0", width = 0.5) +
-    geom_text(aes(label = n), vjust = -0.4, size = 3) +
-    labs(title = v, x = "Categoría", y = "Frecuencia") +
-    theme(plot.title = element_text(size = 10.5))
+  tabla <- train_data |>
+    count(.data[[v]]) |>
+    mutate(pct = n / sum(n) * 100,
+           categoria = dplyr::recode(as.character(.data[[v]]),
+                                      "0" = "Ausencia", "1" = "Presencia"))
+
+  ggplot(tabla, aes(x = categoria, y = n, fill = categoria)) +
+    geom_col(width = 0.55, show.legend = FALSE) +
+    geom_text(aes(label = sprintf("%d\n(%.1f%%)", n, pct)),
+              vjust = -0.25, size = 2.9, fontface = "bold", lineheight = 0.85) +
+    scale_fill_manual(values = c("Ausencia" = "#B8C4D9", "Presencia" = "#4C72B0")) +
+    scale_y_continuous(expand = expansion(mult = c(0, 0.28))) +
+    labs(title = v, x = NULL, y = "Frecuencia") +
+    ggplot2::theme(
+      plot.title   = ggplot2::element_text(size = 11, face = "bold", hjust = 0.5),
+      axis.text.x  = ggplot2::element_text(size = 8.5),
+      axis.title.y = ggplot2::element_text(size = 9)
+    )
 })
 
-wrap_plots(plots_genes_univ, ncol = 2)
+wrap_plots(plots_genes_univ, ncol = 2) +
+  patchwork::plot_annotation(
+    title = "Distribucion univariada de las variables geneticas (Train Set)",
+    theme = ggplot2::theme(plot.title = ggplot2::element_text(face = "bold", hjust = 0.5, size = 13))
+  )
 ```
 
 ```{r genes-univ-tabla-eda}
@@ -494,8 +543,8 @@ tabla_genes_univ <- map_dfr(variables_geneticas, function(v) {
 }) |> arrange(desc(Porcentaje))
 
 kable(tabla_genes_univ,
-      col.names = c("Gen", "Frecuencia de mutación", "Porcentaje (%)"),
-      caption = "Frecuencia de mutación por gen (Train Set), ordenada de mayor a menor.") |>
+      col.names = c("Gen", "Frecuencia de mutaci\u00f3n", "Porcentaje (%)"),
+      caption = "Frecuencia de mutaci\u00f3n por gen (Train Set), ordenada de mayor a menor.") |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = FALSE)
 ```
 

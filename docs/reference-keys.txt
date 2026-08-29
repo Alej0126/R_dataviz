@@ -58,3 +58,5 @@ pdgfra
 multicolinealidad-y-correlación
 tab:unnamed-chunk-2
 tab:estructura-eda
+tab:age-outliers-eda
+tab:age-normalidad-eda
