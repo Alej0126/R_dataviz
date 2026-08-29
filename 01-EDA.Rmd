@@ -1339,4 +1339,8 @@ El análisis bivariado y de correlación de Spearman sobre el conjunto de entren
 * **Patrones de Co-ocurrencia:** El par **`ATRX`–`TP53`** presenta la mayor fuerza de asociación mutua ($V = 0,5440$, $r \approx 0,35$), reflejando el eje de co-mutación clásico en la astrocitogénesis. Las interacciones **`FUBP1`–`CIC`** ($V = 0,4592$) y **`ATRX`–`IDH1`** ($V = 0,4562$) reafirman las firmas genómicas del linaje oligodendroglial y de gliomas de bajo grado.
 * **Exclusión Mutua:** La relación entre **`PTEN`** e **`IDH1`** ($V = 0,4028$) responde a una regla de incompatibilidad biológica asociada al grado tumoral (`IDH1` mutado en LGG vs. `PTEN` alterado en GBM).
 
+**Diagnóstico de Multicolinealidad para el Modelado Predictivo:**
+
+El umbral convencional de $|r| > `r UMBRAL_R`$ resulta poco informativo en este conjunto de datos: debido al fuerte desbalance de prevalencias entre genes, en **`r no_alcanzables` de los `r total_bin` pares (`r sprintf("%.1f%%", pct_no_alcanzables)`) dicho valor es matemáticamente inalcanzable**. Por ejemplo, el par `r var1_ejemplo`–`r var2_ejemplo` tiene un techo teórico de $|\phi|_{max} = `r sprintf("%.3f", phimax_ejemplo)`$. Por ello, el diagnóstico se complementó con la V de Cramér y con $\phi$ normalizado por su máximo teórico. Bajo estos criterios **no se detectó redundancia severa entre predictores**, si bien los pares de co-ocurrencia señalados ($V \approx 0,40$–$0,54$) representan estructura biológica real que los algoritmos deberán absorber.
+
 
