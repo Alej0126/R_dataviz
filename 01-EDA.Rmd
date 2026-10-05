@@ -1,5 +1,11 @@
 # Análisis Exploratorio de Datos (EDA) {#intro}
 
+El presente análisis exploratorio busca caracterizar las diferencias clínicas y moleculares entre los pacientes con Gliomas de Bajo Grado (LGG) y Glioblastoma Multiforme (GBM), con especial atención a las variables que puedan estar asociadas con el grado histológico del tumor. Para ello, se examinan tanto características clínicas como patrones de mutación en genes seleccionados, con el propósito de identificar comportamientos relevantes dentro de los datos antes de avanzar hacia las etapas de preprocesamiento y modelado.
+
+El análisis parte del conjunto de datos **Glioma Grading Clinical and Mutation Features**, construido a partir de información de los proyectos TCGA-LGG y TCGA-GBM de *The Cancer Genome Atlas*. El conjunto contiene registros de pacientes y variables clínicas y genéticas, teniendo como variable objetivo la clasificación binaria del grado tumoral entre LGG y GBM.
+
+A lo largo de esta sección se estudiará la estructura general de los datos, la distribución de las variables, sus características clínicas y mutacionales y su comportamiento en función del grado tumoral. Estos resultados permitirán establecer una primera comprensión del conjunto de datos y servirán como base para definir posteriormente las transformaciones y variables utilizadas en el desarrollo del modelo predictivo.
+
 ## Dataset
 
 El conjunto de datos utilizado para el análisis es `TCGA_InfoWithGrade.csv`,
@@ -210,7 +216,7 @@ correspondiente, y con un **0** la condición de gen salvaje / no mutado (*wildt
 
 ---
 
-El dataset está compuesto por **24 variables en total**:
+El dataset está compuesto por 24 variables en total:
 
 * **Variable Objetivo (Target):** `Grade` (binaria: 0 = LGG, 1 = GBM).
 * **21 atributos binarios (0/1):** `Gender` y las 20 mutaciones genéticas evaluadas.
@@ -239,7 +245,7 @@ ggplot(conteo, aes(x = Grade, y = n, fill = Grade)) +
   geom_col(width = 0.55, color = "white", linewidth = 1.1) +
   geom_text(aes(label = sprintf("%d\n(%.1f%%)", n, pct)),
             vjust = -0.3, fontface = "bold", size = 3.8) +
-  scale_fill_manual(values = PALETTE_GRADE, guide = "none") +
+  scale_fill_manual(values = c("#4C72B0", "#4C72B0"), guide = "none") +
   scale_y_continuous(expand = expansion(mult = c(0, 0.25))) +
   labs(title = "Distribucion de la variable objetivo: Grado tumoral",
        x = NULL, y = "Numero de pacientes")
@@ -297,7 +303,7 @@ ggplot(conteo, aes(x = 2, y = n, fill = Grade)) +
   labs(title = "Distribucion de la variable objetivo: Grado tumoral")
 ```
 
-En el conjunto de entrenamiento (671 pacientes), la variable objetivo `Grade` presenta una distribución de 389 casos correspondientes a Gliomas de Bajo Grado (LGG, 58%) y 282 casos a Glioblastoma Multiforme (GBM, 42%). La relación entre clases es aproximadamente de **1,38 a 1**, lo que indica que **no hay un desbalance severo**.
+En el conjunto de entrenamiento (671 pacientes), la variable objetivo `Grade` presenta una distribución de 389 casos correspondientes a Gliomas de Bajo Grado (LGG, 58%) y 282 casos a Glioblastoma Multiforme (GBM, 42%). La relación entre clases es aproximadamente de 1,38 a 1, lo que indica que no hay un desbalance severo.
 
 ### Variables cuantitativas
 
@@ -419,7 +425,7 @@ qqPlot(age_vec, distribution = "norm", col = "#2b5c8f", col.lines = "red",
 
 La detección de valores atípicos para la variable continua `Age_at_diagnosis` se evaluó tanto matemáticamente mediante la regla del Rango Intercuartílico ($1.5 \times \text{IQR}$) como mediante inspección visual con diagramas de caja. Con un $Q_1$ de $37,84$ años y un $Q_3$ de $62,62$ años ($\text{IQR} = 24,79$ años), los límites teóricos de corte se establecieron en $0,66$ y $99,82$ años. Al contrastar estos umbrales con el rango real de los pacientes ($14,42$ a $89,29$ años), se determinó la ausencia total de outliers o registros anómalos en la muestra de entrenamiento ($n = 671$).
 
-La evaluación de normalidad para la variable `Age_at_diagnosis` revela una distribución **altamente simétrica** con un coeficiente de asimetría (*skewness*) de **$0,0547$**, lo que ubica a la media ($51,10$ años) y a la mediana ($51,99$ años) prácticamente en el mismo punto central. Sin embargo, el contraste formal de **Shapiro-Wilk** ($W \approx 0,985$, $p < 0,05$) rechaza la hipótesis nula de normalidad estricta, un comportamiento explicado tanto por la sensibilidad de la prueba ante el tamaño muestral ($n = 671$) como por el **patrón bimodal de la variable** (concentración de casos en torno a los $35$ y $55$ años). A pesar de esta desviación, **no es necesario aplicar transformaciones no lineales** (tales como `log` o `Box-Cox`) en etapas posteriores de preprocesamiento, dado que la variable carece de asimetría pronunciada o valores atípicos que distorsionen su escala; bastará con aplicar una estandarización convencional (`scale()`) para algoritmos sensibles a la escala o mantener la variable en su escala original continua para modelos basados en árboles de decisión.
+La evaluación de normalidad para la variable `Age_at_diagnosis` revela una distribución altamente simétrica con un coeficiente de asimetría (*skewness*) de **$0,0547$**, lo que ubica a la media ($51,10$ años) y a la mediana ($51,99$ años) prácticamente en el mismo punto central. Sin embargo, el contraste formal de Shapiro-Wilk ($W \approx 0,985$, $p < 0,05$) rechaza la hipótesis nula de normalidad estricta, un comportamiento explicado tanto por la sensibilidad de la prueba ante el tamaño muestral ($n = 671$) como por el patrón bimodal de la variable (concentración de casos en torno a los $35$ y $55$ años). A pesar de esta desviación, no es necesario aplicar transformaciones no lineales (tales como `log` o `Box-Cox`) en etapas posteriores de preprocesamiento, dado que la variable carece de asimetría pronunciada o valores atípicos que distorsionen su escala; bastará con aplicar una estandarización convencional (`scale()`) para algoritmos sensibles a la escala o mantener la variable en su escala original continua para modelos basados en árboles de decisión.
 
 La variable registra una media de 51,10 años ($\pm 15,63$) y una mediana de 51,99 años en el conjunto de entrenamiento, abarcando un rango de edad desde los 14,42 hasta los 89,29 años. El análisis exploratorio revela una distribución simétrica con comportamiento bimodal (picos poblacionales cerca de los 35 y 55 años). Este patrón sugiere la presencia de subgrupos demográficos diferenciados que posteriormente se contrastarán con el grado de severidad tumoral (`Grade`).
 
@@ -492,7 +498,7 @@ kable(
   )
 ```
 
-En cuanto a la variable `Race`, se observa una marcada concentración de los registros en la categoría **White**, que representa 611 casos **(91,06 %)** del conjunto analizado. La categoría **Black or African American** cuenta con 46 registros **(6,86 %)**, mientras que **Asian** representa 13 casos **(1,94 %)**. Finalmente, **American Indian or Alaska Native** presenta únicamente 1 registro **(0,15 %)**.
+En cuanto a la variable `Race`, se observa una marcada concentración de los registros en la categoría White, que representa 611 casos **(91,06 %)** del conjunto analizado. La categoría Black or African American cuenta con 46 registros **(6,86 %)**, mientras que Asian representa 13 casos **(1,94 %)**. Finalmente, American Indian or Alaska Native presenta únicamente 1 registro **(0,15 %)**.
 
 La distribución evidencia un fuerte desbalance en la variable racial, dado que la categoría de personas de raza blanca concentra más de nueve de cada diez observaciones. Por tanto, las categorías minoritarias tienen una representación considerablemente menor dentro del conjunto de datos.
 
@@ -550,7 +556,7 @@ kable(tabla_genes_univ,
 
 Las variables genéticas presentan una distribución predominantemente concentrada en la categoría `0`, correspondiente a la ausencia de mutación, mientras que la categoría `1` representa su presencia.
 
-Entre los genes analizados, **IDH1** presenta la mayor proporción de casos con mutación, con 322 registros **(47,99 %)**, seguido de **TP53**, con 270 registros **(40,24 %)**. A continuación se encuentran **ATRX** con **25,63 %**, **PTEN** con **16,84 %**, **CIC** con **13,71 %**, **EGFR** con **11,62 %** y **MUC16** con **11,03 %**. En un nivel intermedio se encuentran **PIK3CA (8,49 %)**, **NF1 (8,35 %)** y **FUBP1 (6,26 %)**, mientras que **PIK3R1 (5,81 %)**, **RB1 (4,92 %)** y **NOTCH1 (4,92 %)** presentan proporciones inferiores al 6 %. Finalmente, genes como **CSMD3 (3,43 %)**, **SMARCA4 (3,43 %)**, **IDH2 (3,13 %)**, **BCOR (3,28 %)**, **GRIN2A (2,83 %)**, **FAT4 (2,68 %)** y **PDGFRA (2,68 %)** muestran una presencia de mutaciones relativamente baja en el conjunto analizado.
+Entre los genes analizados, IDH1 presenta la mayor proporción de casos con mutación, con 322 registros **(47,99 %)**, seguido de TP53, con 270 registros **(40,24 %)**. A continuación se encuentran ATRX con **25,63 %**, PTEN con **16,84 %**, CIC con **13,71 %**, EGFR con **11,62 %** y MUC16 con **11,03 %**. En un nivel intermedio se encuentran PIK3CA (8,49 %), NF1 (8,35 %) y FUBP1 (6,26 %), mientras que PIK3R1 (5,81 %), RB1 (4,92 %) y NOTCH1 (4,92 %) presentan proporciones inferiores al 6 %. Finalmente, genes como CSMD3 (3,43 %), SMARCA4 (3,43 %), IDH2 (3,13 %), BCOR (3,28 %), GRIN2A (2,83 %), FAT4 (2,68 %) y PDGFRA (2,68 %) muestran una presencia de mutaciones relativamente baja en el conjunto analizado.
 
 En términos generales, se observa una alta variabilidad en la frecuencia de las mutaciones entre los genes, con una mayor concentración en IDH1 y TP53 y una presencia considerablemente menor en los genes restantes. Esto evidencia que las alteraciones genéticas no se distribuyen de manera uniforme en la muestra y que algunos genes presentan una representación mutacional mucho mayor que otros.
 
@@ -606,7 +612,7 @@ El análisis bivariado de la edad al diagnóstico (`Age_at_diagnosis`) según el
 
 Existe una baja superposición en el núcleo de ambas distribuciones. El 75% de los pacientes diagnosticados con LGG tiene 54,27 años o menos, mientras que el 75% de los casos de GBM presenta una edad de diagnóstico igual o superior a 52,75 años. Esto evidencia una diferencia importante en la edad de diagnóstico entre ambos niveles de `Grade`, con una mayor concentración de edades en los pacientes con GBM.
 
-En el **análisis univariado** de `Age_at_diagnosis`, considerando la distribución global de todos los pacientes, **no se identificaron valores atípicos mediante el criterio del rango intercuartílico (IQR)**. Sin embargo, al analizar la edad de manera bivariada según `Grade`, sí aparecen observaciones que pueden clasificarse como outliers dentro de los grupos individuales. Esto ocurre porque cada nivel de `Grade` presenta su propia distribución, con diferentes valores de $Q_1$, $Q_3$ e IQR; por lo tanto, una edad que se encuentra dentro del rango esperado de la población total puede resultar extrema cuando se compara únicamente con la distribución de su grupo.
+En el análisis univariado de `Age_at_diagnosis`, considerando la distribución global de todos los pacientes, no se identificaron valores atípicos mediante el criterio del rango intercuartílico (IQR). Sin embargo, al analizar la edad de manera bivariada según `Grade`, sí aparecen observaciones que pueden clasificarse como outliers dentro de los grupos individuales. Esto ocurre porque cada nivel de `Grade` presenta su propia distribución, con diferentes valores de $Q_1$, $Q_3$ e IQR; por lo tanto, una edad que se encuentra dentro del rango esperado de la población total puede resultar extrema cuando se compara únicamente con la distribución de su grupo.
 
 * *Valores Atípicos en Grado 0:* Se identifica un valor atípico superior de **87 años**, que resulta inusual dentro de la distribución de edades de los pacientes con LGG.
 
@@ -728,9 +734,9 @@ Además, si bien existen diferencias en la distribución de los grupos raciales 
 
 #### Prueba de independencia: $\chi^2$
 
-Para realizar la prueba de independencia entre `Grade` y `Race`, se decidió reagrupar las categorías de la variable racial debido a las bajas frecuencias observadas en algunos grupos. En particular, las categorías **Asian** y **American Indian or Alaska Native** presentan un número reducido de observaciones, lo que puede generar frecuencias esperadas demasiado bajas y afectar la validez de la prueba estadística.
+Para realizar la prueba de independencia entre `Grade` y `Race`, se decidió reagrupar las categorías de la variable racial debido a las bajas frecuencias observadas en algunos grupos. En particular, las categorías Asian y American Indian or Alaska Native presentan un número reducido de observaciones, lo que puede generar frecuencias esperadas demasiado bajas y afectar la validez de la prueba estadística.
 
-Por esta razón, se mantuvo la categoría **White**, que representa la mayoría de los registros, y se agruparon **Black or African American**, **Asian** y **American Indian or Alaska Native** en una nueva categoría denominada **Other racial groups**.
+Por esta razón, se mantuvo la categoría White, que representa la mayoría de los registros, y se agruparon Black or African American, Asian y American Indian or Alaska Native en una nueva categoría denominada **Other racial groups**.
 
 De esta manera, la variable `Race` queda conformada por dos categorías: **White** y **Other racial groups**, permitiendo realizar la prueba de independencia con una distribución de frecuencias más adecuada.
 
@@ -765,7 +771,7 @@ cat(sprintf("Valor p: %.4f\n", chi2_race$p.value))
 
 Dado que el valor **p = 0,0048** es menor que el nivel de significancia de 0.05, se rechaza la hipótesis nula de independencia. Por lo tanto, existe evidencia estadísticamente significativa de una asociación entre `Grade` y `Race` en el conjunto de datos.
 
-Esto indica que la distribución de los pacientes entre **LGG (Grade 0)** y **GBM (Grade 1)** presenta diferencias según el grupo racial considerado. Sin embargo, este resultado debe interpretarse con cautela, ya que la variable `Race` fue previamente agrupada en **White** y **Other racial groups** debido a las bajas frecuencias de algunas categorías originales.
+Esto indica que la distribución de los pacientes entre LGG (Grade 0) y GBM (Grade 1) presenta diferencias según el grupo racial considerado. Sin embargo, este resultado debe interpretarse con cautela, ya que la variable `Race` fue previamente agrupada en White y Other racial groups debido a las bajas frecuencias de algunas categorías originales.
 
 Es importante señalar que la prueba de independencia permite identificar una asociación estadística, pero no implica que el grupo racial sea la causa de las diferencias observadas en el grado tumoral.
 
@@ -1242,7 +1248,7 @@ if (nrow(df_pares_asociados) > 0) {
 
 ### Diagnóstico de multicolinealidad entre predictores
 
-El umbral clásico de $|r| > 0{,}70$ para declarar redundancia severa entre predictores presupone que cualquier par de variables binarias podría, en principio, alcanzar ese nivel de asociación. Sin embargo, cuando dos variables binarias tienen prevalencias muy distintas (por ejemplo, un gen mutado en el 48% de los pacientes frente a otro mutado en apenas el 3%), el coeficiente $\phi$ (equivalente a Pearson/Spearman en tablas 2×2) tiene un **techo teórico** muy por debajo de 1, sin importar qué tan asociadas estén realmente ambas variables. Por ello, el diagnóstico se aborda desde cuatro ángulos complementarios.
+El umbral clásico de $|r| > 0{,}70$ para declarar redundancia severa entre predictores presupone que cualquier par de variables binarias podría, en principio, alcanzar ese nivel de asociación. Sin embargo, cuando dos variables binarias tienen prevalencias muy distintas (por ejemplo, un gen mutado en el 48% de los pacientes frente a otro mutado en apenas el 3%), el coeficiente $\phi$ (equivalente a Pearson/Spearman en tablas 2×2) tiene un techo teórico muy por debajo de 1, sin importar qué tan asociadas estén realmente ambas variables. Por ello, el diagnóstico se aborda desde cuatro ángulos complementarios.
 
 ```{r diagnostico-validez-eda}
 n_pares_total           <- nrow(df_pares)
@@ -1330,17 +1336,24 @@ El análisis bivariado y de correlación de Spearman sobre el conjunto de entren
 
 **Asociaciones Individuales con la Severidad Tumoral (`Grade`):**
 
-* **Biomarcadores Protectores (Asociados a LGG):** La mutación en el gen **`IDH1`** constituye el factor molecular con mayor capacidad discriminativa e inversa respecto a la malignidad ($r = -0,70$, $V \approx 0,70$, $p < 0,001$), seguida por alteraciones en **`ATRX`** ($r = -0,33$, $V \approx 0,32$) y **`CIC`** ($r = -0,31$, $V \approx 0,31$).
-* **Indicadores de Riesgo (Asociados a GBM):** La variable **`Age_at_diagnosis`** representa el principal correlato clínico directo con la severidad ($r = +0,53$), confirmando la mayor prevalencia de GBM en edades avanzadas. A nivel genómico, **`PTEN`** destaca como el marcador de riesgo más sólido ($V = 0,3613$, $r = +0,37$), seguido por **`EGFR`** ($V = 0,2011$, $r = +0,21$) y **`RB1`** ($V = 0,1722$, $r = +0,18$).
-* **Variables No Significativas:** Las variables con $p > 0,05$ en Chi-cuadrado, valores de $V < 0,08$ y magnitudes de $\vert{}r\vert{} < 0,10$ (como `PDGFRA`, `NF1`, `Gender`, `CSMD3`, `BCOR`, `PIK3CA` y `FAT4`) aportan una varianza explicativa insignificante, respaldando su eliminación para simplificar el modelo predictivo y reducir costos diagnósticos.
+**Asociaciones con LGG.** La mutación en `IDH1` presenta la mayor capacidad discriminativa e inversa respecto a la malignidad ($r = -0,70$, $V \approx 0,70$, $p < 0,001$). Le siguen `ATRX` ($r = -0,33$, $V \approx 0,32$) y `CIC` ($r = -0,31$, $V \approx 0,31$).
 
-**Arquitectura de Interacción Inter-Genómica ($V > 0,40$):**
+**Asociaciones con GBM.** `Age_at_diagnosis` constituye el principal correlato clínico directo con la severidad ($r = +0,53$), reflejando una mayor prevalencia de GBM en edades avanzadas. Entre las variables genéticas, `PTEN` presenta la asociación más fuerte ($V = 0,3613$, $r = +0,37$), seguido por `EGFR` ($V = 0,2011$, $r = +0,21$) y `RB1` ($V = 0,1722$, $r = +0,18$).
 
-* **Patrones de Co-ocurrencia:** El par **`ATRX`–`TP53`** presenta la mayor fuerza de asociación mutua ($V = 0,5440$, $r \approx 0,35$), reflejando el eje de co-mutación clásico en la astrocitogénesis. Las interacciones **`FUBP1`–`CIC`** ($V = 0,4592$) y **`ATRX`–`IDH1`** ($V = 0,4562$) reafirman las firmas genómicas del linaje oligodendroglial y de gliomas de bajo grado.
-* **Exclusión Mutua:** La relación entre **`PTEN`** e **`IDH1`** ($V = 0,4028$) responde a una regla de incompatibilidad biológica asociada al grado tumoral (`IDH1` mutado en LGG vs. `PTEN` alterado en GBM).
+**Variables no significativas.** Las variables con $p > 0,05$ en la prueba de Chi-cuadrado, valores de $V < 0,08$ y magnitudes de $\lvert r \rvert < 0,10$, como `PDGFRA`, `NF1`, `Gender`, `CSMD3`, `BCOR`, `PIK3CA` y `FAT4`, presentan una asociación débil con `Grade`. Estos resultados respaldan su eliminación para simplificar el conjunto de predictores y reducir variables con poca capacidad discriminativa.
 
-**Diagnóstico de Multicolinealidad para el Modelado Predictivo:**
+### Interacciones entre variables genéticas
 
-El umbral convencional de $|r| > `r UMBRAL_R`$ resulta poco informativo en este conjunto de datos: debido al fuerte desbalance de prevalencias entre genes, en **`r no_alcanzables` de los `r total_bin` pares (`r sprintf("%.1f%%", pct_no_alcanzables)`) dicho valor es matemáticamente inalcanzable**. Por ejemplo, el par `r var1_ejemplo`–`r var2_ejemplo` tiene un techo teórico de $|\phi|_{max} = `r sprintf("%.3f", phimax_ejemplo)`$. Por ello, el diagnóstico se complementó con la V de Cramér y con $\phi$ normalizado por su máximo teórico. Bajo estos criterios **no se detectó redundancia severa entre predictores**, si bien los pares de co-ocurrencia señalados ($V \approx 0,40$–$0,54$) representan estructura biológica real que los algoritmos deberán absorber.
+Para evaluar la relación entre las mutaciones, se consideraron las asociaciones con $V > 0,40$.
 
+**Patrones de co-ocurrencia.** El par `ATRX`–`TP53` presenta la mayor fuerza de asociación mutua ($V = 0,5440$, $r \approx 0,35$). También destacan `FUBP1`–`CIC` ($V = 0,4592$) y `ATRX`–`IDH1` ($V = 0,4562$), que muestran una asociación elevada entre sus patrones de mutación.
 
+**Exclusión mutua.** La relación entre `PTEN` e `IDH1` ($V = 0,4028$) presenta un patrón de exclusión mutua en el conjunto analizado, con una distribución diferencial de las alteraciones entre LGG y GBM.
+
+### Diagnóstico de multicolinealidad para el modelado predictivo
+
+El umbral convencional de $|r| > `r UMBRAL_R`$ resulta poco informativo en este conjunto de datos debido al fuerte desbalance en la prevalencia de las mutaciones. En **`r no_alcanzables` de los `r total_bin` pares (`r sprintf("%.1f%%", pct_no_alcanzables)`)**, dicho valor es matemáticamente inalcanzable.
+
+Por ejemplo, el par `r var1_ejemplo`–`r var2_ejemplo` presenta un techo teórico de $|\phi|_{max} = `r sprintf("%.3f", phimax_ejemplo)`$. Por esta razón, el diagnóstico se complementó con la V de Cramér y con $\phi$ normalizado respecto a su máximo teórico.
+
+Bajo estos criterios, **no se detectó redundancia severa entre los predictores**. No obstante, los pares con mayor co-ocurrencia ($V \approx 0,40$–$0,54$) representan relaciones estructurales entre las variables que deberán ser consideradas durante el desarrollo del modelo predictivo.

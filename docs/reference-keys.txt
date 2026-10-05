@@ -66,3 +66,7 @@ tab:tabla-diagnostico-normalizado-eda
 asociación-con-la-variable-objetivo-grade
 pares-de-predictores-con-alta-asociación-mutua
 diagnóstico-de-multicolinealidad-entre-predictores
+objetivo-general
+objetivos-específicos
+interacciones-entre-variables-genéticas
+diagnóstico-de-multicolinealidad-para-el-modelado-predictivo
