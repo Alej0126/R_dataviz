@@ -70,3 +70,9 @@ objetivo-general
 objetivos-específicos
 interacciones-entre-variables-genéticas
 diagnóstico-de-multicolinealidad-para-el-modelado-predictivo
+carga-de-datos-y-estructura
+librerías
+división-del-dataset---protocolo-anti-leakage
+multicolinealidad-conjunta-factor-de-inflación-de-la-varianza
+asociaciones-con-la-severidad-tumoral-grade
+tab:info-df-eda

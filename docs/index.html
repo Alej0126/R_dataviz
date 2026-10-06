@@ -5,19 +5,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Caracterización Clínico-Molecular del Grado Tumoral en Gliomas</title>
-  <meta name="description" content="Proyecto de ciencia de datos y aprendizaje automático para la caracterización clínico-molecular del grado tumoral en gliomas (LGG vs. GBM), a partir de datos de los proyectos TCGA-LGG y TCGA-GBM de The Cancer Genome Atlas." />
+  <meta name="description" content="Proyecto de ciencia de datos y visualización de datos para la caracterización clínico-molecular del grado tumoral en gliomas (LGG vs. GBM), a partir de datos de los proyectos TCGA-LGG y TCGA-GBM de The Cancer Genome Atlas." />
   <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Caracterización Clínico-Molecular del Grado Tumoral en Gliomas" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="Proyecto de ciencia de datos y aprendizaje automático para la caracterización clínico-molecular del grado tumoral en gliomas (LGG vs. GBM), a partir de datos de los proyectos TCGA-LGG y TCGA-GBM de The Cancer Genome Atlas." />
+  <meta property="og:description" content="Proyecto de ciencia de datos y visualización de datos para la caracterización clínico-molecular del grado tumoral en gliomas (LGG vs. GBM), a partir de datos de los proyectos TCGA-LGG y TCGA-GBM de The Cancer Genome Atlas." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Caracterización Clínico-Molecular del Grado Tumoral en Gliomas" />
   
-  <meta name="twitter:description" content="Proyecto de ciencia de datos y aprendizaje automático para la caracterización clínico-molecular del grado tumoral en gliomas (LGG vs. GBM), a partir de datos de los proyectos TCGA-LGG y TCGA-GBM de The Cancer Genome Atlas." />
+  <meta name="twitter:description" content="Proyecto de ciencia de datos y visualización de datos para la caracterización clínico-molecular del grado tumoral en gliomas (LGG vs. GBM), a partir de datos de los proyectos TCGA-LGG y TCGA-GBM de The Cancer Genome Atlas." />
   
 
 <meta name="author" content="Alejandro Cantillo Escorcia &amp; Joshua Hincapie Llorente" />
@@ -76,40 +76,41 @@
 <li><a href="./">Caracterizacion Clinico-Molecular de Gliomas</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introducción</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#objetivo-general"><i class="fa fa-check"></i><b>1.1</b> Objetivo general</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#objetivos-espec%C3%ADficos"><i class="fa fa-check"></i><b>1.2</b> Objetivos específicos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivo-general"><i class="fa fa-check"></i>Objetivo general</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos-espec%C3%ADficos"><i class="fa fa-check"></i>Objetivos específicos</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Análisis Exploratorio de Datos (EDA)</a>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Análisis exploratorio de variables clínicas y mutacionales asociadas a la clasificación histológica (LGG vs. GBM)</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#dataset"><i class="fa fa-check"></i><b>2.1</b> Dataset</a>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#carga-de-datos-y-estructura"><i class="fa fa-check"></i><b>1.1</b> Carga de datos y Estructura</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="intro.html"><a href="intro.html#estructura"><i class="fa fa-check"></i><b>2.1.1</b> Estructura</a></li>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#librer%C3%ADas"><i class="fa fa-check"></i><b>1.1.1</b> Librerías</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#dataset"><i class="fa fa-check"></i><b>1.1.2</b> Dataset</a></li>
+<li class="chapter" data-level="1.1.3" data-path="intro.html"><a href="intro.html#estructura"><i class="fa fa-check"></i><b>1.1.3</b> Estructura</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#contexto-de-los-datos"><i class="fa fa-check"></i><b>2.2</b> Contexto de los datos</a>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#contexto-de-los-datos"><i class="fa fa-check"></i><b>1.2</b> Contexto de los datos</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="intro.html"><a href="intro.html#variable-objetivo"><i class="fa fa-check"></i><b>2.2.1</b> Variable Objetivo</a></li>
-<li class="chapter" data-level="2.2.2" data-path="intro.html"><a href="intro.html#variables-cl%C3%ADnicas"><i class="fa fa-check"></i><b>2.2.2</b> Variables Clínicas</a></li>
-<li class="chapter" data-level="2.2.3" data-path="intro.html"><a href="intro.html#variables-gen%C3%A9ticas"><i class="fa fa-check"></i><b>2.2.3</b> Variables genéticas</a></li>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#variable-objetivo"><i class="fa fa-check"></i><b>1.2.1</b> Variable Objetivo</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#variables-cl%C3%ADnicas"><i class="fa fa-check"></i><b>1.2.2</b> Variables Clínicas</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#variables-gen%C3%A9ticas"><i class="fa fa-check"></i><b>1.2.3</b> Variables genéticas</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#divisi%C3%B3n-del-dataset"><i class="fa fa-check"></i><b>2.3</b> División del dataset</a></li>
-<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#an%C3%A1lisis-univariado"><i class="fa fa-check"></i><b>2.4</b> Análisis Univariado</a>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#divisi%C3%B3n-del-dataset---protocolo-anti-leakage"><i class="fa fa-check"></i><b>1.3</b> División del dataset - Protocolo Anti-Leakage</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#an%C3%A1lisis-univariado"><i class="fa fa-check"></i><b>1.4</b> Análisis Univariado</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="intro.html"><a href="intro.html#variable-grade-target"><i class="fa fa-check"></i><b>2.4.1</b> Variable <code>Grade</code> (Target)</a></li>
-<li class="chapter" data-level="2.4.2" data-path="intro.html"><a href="intro.html#variables-cuantitativas"><i class="fa fa-check"></i><b>2.4.2</b> Variables cuantitativas</a></li>
-<li class="chapter" data-level="2.4.3" data-path="intro.html"><a href="intro.html#variables-cualitativas"><i class="fa fa-check"></i><b>2.4.3</b> Variables cualitativas</a></li>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#variable-grade-target"><i class="fa fa-check"></i><b>1.4.1</b> Variable <code>Grade</code> (Target)</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#variables-cuantitativas"><i class="fa fa-check"></i><b>1.4.2</b> Variables cuantitativas</a></li>
+<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#variables-cualitativas"><i class="fa fa-check"></i><b>1.4.3</b> Variables cualitativas</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#an%C3%A1lisis-bivariado"><i class="fa fa-check"></i><b>2.5</b> Análisis Bivariado</a>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#an%C3%A1lisis-bivariado"><i class="fa fa-check"></i><b>1.5</b> Análisis Bivariado</a>
 <ul>
-<li class="chapter" data-level="2.5.1" data-path="intro.html"><a href="intro.html#grade---age_at_diagnosis"><i class="fa fa-check"></i><b>2.5.1</b> <code>Grade</code> - <code>Age_at_diagnosis</code></a></li>
-<li class="chapter" data-level="2.5.2" data-path="intro.html"><a href="intro.html#grade---gender"><i class="fa fa-check"></i><b>2.5.2</b> <code>Grade</code> - <code>Gender</code></a></li>
-<li class="chapter" data-level="2.5.3" data-path="intro.html"><a href="intro.html#grade---race"><i class="fa fa-check"></i><b>2.5.3</b> <code>Grade</code> - <code>Race</code></a></li>
-<li class="chapter" data-level="2.5.4" data-path="intro.html"><a href="intro.html#grade---variables-gen%C3%A9ticas"><i class="fa fa-check"></i><b>2.5.4</b> <code>Grade</code> - <code>variables genéticas</code></a></li>
-<li class="chapter" data-level="2.5.5" data-path="intro.html"><a href="intro.html#multicolinealidad-y-correlaci%C3%B3n"><i class="fa fa-check"></i><b>2.5.5</b> Multicolinealidad y correlación</a></li>
-<li class="chapter" data-level="2.5.6" data-path="intro.html"><a href="intro.html#asociaci%C3%B3n-con-la-variable-objetivo-grade"><i class="fa fa-check"></i><b>2.5.6</b> Asociación con la variable objetivo (<code>Grade</code>)</a></li>
-<li class="chapter" data-level="2.5.7" data-path="intro.html"><a href="intro.html#pares-de-predictores-con-alta-asociaci%C3%B3n-mutua"><i class="fa fa-check"></i><b>2.5.7</b> Pares de predictores con alta asociación mutua</a></li>
-<li class="chapter" data-level="2.5.8" data-path="intro.html"><a href="intro.html#diagn%C3%B3stico-de-multicolinealidad-entre-predictores"><i class="fa fa-check"></i><b>2.5.8</b> Diagnóstico de multicolinealidad entre predictores</a></li>
+<li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#grade---age_at_diagnosis"><i class="fa fa-check"></i><b>1.5.1</b> <code>Grade</code> - <code>Age_at_diagnosis</code></a></li>
+<li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#grade---gender"><i class="fa fa-check"></i><b>1.5.2</b> <code>Grade</code> - <code>Gender</code></a></li>
+<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#grade---race"><i class="fa fa-check"></i><b>1.5.3</b> <code>Grade</code> - <code>Race</code></a></li>
+<li class="chapter" data-level="1.5.4" data-path="intro.html"><a href="intro.html#grade---variables-gen%C3%A9ticas"><i class="fa fa-check"></i><b>1.5.4</b> <code>Grade</code> - <code>variables genéticas</code></a></li>
+<li class="chapter" data-level="1.5.5" data-path="intro.html"><a href="intro.html#multicolinealidad-y-correlaci%C3%B3n"><i class="fa fa-check"></i><b>1.5.5</b> Multicolinealidad y correlación</a></li>
+<li class="chapter" data-level="1.5.6" data-path="intro.html"><a href="intro.html#asociaciones-con-la-severidad-tumoral-grade"><i class="fa fa-check"></i><b>1.5.6</b> Asociaciones con la severidad tumoral (<code>Grade</code>)</a></li>
+<li class="chapter" data-level="1.5.7" data-path="intro.html"><a href="intro.html#interacciones-entre-variables-gen%C3%A9ticas"><i class="fa fa-check"></i><b>1.5.7</b> Interacciones entre variables genéticas</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -134,22 +135,22 @@
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">Caracterización Clínico-Molecular del Grado Tumoral en Gliomas</h1>
-<h2 class="subtitle"><em>Optimización del Diagnóstico de Gliomas mediante Ciencia de Datos y Aprendizaje Automático</em></h2>
+<h2 class="subtitle"><em>Optimización del Diagnóstico de Gliomas mediante Ciencia de Datos y Visualización de Datos</em></h2>
 <p class="author"><em>Alejandro Cantillo Escorcia &amp; Joshua Hincapie Llorente</em></p>
 <p class="date"><em>2026-10-05</em></p>
 </div>
-<div id="introducción" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Introducción<a href="index.html#introducci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introducción" class="section level1 unnumbered hasAnchor">
+<h1>Introducción<a href="index.html#introducci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Los gliomas representan el tumor cerebral primario más común en adultos y se clasifican principalmente en Gliomas de Bajo Grado (LGG) y Glioblastoma Multiforme (GBM). Si bien los criterios histológicos e imagenológicos tradicionales han sido la base del diagnóstico, la caracterización biomolecular y clínica se ha vuelto imprescindible para determinar el pronóstico y el tratamiento idóneo. Sin embargo, las pruebas de secuenciación genética completa suponen un coste económico elevado para los sistemas de salud y los pacientes.</p>
 <p>Este proyecto aborda este desafío analítico y médico mediante la integración de Análisis Exploratorio de Datos (EDA), aprendizaje automático y visualización interactiva. Utilizando datos recopilados de los proyectos TCGA-LGG y TCGA-GBM de <em>The Cancer Genome Atlas</em>, el objetivo central es construir una solución analítica integral que identifique el subconjunto óptimo de factores clínicos y mutaciones genéticas para clasificar con precisión la severidad del glioma, reduciendo los costos asociados a pruebas moleculares innecesarias.</p>
-<div id="objetivo-general" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Objetivo general<a href="index.html#objetivo-general" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="objetivo-general" class="section level2 unnumbered hasAnchor">
+<h2>Objetivo general<a href="index.html#objetivo-general" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Construir una solución analítica integral que permita identificar el subconjunto óptimo de factores clínicos y mutaciones genéticas para clasificar con precisión la severidad del glioma (LGG frente a GBM), buscando reducir la necesidad de pruebas moleculares innecesarias.</p>
 <p>El énfasis está en identificar las variables que aportan mayor información para la clasificación del grado tumoral, en lugar de incorporar la mayor cantidad posible de características. De esta manera, el análisis busca determinar cuáles de las variables disponibles presentan una asociación relevante con el grado del tumor y cuáles pueden ser descartadas sin perder capacidad discriminativa.</p>
 <p>La fase de modelado, orientada a traducir estos hallazgos en un clasificador predictivo, corresponde a una etapa posterior y queda fuera del alcance de esta entrega.</p>
 </div>
-<div id="objetivos-específicos" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Objetivos específicos<a href="index.html#objetivos-espec%C3%ADficos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="objetivos-específicos" class="section level2 unnumbered hasAnchor">
+<h2>Objetivos específicos<a href="index.html#objetivos-espec%C3%ADficos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><p><strong>Caracterizar la cohorte</strong></p>
 <p>Describir el perfil clínico y mutacional de los pacientes, considerando variables como edad, género, grupo racial y estado de mutación de los genes disponibles, además de evaluar la calidad de los datos mediante la identificación de valores faltantes, valores atípicos y características de sus distribuciones.</p></li>
@@ -173,6 +174,14 @@
 <li><strong>Variable Objetivo:</strong> Clasificación binaria entre <strong>LGG</strong> (Lower-Grade Glioma) y <strong>GBM</strong> (Glioblastoma Multiforme).</li>
 <li><strong>Naturaleza de datos:</strong> Tabular, multivariada (numérica y categórica).</li>
 </ul>
+<p><strong>Dashboard interactivo</strong></p>
+<p>El análisis de este libro tiene una contraparte interactiva: un tablero en Dash
+que recorre el planteamiento del problema, el marco teórico, la metodología y los
+resultados del EDA con gráficos navegables. Está desplegado en Google Cloud Run:
+<a href="https://gliomas-dashboard-984926604434.us-central1.run.app">panel de visualización de datos</a>.</p>
+<p>La fuente de este libro y el código del dashboard viven en el mismo proyecto:
+los notebooks en <code>jbook/</code>, la aplicación en la raíz, y una sola copia del
+dataset en <code>dataset/</code> para que ambos analicen exactamente los mismos datos.</p>
 
 </div>
 </div>
